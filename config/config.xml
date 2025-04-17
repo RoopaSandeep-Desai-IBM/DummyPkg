@@ -1,0 +1,56 @@
+<Config>
+<SSL>
+	<SSLSupport cipherSpec="DES_SHA_EXPORT" cipherSuit="SSL_RSA_WITH_DES_CBC_SHA"/>
+	<SSLSupport cipherSpec="NULL_MD5" cipherSuit="SSL_RSA_WITH_NULL_MD5"/>
+	<SSLSupport cipherSpec="NULL_SHA" cipherSuit="SSL_RSA_WITH_NULL_SHA"/>	
+	<SSLSupport cipherSpec="RC2_MD5_EXPORT" cipherSuit="SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5"/>
+	<SSLSupport cipherSpec="RC4_MD5_US" cipherSuit="SSL_RSA_WITH_RC4_128_MD5"/>
+	<SSLSupport cipherSpec="RC4_MD5_EXPORT" cipherSuit="SSL_RSA_EXPORT_WITH_RC4_40_MD5"/>
+	<SSLSupport cipherSpec="RC4_SHA_US" cipherSuit="SSL_RSA_WITH_RC4_128_SHA"/>
+	<SSLSupport cipherSpec="TRIPLE_DES_SHA_US" cipherSuit="SSL_RSA_WITH_3DES_EDE_CBC_SHA"/>
+</SSL>
+<TLS>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_DES_CBC_SHA" cipherSuit="SSL_RSA_WITH_DES_CBC_SHA"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_3DES_EDE_CBC_SHA" cipherSuit="SSL_RSA_WITH_3DES_EDE_CBC_SHA"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_AES_128_CBC_SHA" cipherSuit="TLS_RSA_WITH_AES_128_CBC_SHA"/>	
+	<SSLSupport cipherSpec="TLS_RSA_WITH_AES_256_CBC_SHA" cipherSuit="TLS_RSA_WITH_AES_256_CBC_SHA"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_NULL_SHA256" cipherSuit="TLS_RSA_WITH_NULL_SHA256"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_AES_128_CBC_SHA256" cipherSuit="TLS_RSA_WITH_AES_128_CBC_SHA256"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_AES_256_CBC_SHA256" cipherSuit="TLS_RSA_WITH_AES_256_CBC_SHA256"/>
+</TLS>
+<AllCipherSuite>
+	<SSLSupport cipherSuit="SSL_RSA_WITH_DES_CBC_SHA"/>
+	<SSLSupport cipherSuit="SSL_RSA_WITH_NULL_MD5"/>
+	<SSLSupport cipherSuit="SSL_RSA_WITH_NULL_SHA"/>
+	<SSLSupport cipherSuit="SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5"/>
+	<SSLSupport cipherSuit="SSL_RSA_WITH_RC4_128_MD5"/>
+	<SSLSupport cipherSuit="SSL_RSA_EXPORT_WITH_RC4_40_MD5"/>
+	<SSLSupport cipherSuit="SSL_RSA_WITH_RC4_128_SHA"/>
+	<SSLSupport cipherSuit="SSL_RSA_WITH_3DES_EDE_CBC_SHA"/>
+	<SSLSupport cipherSuit="TLS_RSA_WITH_AES_128_CBC_SHA"/>
+	<SSLSupport cipherSuit="TLS_RSA_WITH_AES_256_CBC_SHA"/>
+	<SSLSupport cipherSuit="TLS_RSA_WITH_NULL_SHA256"/>
+	<SSLSupport cipherSuit="TLS_RSA_WITH_AES_128_CBC_SHA256"/>
+	<SSLSupport cipherSuit="TLS_RSA_WITH_AES_256_CBC_SHA256"/>
+</AllCipherSuite>
+<AllCipherSpec>
+	<SSLSupport cipherSpec="DES_SHA_EXPORT" cipherSuit="SSL_RSA_WITH_DES_CBC_SHA"/>
+	<SSLSupport cipherSpec="NULL_MD5" cipherSuit="SSL_RSA_WITH_NULL_MD5"/>
+	<SSLSupport cipherSpec="NULL_SHA" cipherSuit="SSL_RSA_WITH_NULL_SHA"/>	
+	<SSLSupport cipherSpec="RC2_MD5_EXPORT" cipherSuit="SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5"/>
+	<SSLSupport cipherSpec="RC4_MD5_US" cipherSuit="SSL_RSA_WITH_RC4_128_MD5"/>
+	<SSLSupport cipherSpec="RC4_MD5_EXPORT" cipherSuit="SSL_RSA_EXPORT_WITH_RC4_40_MD5"/>
+	<SSLSupport cipherSpec="RC4_SHA_US" cipherSuit="SSL_RSA_WITH_RC4_128_SHA"/>
+	<SSLSupport cipherSpec="TRIPLE_DES_SHA_US" cipherSuit="SSL_RSA_WITH_3DES_EDE_CBC_SHA"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_DES_CBC_SHA" cipherSuit="SSL_RSA_WITH_DES_CBC_SHA"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_3DES_EDE_CBC_SHA" cipherSuit="SSL_RSA_WITH_3DES_EDE_CBC_SHA"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_AES_128_CBC_SHA" cipherSuit="TLS_RSA_WITH_AES_128_CBC_SHA"/>	
+	<SSLSupport cipherSpec="TLS_RSA_WITH_AES_256_CBC_SHA" cipherSuit="TLS_RSA_WITH_AES_256_CBC_SHA"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_NULL_SHA256" cipherSuit="TLS_RSA_WITH_NULL_SHA256"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_AES_128_CBC_SHA256" cipherSuit="TLS_RSA_WITH_AES_128_CBC_SHA256"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_AES_256_CBC_SHA256" cipherSuit="TLS_RSA_WITH_AES_256_CBC_SHA256"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_AES_256_GCM_SHA384" cipherSuit="TLS_RSA_WITH_AES_256_GCM_SHA384"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_RC4_128_SHA256" cipherSuit="SSL_RSA_WITH_RC4_128_SHA"/>
+	<SSLSupport cipherSpec="TLS_RSA_WITH_AES_128_GCM_SHA256" cipherSuit="TLS_RSA_WITH_AES_128_GCM_SHA256"/>
+</AllCipherSpec>	
+</Config>

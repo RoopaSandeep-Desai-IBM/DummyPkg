@@ -1,0 +1,2476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE PCFCommands [
+	<!ELEMENT PCFCommands (Command+)>
+	<!ELEMENT Command (RequestParameters?, ResponseParameters?)>
+	<!ATTLIST Command name CDATA #REQUIRED
+					  integerCode CDATA #REQUIRED
+					  identifier CDATA #IMPLIED
+	>
+	<!ELEMENT RequestParameters (Parameter+)>
+	<!ELEMENT ResponseParameters (Parameter+)>
+	
+	<!ELEMENT Parameter EMPTY>
+	<!ATTLIST Parameter name CDATA #REQUIRED
+						type CDATA #REQUIRED
+						integerCode CDATA #REQUIRED
+						identifier CDATA #IMPLIED
+						required CDATA #IMPLIED
+	>					
+]>
+<PCFCommands>
+	<!-- Backup CF Structure  -->
+	<Command name="BACKUP_CF_STRUC" integerCode="105" identifier="MQCMD_BACKUP_CF_STRUC">
+		<RequestParameters>
+			<Parameter name="CFStrucName" integerCode="2039" identifier="MQCA_CF_STRUC_NAME" type="string" required="true"/>
+
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="ExcludeInterval" type="int" integerCode="1134" identifier="MQIACF_EXCLUDE_INTERVAL"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Change, Copy, and Create Authentication Information Object -->
+	<Command name="CHANGE_AUTH_INFO" integerCode="79" identifier="MQCMD_CHANGE_AUTH_INFO">
+		<RequestParameters>
+			<Parameter name="AuthInfoName" integerCode="2045" identifier="MQCA_AUTH_INFO_NAME" type="string" required="true"/>
+
+			<Parameter name="AuthInfoConnName" type="string" integerCode="2053" identifier="MQCA_AUTH_INFO_CONN_NAME"/>
+			<Parameter name="AuthInfoDesc" type="string" integerCode="2046" identifier="MQCA_AUTH_INFO_DESC"/>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="LDAPPassword" type="string" integerCode="2048" identifier="MQCA_LDAP_PASSWORD"/>
+			<Parameter name="LDAPUserName" type="string" integerCode="2047" identifier="MQCA_LDAP_USER_NAME"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+	</Command>
+
+	<Command name="COPY_AUTH_INFO" integerCode="80" identifier="MQCMD_COPY_AUTH_INFO">
+		<RequestParameters>
+			<Parameter name="FromAuthInfoName" type="string" integerCode="3009" identifier="MQCACF_FROM_AUTH_INFO_NAME" required="true"/>
+			<Parameter name="ToAuthInfoName" type="string" integerCode="3010" identifier="MQCACF_TO_AUTH_INFO_NAME" required="true"/>
+			<Parameter name="AuthInfoType" integerCode="66" identifier="MQIA_AUTH_INFO_TYPE" type="int" required="true"/>
+
+			<Parameter name="AuthInfoConnName" type="string" integerCode="2053" identifier="MQCA_AUTH_INFO_CONN_NAME"/>
+			<Parameter name="AuthInfoDesc" type="string" integerCode="2046" identifier="MQCA_AUTH_INFO_DESC"/>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="LDAPPassword" type="string" integerCode="2048" identifier="MQCA_LDAP_PASSWORD"/>
+			<Parameter name="LDAPUserName" type="string" integerCode="2047" identifier="MQCA_LDAP_USER_NAME"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+	</Command>
+
+
+	<Command name="CREATE_AUTH_INFO" integerCode="81" identifier="MQCMD_CREATE_AUTH_INFO">
+		<RequestParameters>
+			<Parameter name="AuthInfoName" integerCode="2045" identifier="MQCA_AUTH_INFO_NAME" type="string" required="true"/>
+			<Parameter name="AuthInfoType" integerCode="66" identifier="MQIA_AUTH_INFO_TYPE" type="int" required="true"/>
+			<Parameter name="AuthInfoConnName" integerCode="2053" identifier="MQCA_AUTH_INFO_CONN_NAME" type="string" required="true"/>
+
+			<Parameter name="AuthInfoDesc" type="string" integerCode="2046" identifier="MQCA_AUTH_INFO_DESC"/>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="LDAPPassword" type="string" integerCode="2048" identifier="MQCA_LDAP_PASSWORD"/>
+			<Parameter name="LDAPUserName" type="string" integerCode="2047" identifier="MQCA_LDAP_USER_NAME"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+	</Command>
+
+
+	<!-- Change, Copy, and Create CF Structure -->
+	<Command name="CHANGE_CF_STRUC" integerCode="101" identifier="MQCMD_CHANGE_CF_STRUC">
+		<RequestParameters>
+			<Parameter name="CFStrucName" integerCode="2039" identifier="MQCA_CF_STRUC_NAME" type="string" required="true"/>
+
+			<Parameter name="CFLevel" type="int" integerCode="70" identifier="MQIA_CF_LEVEL"/>
+			<Parameter name="CFStrucDesc" type="string" integerCode="2052" identifier="MQCA_CF_STRUC_DESC"/>
+			<Parameter name="Recovery" type="int" integerCode="71" identifier="MQIA_CF_RECOVER"/>
+			<Parameter name="Replace" type="int" integerCode="1006" identifier="MQIACF_REPLACE"/>
+		</RequestParameters>
+	</Command>
+
+	<Command name="COPY_CF_STRUC" integerCode="110" identifier="MQCMD_COPY_CF_STRUC">
+		<RequestParameters>
+			<Parameter name="FromCFStrucName" integerCode="3093" identifier="MQCACF_FROM_CF_STRUC_NAME" type="string" required="true"/>
+			<Parameter name="ToCFStrucName" integerCode="3094" identifier="MQCACF_TO_CF_STRUC_NAME" type="string" required="true"/>
+
+			<Parameter name="CFLevel" type="int" integerCode="70" identifier="MQIA_CF_LEVEL"/>
+			<Parameter name="CFStrucDesc" type="string" integerCode="2052" identifier="MQCA_CF_STRUC_DESC"/>
+			<Parameter name="Recovery" type="int" integerCode="71" identifier="MQIA_CF_RECOVER"/>
+			<Parameter name="Replace" type="int" integerCode="1006" identifier="MQIACF_REPLACE"/>
+		</RequestParameters>
+	</Command>
+
+
+	<Command name="CREATE_CF_STRUC" integerCode="108" identifier="MQCMD_CREATE_CF_STRUC">
+		<RequestParameters>
+			<Parameter name="CFStrucName" integerCode="2039" identifier="MQCA_CF_STRUC_NAME" type="string" required="true"/>
+
+			<Parameter name="CFLevel" type="int" integerCode="70" identifier="MQIA_CF_LEVEL"/>
+			<Parameter name="CFStrucDesc" type="string" integerCode="2052" identifier="MQCA_CF_STRUC_DESC"/>
+			<Parameter name="Recovery" type="int" integerCode="71" identifier="MQIA_CF_RECOVER"/>
+			<Parameter name="Replace" type="int" integerCode="1006" identifier="MQIACF_REPLACE"/>
+		</RequestParameters>
+	</Command>
+
+
+	<!-- Change, Copy and Create Channel -->
+	<Command name="CHANGE_CHANNEL" integerCode="21" identifier="MQCMD_CHANGE_CHANNEL">
+		<RequestParameters>
+			<Parameter name="ChannelName" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" type="string" required="true"/>
+			<Parameter name="ChannelType" integerCode="1511" identifier="MQIACH_CHANNEL_TYPE" type="int" required="true"/>
+
+			<Parameter name="BatchHeartbeat" integerCode="1567" identifier="MQIACH_BATCH_HB" type="int"/>
+			<Parameter name="BatchInterval" integerCode="1564" identifier="MQIACH_BATCH_INTERVAL" type="int"/>
+			<Parameter name="BatchSize" integerCode="1502" identifier="MQIACH_BATCH_SIZE" type="int"/>
+			<Parameter name="ChannelDesc" integerCode="3502" identifier="MQCACH_DESC" type="string"/>
+			<Parameter name="ChannelMonitoring" integerCode="122" identifier="MQIA_MONITORING_CHANNEL" type="int"/>
+			<Parameter name="ChannelStatistics" integerCode="129" identifier="MQIA_STATISTICS_CHANNEL" type="int"/>
+			<Parameter name="ClusterName" integerCode="2029" identifier="MQCA_CLUSTER_NAME" type="string"/>
+			<Parameter name="ClusterNamelist" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST" type="string[]"/>
+			<Parameter name="CLWLChannelPriority" integerCode="1578" identifier="MQIACH_CLWL_CHANNEL_PRIORITY" type="int"/>
+			<Parameter name="CLWLChannelRank" integerCode="1577" identifier="MQIACH_CLWL_CHANNEL_RANK" type="int"/>
+			<Parameter name="CLWLChannelWeight" integerCode="1579" identifier="MQIACH_CLWL_CHANNEL_WEIGHT" type="int"/>
+			<Parameter name="CommandScope" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE" type="string"/>
+			<Parameter name="ConnectionName" integerCode="3506" identifier="MQCACH_CONNECTION_NAME" type="string"/>
+			<Parameter name="DataConversion" integerCode="1515" identifier="MQIACH_DATA_CONVERSION" type="int"/>
+			<Parameter name="DiscInterval" integerCode="1503" identifier="MQIACH_DISC_INTERVAL" type="int[]"/>
+			<Parameter name="HeaderCompression" integerCode="1575" identifier="MQIACH_HDR_COMPRESSION" type="int"/>
+			<Parameter name="HeartbeatInterval" integerCode="1563" identifier="MQIACH_HB_INTERVAL" type="int"/>
+			<Parameter name="KeepAliveInterval" integerCode="1566" identifier="MQIACH_KEEP_ALIVE_INTERVAL" type="int"/>
+			<Parameter name="LocalAddress" integerCode="3520" identifier="MQCACH_LOCAL_ADDRESS" type="string"/>
+			<Parameter name="LongRetryCount" integerCode="1507" identifier="MQIACH_LONG_RETRY" type="int"/>
+			<Parameter name="LongRetryInterval" integerCode="1506" identifier="MQIACH_LONG_TIMER" type="int"/>
+			<Parameter name="MaxMsgLength" integerCode="1510" identifier="MQIACH_MAX_MSG_LENGTH" type="int"/>
+			<Parameter name="MCAName" integerCode="3507" identifier="MQCACH_MCA_NAME" type="int"/>
+			<Parameter name="MCAType" integerCode="1517" identifier="MQIACH_MCA_TYPE" type="int"/>
+			<Parameter name="MCAUserIdentifier" integerCode="3527" identifier="MQCACH_MCA_USER_ID" type="string"/>
+			<Parameter name="MessageCompression" integerCode="1576" identifier="MQIACH_MSG_COMPRESSION" type="int[]"/>
+			<Parameter name="ModeName" integerCode="3503" identifier="MQCACH_MODE_NAME" type="string"/>
+			<Parameter name="MsgExit" integerCode="3509" identifier="MQCACH_MSG_EXIT_NAME" type="string[]"/>
+			<Parameter name="MsgRetryCount" integerCode="1544" identifier="MQIACH_MR_COUNT" type="int"/>
+			<Parameter name="MsgRetryExit" integerCode="3534" identifier="MQCACH_MR_EXIT_NAME" type="string"/>
+			<Parameter name="MsgRetryInterval" integerCode="1545" identifier="MQIACH_MR_INTERVAL" type="int"/>
+			<Parameter name="MsgRetryUserData" integerCode="3535" identifier="MQCACH_MR_EXIT_USER_DATA" type="string"/>
+			<Parameter name="MsgUserData" integerCode="3514" identifier="MQCACH_MSG_EXIT_USER_DATA" type="string[]"/>
+			<Parameter name="NetworkPriority" integerCode="1565" identifier="MQIACH_NETWORK_PRIORITY" type="int"/>
+			<Parameter name="NonPersistentMsgSpeed" integerCode="1562" identifier="MQIACH_NPM_SPEED" type="int"/>
+			<Parameter name="Password" integerCode="3518" identifier="MQCACH_PASSWORD" type="string"/>
+			<Parameter name="PutAuthority" integerCode="1508" identifier="MQIACH_PUT_AUTHORITY" type="int"/>
+			<Parameter name="QMgrName" integerCode="2015" identifier="MQCA_Q_MGR_NAME" type="string"/>
+			<Parameter name="QSGDisposition" integerCode="63" identifier="MQIA_QSG_DISP" type="int"/>
+			<Parameter name="ReceiveExit" integerCode="3511" identifier="MQCACH_RCV_EXIT_NAME" type="string[]"/>
+			<Parameter name="ReceiveUserData" integerCode="3516" identifier="MQCACH_RCV_EXIT_USER_DATA" type="string[]"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="SecurityExit" integerCode="3508" identifier="MQCACH_SEC_EXIT_NAME" type="string"/>
+			<Parameter name="SecurityUserData" integerCode="3513" identifier="MQCACH_SEC_EXIT_USER_DATA" type="string"/>
+			<Parameter name="SendExit" integerCode="3510" identifier="MQCACH_SEND_EXIT_NAME" type="string[]"/>
+			<Parameter name="SendUserData" integerCode="3515" identifier="MQCACH_SEND_EXIT_USER_DATA" type="string[]"/>
+			<Parameter name="SeqNumberWrap" integerCode="1509" identifier="MQIACH_SEQUENCE_NUMBER_WRAP" type="int"/>
+			<Parameter name="ShortRetryCount" integerCode="1505" identifier="MQIACH_SHORT_RETRY" type="int"/>
+			<Parameter name="ShortRetryInterval" integerCode="1504" identifier="MQIACH_SHORT_TIMER" type="int"/>
+			<Parameter name="SSLCipherSpec" integerCode="3544" identifier="MQCACH_SSL_CIPHER_SPEC" type="string"/>
+			<Parameter name="SSLClientAuth" integerCode="1568" identifier="MQIACH_SSL_CLIENT_AUTH" type="int"/>
+			<Parameter name="SSLPeerName" integerCode="3545" identifier="MQCACH_SSL_PEER_NAME" type="string"/>
+			<Parameter name="TpName" integerCode="3504" identifier="MQCACH_TP_NAME" type="string"/>
+			<Parameter name="TransportType" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE" type="int"/>
+			<Parameter name="UserIdentifier" integerCode="3517" identifier="MQCACH_USER_ID" type="string"/>
+			<Parameter name="XmitQName" integerCode="3505" identifier="MQCACH_XMIT_Q_NAME" type="string"/>
+		</RequestParameters>
+	</Command>
+
+	<Command name="CREATE_CHANNEL" integerCode="23" identifier="MQCMD_CREATE_CHANNEL">
+		<RequestParameters>
+			<Parameter name="ChannelName" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" type="string" required="true"/>
+			<Parameter name="ChannelType" integerCode="1511" identifier="MQIACH_CHANNEL_TYPE" type="int" required="true"/>
+
+			<Parameter name="BatchHeartbeat" integerCode="1567" identifier="MQIACH_BATCH_HB" type="int"/>
+			<Parameter name="BatchInterval" integerCode="1564" identifier="MQIACH_BATCH_INTERVAL" type="int"/>
+			<Parameter name="BatchSize" integerCode="1502" identifier="MQIACH_BATCH_SIZE" type="int"/>
+			<Parameter name="ChannelDesc" integerCode="3502" identifier="MQCACH_DESC" type="string"/>
+			<Parameter name="ChannelMonitoring" integerCode="122" identifier="MQIA_MONITORING_CHANNEL" type="int"/>
+			<Parameter name="ChannelStatistics" integerCode="129" identifier="MQIA_STATISTICS_CHANNEL" type="int"/>
+			<Parameter name="ClusterName" integerCode="2029" identifier="MQCA_CLUSTER_NAME" type="string"/>
+			<Parameter name="ClusterNamelist" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST" type="string[]"/>
+			<Parameter name="CLWLChannelPriority" integerCode="1578" identifier="MQIACH_CLWL_CHANNEL_PRIORITY" type="int"/>
+			<Parameter name="CLWLChannelRank" integerCode="1577" identifier="MQIACH_CLWL_CHANNEL_RANK" type="int"/>
+			<Parameter name="CLWLChannelWeight" integerCode="1579" identifier="MQIACH_CLWL_CHANNEL_WEIGHT" type="int"/>
+			<Parameter name="CommandScope" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE" type="string"/>
+			<Parameter name="ConnectionName" integerCode="3506" identifier="MQCACH_CONNECTION_NAME" type="string"/>
+			<Parameter name="DataConversion" integerCode="1515" identifier="MQIACH_DATA_CONVERSION" type="int"/>
+			<Parameter name="DiscInterval" integerCode="1503" identifier="MQIACH_DISC_INTERVAL" type="int[]"/>
+			<Parameter name="HeaderCompression" integerCode="1575" identifier="MQIACH_HDR_COMPRESSION" type="int"/>
+			<Parameter name="HeartbeatInterval" integerCode="1563" identifier="MQIACH_HB_INTERVAL" type="int"/>
+			<Parameter name="KeepAliveInterval" integerCode="1566" identifier="MQIACH_KEEP_ALIVE_INTERVAL" type="int"/>
+			<Parameter name="LocalAddress" integerCode="3520" identifier="MQCACH_LOCAL_ADDRESS" type="string"/>
+			<Parameter name="LongRetryCount" integerCode="1507" identifier="MQIACH_LONG_RETRY" type="int"/>
+			<Parameter name="LongRetryInterval" integerCode="1506" identifier="MQIACH_LONG_TIMER" type="int"/>
+			<Parameter name="MaxMsgLength" integerCode="1510" identifier="MQIACH_MAX_MSG_LENGTH" type="int"/>
+			<Parameter name="MCAName" integerCode="3507" identifier="MQCACH_MCA_NAME" type="int"/>
+			<Parameter name="MCAType" integerCode="1517" identifier="MQIACH_MCA_TYPE" type="int"/>
+			<Parameter name="MCAUserIdentifier" integerCode="3527" identifier="MQCACH_MCA_USER_ID" type="string"/>
+			<Parameter name="MessageCompression" integerCode="1576" identifier="MQIACH_MSG_COMPRESSION" type="int[]"/>
+			<Parameter name="ModeName" integerCode="3503" identifier="MQCACH_MODE_NAME" type="string"/>
+			<Parameter name="MsgExit" integerCode="3509" identifier="MQCACH_MSG_EXIT_NAME" type="string[]"/>
+			<Parameter name="MsgRetryCount" integerCode="1544" identifier="MQIACH_MR_COUNT" type="int"/>
+			<Parameter name="MsgRetryExit" integerCode="3534" identifier="MQCACH_MR_EXIT_NAME" type="string"/>
+			<Parameter name="MsgRetryInterval" integerCode="1545" identifier="MQIACH_MR_INTERVAL" type="int"/>
+			<Parameter name="MsgRetryUserData" integerCode="3535" identifier="MQCACH_MR_EXIT_USER_DATA" type="string"/>
+			<Parameter name="MsgUserData" integerCode="3514" identifier="MQCACH_MSG_EXIT_USER_DATA" type="string[]"/>
+			<Parameter name="NetworkPriority" integerCode="1565" identifier="MQIACH_NETWORK_PRIORITY" type="int"/>
+			<Parameter name="NonPersistentMsgSpeed" integerCode="1562" identifier="MQIACH_NPM_SPEED" type="int"/>
+			<Parameter name="Password" integerCode="3518" identifier="MQCACH_PASSWORD" type="string"/>
+			<Parameter name="PutAuthority" integerCode="1508" identifier="MQIACH_PUT_AUTHORITY" type="int"/>
+			<Parameter name="QMgrName" integerCode="2015" identifier="MQCA_Q_MGR_NAME" type="string"/>
+			<Parameter name="QSGDisposition" integerCode="63" identifier="MQIA_QSG_DISP" type="int"/>
+			<Parameter name="ReceiveExit" integerCode="3511" identifier="MQCACH_RCV_EXIT_NAME" type="string[]"/>
+			<Parameter name="ReceiveUserData" integerCode="3516" identifier="MQCACH_RCV_EXIT_USER_DATA" type="string[]"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="SecurityExit" integerCode="3508" identifier="MQCACH_SEC_EXIT_NAME" type="string"/>
+			<Parameter name="SecurityUserData" integerCode="3513" identifier="MQCACH_SEC_EXIT_USER_DATA" type="string"/>
+			<Parameter name="SendExit" integerCode="3510" identifier="MQCACH_SEND_EXIT_NAME" type="string[]"/>
+			<Parameter name="SendUserData" integerCode="3515" identifier="MQCACH_SEND_EXIT_USER_DATA" type="string[]"/>
+			<Parameter name="SeqNumberWrap" integerCode="1509" identifier="MQIACH_SEQUENCE_NUMBER_WRAP" type="int"/>
+			<Parameter name="ShortRetryCount" integerCode="1505" identifier="MQIACH_SHORT_RETRY" type="int"/>
+			<Parameter name="ShortRetryInterval" integerCode="1504" identifier="MQIACH_SHORT_TIMER" type="int"/>
+			<Parameter name="SSLCipherSpec" integerCode="3544" identifier="MQCACH_SSL_CIPHER_SPEC" type="string"/>
+			<Parameter name="SSLClientAuth" integerCode="1568" identifier="MQIACH_SSL_CLIENT_AUTH" type="int"/>
+			<Parameter name="SSLPeerName" integerCode="3545" identifier="MQCACH_SSL_PEER_NAME" type="string"/>
+			<Parameter name="TpName" integerCode="3504" identifier="MQCACH_TP_NAME" type="string"/>
+			<Parameter name="TransportType" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE" type="int"/>
+			<Parameter name="UserIdentifier" integerCode="3517" identifier="MQCACH_USER_ID" type="string"/>
+			<Parameter name="XmitQName" integerCode="3505" identifier="MQCACH_XMIT_Q_NAME" type="string"/>
+		</RequestParameters>
+	</Command>
+
+	<Command name="COPY_CHANNEL" integerCode="22" identifier="MQCMD_COPY_CHANNEL">
+		<RequestParameters>
+			<Parameter name="FromChannelName" integerCode="3007" identifier="MQCACF_FROM_CHANNEL_NAME" type="string" required="true"/>
+			<Parameter name="ToChannelName" integerCode="3008" identifier="MQCACF_TO_CHANNEL_NAME" type="string" required="true"/>
+			<Parameter name="ChannelType" integerCode="1511" identifier="MQIACH_CHANNEL_TYPE" type="int" required="true"/>
+
+			<Parameter name="BatchHeartbeat" integerCode="1567" identifier="MQIACH_BATCH_HB" type="int"/>
+			<Parameter name="BatchInterval" integerCode="1564" identifier="MQIACH_BATCH_INTERVAL" type="int"/>
+			<Parameter name="BatchSize" integerCode="1502" identifier="MQIACH_BATCH_SIZE" type="int"/>
+			<Parameter name="ChannelDesc" integerCode="3502" identifier="MQCACH_DESC" type="string"/>
+			<Parameter name="ChannelMonitoring" integerCode="122" identifier="MQIA_MONITORING_CHANNEL" type="int"/>
+			<Parameter name="ChannelStatistics" integerCode="129" identifier="MQIA_STATISTICS_CHANNEL" type="int"/>
+			<Parameter name="ClusterName" integerCode="2029" identifier="MQCA_CLUSTER_NAME" type="string"/>
+			<Parameter name="ClusterNamelist" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST" type="string[]"/>
+			<Parameter name="CLWLChannelPriority" integerCode="1578" identifier="MQIACH_CLWL_CHANNEL_PRIORITY" type="int"/>
+			<Parameter name="CLWLChannelRank" integerCode="1577" identifier="MQIACH_CLWL_CHANNEL_RANK" type="int"/>
+			<Parameter name="CLWLChannelWeight" integerCode="1579" identifier="MQIACH_CLWL_CHANNEL_WEIGHT" type="int"/>
+			<Parameter name="CommandScope" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE" type="string"/>
+			<Parameter name="ConnectionName" integerCode="3506" identifier="MQCACH_CONNECTION_NAME" type="string"/>
+			<Parameter name="DataConversion" integerCode="1515" identifier="MQIACH_DATA_CONVERSION" type="int"/>
+			<Parameter name="DiscInterval" integerCode="1503" identifier="MQIACH_DISC_INTERVAL" type="int[]"/>
+			<Parameter name="HeaderCompression" integerCode="1575" identifier="MQIACH_HDR_COMPRESSION" type="int"/>
+			<Parameter name="HeartbeatInterval" integerCode="1563" identifier="MQIACH_HB_INTERVAL" type="int"/>
+			<Parameter name="KeepAliveInterval" integerCode="1566" identifier="MQIACH_KEEP_ALIVE_INTERVAL" type="int"/>
+			<Parameter name="LocalAddress" integerCode="3520" identifier="MQCACH_LOCAL_ADDRESS" type="string"/>
+			<Parameter name="LongRetryCount" integerCode="1507" identifier="MQIACH_LONG_RETRY" type="int"/>
+			<Parameter name="LongRetryInterval" integerCode="1506" identifier="MQIACH_LONG_TIMER" type="int"/>
+			<Parameter name="MaxMsgLength" integerCode="1510" identifier="MQIACH_MAX_MSG_LENGTH" type="int"/>
+			<Parameter name="MCAName" integerCode="3507" identifier="MQCACH_MCA_NAME" type="int"/>
+			<Parameter name="MCAType" integerCode="1517" identifier="MQIACH_MCA_TYPE" type="int"/>
+			<Parameter name="MCAUserIdentifier" integerCode="3527" identifier="MQCACH_MCA_USER_ID" type="string"/>
+			<Parameter name="MessageCompression" integerCode="1576" identifier="MQIACH_MSG_COMPRESSION" type="int[]"/>
+			<Parameter name="ModeName" integerCode="3503" identifier="MQCACH_MODE_NAME" type="string"/>
+			<Parameter name="MsgExit" integerCode="3509" identifier="MQCACH_MSG_EXIT_NAME" type="string[]"/>
+			<Parameter name="MsgRetryCount" integerCode="1544" identifier="MQIACH_MR_COUNT" type="int"/>
+			<Parameter name="MsgRetryExit" integerCode="3534" identifier="MQCACH_MR_EXIT_NAME" type="string"/>
+			<Parameter name="MsgRetryInterval" integerCode="1545" identifier="MQIACH_MR_INTERVAL" type="int"/>
+			<Parameter name="MsgRetryUserData" integerCode="3535" identifier="MQCACH_MR_EXIT_USER_DATA" type="string"/>
+			<Parameter name="MsgUserData" integerCode="3514" identifier="MQCACH_MSG_EXIT_USER_DATA" type="string[]"/>
+			<Parameter name="NetworkPriority" integerCode="1565" identifier="MQIACH_NETWORK_PRIORITY" type="int"/>
+			<Parameter name="NonPersistentMsgSpeed" integerCode="1562" identifier="MQIACH_NPM_SPEED" type="int"/>
+			<Parameter name="Password" integerCode="3518" identifier="MQCACH_PASSWORD" type="string"/>
+			<Parameter name="PutAuthority" integerCode="1508" identifier="MQIACH_PUT_AUTHORITY" type="int"/>
+			<Parameter name="QMgrName" integerCode="2015" identifier="MQCA_Q_MGR_NAME" type="string"/>
+			<Parameter name="QSGDisposition" integerCode="63" identifier="MQIA_QSG_DISP" type="int"/>
+			<Parameter name="ReceiveExit" integerCode="3511" identifier="MQCACH_RCV_EXIT_NAME" type="string[]"/>
+			<Parameter name="ReceiveUserData" integerCode="3516" identifier="MQCACH_RCV_EXIT_USER_DATA" type="string[]"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="SecurityExit" integerCode="3508" identifier="MQCACH_SEC_EXIT_NAME" type="string"/>
+			<Parameter name="SecurityUserData" integerCode="3513" identifier="MQCACH_SEC_EXIT_USER_DATA" type="string"/>
+			<Parameter name="SendExit" integerCode="3510" identifier="MQCACH_SEND_EXIT_NAME" type="string[]"/>
+			<Parameter name="SendUserData" integerCode="3515" identifier="MQCACH_SEND_EXIT_USER_DATA" type="string[]"/>
+			<Parameter name="SeqNumberWrap" integerCode="1509" identifier="MQIACH_SEQUENCE_NUMBER_WRAP" type="int"/>
+			<Parameter name="ShortRetryCount" integerCode="1505" identifier="MQIACH_SHORT_RETRY" type="int"/>
+			<Parameter name="ShortRetryInterval" integerCode="1504" identifier="MQIACH_SHORT_TIMER" type="int"/>
+			<Parameter name="SSLCipherSpec" integerCode="3544" identifier="MQCACH_SSL_CIPHER_SPEC" type="string"/>
+			<Parameter name="SSLClientAuth" integerCode="1568" identifier="MQIACH_SSL_CLIENT_AUTH" type="int"/>
+			<Parameter name="SSLPeerName" integerCode="3545" identifier="MQCACH_SSL_PEER_NAME" type="string"/>
+			<Parameter name="TpName" integerCode="3504" identifier="MQCACH_TP_NAME" type="string"/>
+			<Parameter name="TransportType" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE" type="int"/>
+			<Parameter name="UserIdentifier" integerCode="3517" identifier="MQCACH_USER_ID" type="string"/>
+			<Parameter name="XmitQName" integerCode="3505" identifier="MQCACH_XMIT_Q_NAME" type="string"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Change, Copy, and Create Channel Listener -->
+
+	<Command name="CHANGE_LISTENER" integerCode="93" identifier="MQCMD_CHANGE_LISTENER">
+		<RequestParameters>
+			<Parameter name="ListenerName" integerCode="3554" identifier="MQCACH_LISTENER_NAME" type="string" required="true"/>
+			<Parameter name="TransportType" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE" type="int" required="true"/>
+
+			<Parameter name="Adapter" integerCode="1519" identifier="MQIACH_ADAPTER" type="int"/>
+			<Parameter name="Backlog" integerCode="1602" identifier="MQIACH_BACKLOG" type="int"/>
+			<Parameter name="Commands" integerCode="1520" identifier="MQIACH_COMMAND_COUNT" type="int"/>
+			<Parameter name="IPAddress" integerCode="3552" identifier="MQCACH_IP_ADDRESS" type="string"/>
+			<Parameter name="ListenerDesc" integerCode="3555" identifier="MQCACH_LISTENER_DESC" type="string"/>
+			<Parameter name="LocalName" integerCode="3521" identifier="MQCACH_LOCAL_NAME" type="string"/>
+			<Parameter name="NetbiosNames" integerCode="1513" identifier="MQIACH_NAME_COUNT" type="int"/>
+			<Parameter name="Port" integerCode="1522" identifier="MQIACH_PORT" type="int"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="Sessions" integerCode="1518" identifier="MQIACH_SESSION_COUNT" type="int"/>
+			<Parameter name="Socket" integerCode="1521" identifier="MQIACH_SOCKET" type="int"/>
+			<Parameter name="StartMode" integerCode="1601" identifier="MQIACH_LISTENER_CONTROL" type="int"/>
+			<Parameter name="TPname" integerCode="3504" identifier="MQCACH_TP_NAME" type="string"/>
+		</RequestParameters>
+	</Command>
+
+	<Command name="COPY_LISTENER" integerCode="94" identifier="MQCMD_COPY_LISTENER">
+		<RequestParameters>
+			<Parameter name="FromListenerName" integerCode="3124" identifier="MQCACF_FROM_LISTENER_NAME" type="string" required="true"/>
+			<Parameter name="ToListenerName" integerCode="3125" identifier="MQCACF_TO_LISTENER_NAME"  type="string" required="true"/>
+
+			<Parameter name="Adapter" integerCode="1519" identifier="MQIACH_ADAPTER" type="int"/>
+			<Parameter name="Backlog" integerCode="1602" identifier="MQIACH_BACKLOG" type="int"/>
+			<Parameter name="Commands" integerCode="1520" identifier="MQIACH_COMMAND_COUNT" type="int"/>
+			<Parameter name="IPAddress" integerCode="3552" identifier="MQCACH_IP_ADDRESS" type="string"/>
+			<Parameter name="ListenerDesc" integerCode="3555" identifier="MQCACH_LISTENER_DESC" type="string"/>
+			<Parameter name="LocalName" integerCode="3521" identifier="MQCACH_LOCAL_NAME" type="string"/>
+			<Parameter name="NetbiosNames" integerCode="1513" identifier="MQIACH_NAME_COUNT" type="int"/>
+			<Parameter name="Port" integerCode="1522" identifier="MQIACH_PORT" type="int"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="Sessions" integerCode="1518" identifier="MQIACH_SESSION_COUNT" type="int"/>
+			<Parameter name="Socket" integerCode="1521" identifier="MQIACH_SOCKET" type="int"/>
+			<Parameter name="StartMode" integerCode="1601" identifier="MQIACH_LISTENER_CONTROL" type="int"/>
+			<Parameter name="TPname" integerCode="3504" identifier="MQCACH_TP_NAME" type="string"/>
+
+		</RequestParameters>
+	</Command>
+
+	<Command name="CREATE_LISTENER" integerCode="95" identifier="MQCMD_CREATE_LISTENER">
+		<RequestParameters>
+			<Parameter name="ListenerName" integerCode="3554" identifier="MQCACH_LISTENER_NAME" type="string" required="true"/>
+			<Parameter name="TransportType" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE" type="int" required="true"/>
+
+			<Parameter name="Adapter" integerCode="1519" identifier="MQIACH_ADAPTER" type="int"/>
+			<Parameter name="Backlog" integerCode="1602" identifier="MQIACH_BACKLOG" type="int"/>
+			<Parameter name="Commands" integerCode="1520" identifier="MQIACH_COMMAND_COUNT" type="int"/>
+			<Parameter name="IPAddress" integerCode="3552" identifier="MQCACH_IP_ADDRESS" type="string"/>
+			<Parameter name="ListenerDesc" integerCode="3555" identifier="MQCACH_LISTENER_DESC" type="string"/>
+			<Parameter name="LocalName" integerCode="3521" identifier="MQCACH_LOCAL_NAME" type="string"/>
+			<Parameter name="NetbiosNames" integerCode="1513" identifier="MQIACH_NAME_COUNT" type="int"/>
+			<Parameter name="Port" integerCode="1522" identifier="MQIACH_PORT" type="int"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="Sessions" integerCode="1518" identifier="MQIACH_SESSION_COUNT" type="int"/>
+			<Parameter name="Socket" integerCode="1521" identifier="MQIACH_SOCKET" type="int"/>
+			<Parameter name="StartMode" integerCode="1601" identifier="MQIACH_LISTENER_CONTROL" type="int"/>
+			<Parameter name="TPname" integerCode="3504" identifier="MQCACH_TP_NAME" type="string"/>
+
+		</RequestParameters>
+	</Command>
+
+	<!-- Change, Copy, and Create Namelist -->
+
+	<Command name="CHANGE_NAMELIST" integerCode="32" identifier="MQCMD_CHANGE_NAMELIST">
+		<RequestParameters>
+			<Parameter name="NamelistName" integerCode="2010" identifier="MQCA_NAMELIST_NAME" type="string" required="true"/>
+
+			<Parameter name="CommandScope" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE" type="string"/>
+			<Parameter name="NamelistDesc" integerCode="2009" identifier="MQCA_NAMELIST_DESC" type="string"/>
+			<Parameter name="NamelistType" integerCode="72" identifier="MQIA_NAMELIST_TYPE" type="int"/>
+			<Parameter name="Names" integerCode="2020" identifier="MQCA_NAMES" type="string[]"/>
+			<Parameter name="QSGDisposition" integerCode="63" identifier="MQIA_QSG_DISP" type="int"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+
+		</RequestParameters>
+	</Command>
+
+	<Command name="CREATE_NAMELIST" integerCode="34" identifier="MQCMD_CREATE_NAMELIST">
+		<RequestParameters>
+			<Parameter name="NamelistName" integerCode="2010" identifier="MQCA_NAMELIST_NAME" type="string" required="true"/>
+
+			<Parameter name="CommandScope" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE" type="string"/>
+			<Parameter name="NamelistDesc" integerCode="2009" identifier="MQCA_NAMELIST_DESC" type="string"/>
+			<Parameter name="NamelistType" integerCode="72" identifier="MQIA_NAMELIST_TYPE" type="int"/>
+			<Parameter name="Names" integerCode="2020" identifier="MQCA_NAMES" type="string[]"/>
+			<Parameter name="QSGDisposition" integerCode="63" identifier="MQIA_QSG_DISP" type="int"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+
+		</RequestParameters>
+	</Command>
+
+	<Command name="COPY_NAMELIST" integerCode="33" identifier="MQCMD_COPY_NAMELIST">
+		<RequestParameters>
+			<Parameter name="FromNamelistName" integerCode="3005" identifier="MQCACF_FROM_NAMELIST_NAME" type="string" required="true"/>
+			<Parameter name="ToNamelistName" integerCode="3006" identifier="MQCACF_TO_NAMELIST_NAME" type="string" required="true"/>
+
+
+			<Parameter name="CommandScope" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE" type="string"/>
+			<Parameter name="NamelistDesc" integerCode="2009" identifier="MQCA_NAMELIST_DESC" type="string"/>
+			<Parameter name="NamelistType" integerCode="72" identifier="MQIA_NAMELIST_TYPE" type="int"/>
+			<Parameter name="Names" integerCode="2020" identifier="MQCA_NAMES" type="string[]"/>
+			<Parameter name="QSGDisposition" integerCode="63" identifier="MQIA_QSG_DISP" type="int"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+
+		</RequestParameters>
+	</Command>
+
+	<!-- Change, Copy, and Create Process -->
+	<Command name="CHANGE_PROCESS" integerCode="3" identifier="MQCMD_CHANGE_PROCESS">
+		<RequestParameters>
+			<Parameter name="ProcessName" integerCode="2012" identifier="MQCA_PROCESS_NAME" type="string" required="true"/>
+
+			<Parameter name="ApplId" integerCode="2001" identifier="MQCA_APPL_ID" type="string"/>
+			<Parameter name="ApplType" integerCode="1" identifier="MQIA_APPL_TYPE" type="int"/>
+			<Parameter name="CommandScope" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE" type="string"/>
+			<Parameter name="EnvData" integerCode="2007" identifier="MQCA_ENV_DATA" type="string"/>
+			<Parameter name="ProcessDesc" integerCode="2011" identifier="MQCA_PROCESS_DESC" type="string"/>
+			<Parameter name="QSGDisposition" integerCode="63" identifier="MQIA_QSG_DISP" type="int"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="UserData" integerCode="2021" identifier="MQCA_USER_DATA" type="string"/>
+
+
+		</RequestParameters>
+	</Command>
+
+	<Command name="CREATE_PROCESS" integerCode="5" identifier="MQCMD_CREATE_PROCESS">
+		<RequestParameters>
+			<Parameter name="ProcessName" integerCode="2012" identifier="MQCA_PROCESS_NAME" type="string" required="true"/>
+
+			<Parameter name="ApplId" integerCode="2001" identifier="MQCA_APPL_ID" type="string"/>
+			<Parameter name="ApplType" integerCode="1" identifier="MQIA_APPL_TYPE" type="int"/>
+			<Parameter name="CommandScope" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE" type="string"/>
+			<Parameter name="EnvData" integerCode="2007" identifier="MQCA_ENV_DATA" type="string"/>
+			<Parameter name="ProcessDesc" integerCode="2011" identifier="MQCA_PROCESS_DESC" type="string"/>
+			<Parameter name="QSGDisposition" integerCode="63" identifier="MQIA_QSG_DISP" type="int"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="UserData" integerCode="2021" identifier="MQCA_USER_DATA" type="string"/>
+		</RequestParameters>
+	</Command>
+
+	<Command name="COPY_PROCESS" integerCode="4" identifier="MQCMD_COPY_PROCESS">
+		<RequestParameters>
+			<Parameter name="FromProcessName" integerCode="3003" identifier="MQCACF_FROM_PROCESS_NAME" type="string" required="true"/>
+			<Parameter name="ToProcessName" integerCode="3004" identifier="MQCACF_TO_PROCESS_NAME" type="string" required="true"/>
+
+			<Parameter name="ApplId" integerCode="2001" identifier="MQCA_APPL_ID" type="string"/>
+			<Parameter name="ApplType" integerCode="1" identifier="MQIA_APPL_TYPE" type="int"/>
+			<Parameter name="CommandScope" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE" type="string"/>
+			<Parameter name="EnvData" integerCode="2007" identifier="MQCA_ENV_DATA" type="string"/>
+			<Parameter name="ProcessDesc" integerCode="2011" identifier="MQCA_PROCESS_DESC" type="string"/>
+			<Parameter name="QSGDisposition" integerCode="63" identifier="MQIA_QSG_DISP" type="int"/>
+			<Parameter name="Replace" integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="UserData" integerCode="2021" identifier="MQCA_USER_DATA" type="string"/>
+		</RequestParameters>
+	</Command>
+
+
+	<!-- Change, Copy, and Create Queue -->
+	<Command name="COPY_Q" integerCode="10" identifier="MQCMD_COPY_Q">
+		<RequestParameters>
+			<Parameter name="FromQueueName" integerCode="3001" identifier="MQCACF_FROM_Q_NAME" type="string" required="true"/>
+			<Parameter name="ToQueueName" integerCode="3002" identifier="MQCACF_TO_Q_NAME" type="string" required="true"/>
+			<Parameter name="QType" integerCode="20" identifier="MQIA_Q_TYPE" type="int" required="true"/>
+
+			<Parameter name="BackoutRequeueName" type="string" integerCode="2019" identifier="MQCA_BACKOUT_REQ_Q_NAME"/>
+			<Parameter name="BackoutThreshold" type="int" integerCode="22" identifier="MQIA_BACKOUT_THRESHOLD"/>
+			<Parameter name="BaseQName" type="string" integerCode="2002" identifier="MQCA_BASE_Q_NAME"/>
+			<Parameter name="CFStructure" type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME"/>
+			<Parameter name="ClusterName" type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME"/>
+			<Parameter name="ClusterNamelist" type="string" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST"/>
+			<Parameter name="CLWLQueuePriority" type="int" integerCode="96" identifier="MQIA_CLWL_Q_PRIORITY"/>
+			<Parameter name="CLWLQueueRank" type="int" integerCode="95" identifier="MQIA_CLWL_Q_RANK"/>
+			<Parameter name="CLWLUseQ" type="int" integerCode="98" identifier="MQIA_CLWL_USEQ"/>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="DefBind" type="int" integerCode="61" identifier="MQIA_DEF_BIND"/>
+			<Parameter name="DefinitionType" type="int" integerCode="7" identifier="MQIA_DEFINITION_TYPE"/>
+			<Parameter name="DefInputOpenOption" type="int" integerCode="4" identifier="MQIA_DEF_INPUT_OPEN_OPTION"/>
+			<Parameter name="DefPersistence" type="int" integerCode="5" identifier="MQIA_DEF_PERSISTENCE"/>
+			<Parameter name="DefPriority" type="int" integerCode="6" identifier="MQIA_DEF_PRIORITY"/>
+			<Parameter name="DistLists" type="int" integerCode="34" identifier="MQIA_DIST_LISTS"/>
+			<Parameter name="Force" type="int" integerCode="1005" identifier="MQIACF_FORCE"/>
+			<Parameter name="HardenGetBackout" type="int" integerCode="8" identifier="MQIA_HARDEN_GET_BACKOUT"/>
+			<Parameter name="IndexType" type="int" integerCode="57" identifier="MQIA_INDEX_TYPE"/>
+			<Parameter name="InhibitGet" type="int" integerCode="9" identifier="MQIA_INHIBIT_GET"/>
+			<Parameter name="InhibitPut" type="int" integerCode="10" identifier="MQIA_INHIBIT_PUT"/>
+			<Parameter name="InitiationQName" type="string" integerCode="2008" identifier="MQCA_INITIATION_Q_NAME"/>
+			<Parameter name="MaxMsgLength" type="int" integerCode="13" identifier="MQIA_MAX_MSG_LENGTH"/>
+			<Parameter name="MaxQDepth" type="int" integerCode="15" identifier="MQIA_MAX_Q_DEPTH"/>
+			<Parameter name="MsgDeliverySequence" type="int" integerCode="16" identifier="MQIA_MSG_DELIVERY_SEQUENCE"/>
+			<Parameter name="NonPersistentMessageClass" type="int" integerCode="78" identifier="MQIA_NPM_CLASS"/>
+			<Parameter name="ProcessName" type="string" integerCode="2012" identifier="MQCA_PROCESS_NAME"/>
+			<Parameter name="QDepthHighEvent" type="int" integerCode="43" identifier="MQIA_Q_DEPTH_HIGH_EVENT"/>
+			<Parameter name="QDepthHighLimit" type="int" integerCode="40" identifier="MQIA_Q_DEPTH_HIGH_LIMIT"/>
+			<Parameter name="QDepthLowEvent" type="int" integerCode="44" identifier="MQIA_Q_DEPTH_LOW_EVENT"/>
+			<Parameter name="QDepthLowLimit" type="int" integerCode="41" identifier="MQIA_Q_DEPTH_LOW_LIMIT"/>
+			<Parameter name="QDepthMaxEvent" type="int" integerCode="42" identifier="MQIA_Q_DEPTH_MAX_EVENT"/>
+			<Parameter name="QDesc" type="string" integerCode="2013" identifier="MQCA_Q_DESC"/>
+			<Parameter name="QServiceInterval" type="int" integerCode="54" identifier="MQIA_Q_SERVICE_INTERVAL"/>
+			<Parameter name="QServiceIntervalEvent" type="int" integerCode="46" identifier="MQIA_Q_SERVICE_INTERVAL_EVENT"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="QueueAccounting" type="int" integerCode="134" identifier="MQIA_ACCOUNTING_Q"/>
+			<Parameter name="QueueMonitoring" type="int" integerCode="123" identifier="MQIA_MONITORING_Q"/>
+			<Parameter name="QueueStatistics" type="int" integerCode="128" identifier="MQIA_STATISTICS_Q"/>
+			<Parameter name="RemoteQMgrName" type="string" integerCode="2017" identifier="MQCA_REMOTE_Q_MGR_NAME"/>
+			<Parameter name="RemoteQName" type="string" integerCode="2018" identifier="MQCA_REMOTE_Q_NAME"/>
+			<Parameter name="Replace" type="int" integerCode="1006" identifier="MQIACF_REPLACE"/>
+			<Parameter name="RetentionInterval" type="int" integerCode="21" identifier="MQIA_RETENTION_INTERVAL"/>
+			<Parameter name="Scope" type="int" integerCode="45" identifier="MQIA_SCOPE"/>
+			<Parameter name="Shareability" type="int" integerCode="23" identifier="MQIA_SHAREABILITY"/>
+			<Parameter name="StorageClass" type="string" integerCode="2022" identifier="MQCA_STORAGE_CLASS"/>
+			<Parameter name="TriggerControl" type="int" integerCode="24" identifier="MQIA_TRIGGER_CONTROL"/>
+			<Parameter name="TriggerData" type="string" integerCode="2023" identifier="MQCA_TRIGGER_DATA"/>
+			<Parameter name="TriggerDepth" type="int" integerCode="29" identifier="MQIA_TRIGGER_DEPTH"/>
+			<Parameter name="TriggerMsgPriority" type="int" integerCode="26" identifier="MQIA_TRIGGER_MSG_PRIORITY"/>
+			<Parameter name="TriggerType" type="int" integerCode="28" identifier="MQIA_TRIGGER_TYPE"/>
+			<Parameter name="Usage" type="int" integerCode="12" identifier="MQIA_USAGE"/>
+			<Parameter name="XmitQName" type="string" integerCode="2024" identifier="MQCA_XMIT_Q_NAME"/>
+		</RequestParameters>
+	</Command>
+
+	<Command name="CREATE_Q" integerCode="11" identifier="MQCMD_CREATE_Q">
+		<RequestParameters>
+			<Parameter name="QName" integerCode="2016" identifier="MQCA_Q_NAME" type="string" required="true"/>
+			<Parameter name="QType" integerCode="20" identifier="MQIA_Q_TYPE" type="int" required="true"/>
+
+			<Parameter name="BackoutRequeueName" type="string" integerCode="2019" identifier="MQCA_BACKOUT_REQ_Q_NAME"/>
+			<Parameter name="BackoutThreshold" type="int" integerCode="22" identifier="MQIA_BACKOUT_THRESHOLD"/>
+			<Parameter name="BaseQName" type="string" integerCode="2002" identifier="MQCA_BASE_Q_NAME"/>
+			<Parameter name="CFStructure" type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME"/>
+			<Parameter name="ClusterName" type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME"/>
+			<Parameter name="ClusterNamelist" type="string" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST"/>
+			<Parameter name="CLWLQueuePriority" type="int" integerCode="96" identifier="MQIA_CLWL_Q_PRIORITY"/>
+			<Parameter name="CLWLQueueRank" type="int" integerCode="95" identifier="MQIA_CLWL_Q_RANK"/>
+			<Parameter name="CLWLUseQ" type="int" integerCode="98" identifier="MQIA_CLWL_USEQ"/>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="DefBind" type="int" integerCode="61" identifier="MQIA_DEF_BIND"/>
+			<Parameter name="DefinitionType" type="int" integerCode="7" identifier="MQIA_DEFINITION_TYPE"/>
+			<Parameter name="DefInputOpenOption" type="int" integerCode="4" identifier="MQIA_DEF_INPUT_OPEN_OPTION"/>
+			<Parameter name="DefPersistence" type="int" integerCode="5" identifier="MQIA_DEF_PERSISTENCE"/>
+			<Parameter name="DefPriority" type="int" integerCode="6" identifier="MQIA_DEF_PRIORITY"/>
+			<Parameter name="DistLists" type="int" integerCode="34" identifier="MQIA_DIST_LISTS"/>
+			<Parameter name="Force" type="int" integerCode="1005" identifier="MQIACF_FORCE"/>
+			<Parameter name="HardenGetBackout" type="int" integerCode="8" identifier="MQIA_HARDEN_GET_BACKOUT"/>
+			<Parameter name="IndexType" type="int" integerCode="57" identifier="MQIA_INDEX_TYPE"/>
+			<Parameter name="InhibitGet" type="int" integerCode="9" identifier="MQIA_INHIBIT_GET"/>
+			<Parameter name="InhibitPut" type="int" integerCode="10" identifier="MQIA_INHIBIT_PUT"/>
+			<Parameter name="InitiationQName" type="string" integerCode="2008" identifier="MQCA_INITIATION_Q_NAME"/>
+			<Parameter name="MaxMsgLength" type="int" integerCode="13" identifier="MQIA_MAX_MSG_LENGTH"/>
+			<Parameter name="MaxQDepth" type="int" integerCode="15" identifier="MQIA_MAX_Q_DEPTH"/>
+			<Parameter name="MsgDeliverySequence" type="int" integerCode="16" identifier="MQIA_MSG_DELIVERY_SEQUENCE"/>
+			<Parameter name="NonPersistentMessageClass" type="int" integerCode="78" identifier="MQIA_NPM_CLASS"/>
+			<Parameter name="ProcessName" type="string" integerCode="2012" identifier="MQCA_PROCESS_NAME"/>
+			<Parameter name="QDepthHighEvent" type="int" integerCode="43" identifier="MQIA_Q_DEPTH_HIGH_EVENT"/>
+			<Parameter name="QDepthHighLimit" type="int" integerCode="40" identifier="MQIA_Q_DEPTH_HIGH_LIMIT"/>
+			<Parameter name="QDepthLowEvent" type="int" integerCode="44" identifier="MQIA_Q_DEPTH_LOW_EVENT"/>
+			<Parameter name="QDepthLowLimit" type="int" integerCode="41" identifier="MQIA_Q_DEPTH_LOW_LIMIT"/>
+			<Parameter name="QDepthMaxEvent" type="int" integerCode="42" identifier="MQIA_Q_DEPTH_MAX_EVENT"/>
+			<Parameter name="QDesc" type="string" integerCode="2013" identifier="MQCA_Q_DESC"/>
+			<Parameter name="QServiceInterval" type="int" integerCode="54" identifier="MQIA_Q_SERVICE_INTERVAL"/>
+			<Parameter name="QServiceIntervalEvent" type="int" integerCode="46" identifier="MQIA_Q_SERVICE_INTERVAL_EVENT"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="QueueAccounting" type="int" integerCode="134" identifier="MQIA_ACCOUNTING_Q"/>
+			<Parameter name="QueueMonitoring" type="int" integerCode="123" identifier="MQIA_MONITORING_Q"/>
+			<Parameter name="QueueStatistics" type="int" integerCode="128" identifier="MQIA_STATISTICS_Q"/>
+			<Parameter name="RemoteQMgrName" type="string" integerCode="2017" identifier="MQCA_REMOTE_Q_MGR_NAME"/>
+			<Parameter name="RemoteQName" type="string" integerCode="2018" identifier="MQCA_REMOTE_Q_NAME"/>
+			<Parameter name="Replace" type="int" integerCode="1006" identifier="MQIACF_REPLACE"/>
+			<Parameter name="RetentionInterval" type="int" integerCode="21" identifier="MQIA_RETENTION_INTERVAL"/>
+			<Parameter name="Scope" type="int" integerCode="45" identifier="MQIA_SCOPE"/>
+			<Parameter name="Shareability" type="int" integerCode="23" identifier="MQIA_SHAREABILITY"/>
+			<Parameter name="StorageClass" type="string" integerCode="2022" identifier="MQCA_STORAGE_CLASS"/>
+			<Parameter name="TriggerControl" type="int" integerCode="24" identifier="MQIA_TRIGGER_CONTROL"/>
+			<Parameter name="TriggerData" type="string" integerCode="2023" identifier="MQCA_TRIGGER_DATA"/>
+			<Parameter name="TriggerDepth" type="int" integerCode="29" identifier="MQIA_TRIGGER_DEPTH"/>
+			<Parameter name="TriggerMsgPriority" type="int" integerCode="26" identifier="MQIA_TRIGGER_MSG_PRIORITY"/>
+			<Parameter name="TriggerType" type="int" integerCode="28" identifier="MQIA_TRIGGER_TYPE"/>
+			<Parameter name="Usage" type="int" integerCode="12" identifier="MQIA_USAGE"/>
+			<Parameter name="XmitQName" type="string" integerCode="2024" identifier="MQCA_XMIT_Q_NAME"/>
+		</RequestParameters>
+	</Command>
+
+	<Command name="CHANGE_Q" integerCode="8" identifier="MQCMD_CHANGE_Q">
+		<RequestParameters>
+			<Parameter name="QName" integerCode="2016" identifier="MQCA_Q_NAME" type="string" required="true"/>
+			<Parameter name="QType" integerCode="20" identifier="MQIA_Q_TYPE" type="int" required="true"/>
+
+			<Parameter name="BackoutRequeueName" type="string" integerCode="2019" identifier="MQCA_BACKOUT_REQ_Q_NAME"/>
+			<Parameter name="BackoutThreshold" type="int" integerCode="22" identifier="MQIA_BACKOUT_THRESHOLD"/>
+			<Parameter name="BaseQName" type="string" integerCode="2002" identifier="MQCA_BASE_Q_NAME"/>
+			<Parameter name="CFStructure" type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME"/>
+			<Parameter name="ClusterName" type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME"/>
+			<Parameter name="ClusterNamelist" type="string" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST"/>
+			<Parameter name="CLWLQueuePriority" type="int" integerCode="96" identifier="MQIA_CLWL_Q_PRIORITY"/>
+			<Parameter name="CLWLQueueRank" type="int" integerCode="95" identifier="MQIA_CLWL_Q_RANK"/>
+			<Parameter name="CLWLUseQ" type="int" integerCode="98" identifier="MQIA_CLWL_USEQ"/>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="DefBind" type="int" integerCode="61" identifier="MQIA_DEF_BIND"/>
+			<Parameter name="DefinitionType" type="int" integerCode="7" identifier="MQIA_DEFINITION_TYPE"/>
+			<Parameter name="DefInputOpenOption" type="int" integerCode="4" identifier="MQIA_DEF_INPUT_OPEN_OPTION"/>
+			<Parameter name="DefPersistence" type="int" integerCode="5" identifier="MQIA_DEF_PERSISTENCE"/>
+			<Parameter name="DefPriority" type="int" integerCode="6" identifier="MQIA_DEF_PRIORITY"/>
+			<Parameter name="DistLists" type="int" integerCode="34" identifier="MQIA_DIST_LISTS"/>
+			<Parameter name="Force" type="int" integerCode="1005" identifier="MQIACF_FORCE"/>
+			<Parameter name="HardenGetBackout" type="int" integerCode="8" identifier="MQIA_HARDEN_GET_BACKOUT"/>
+			<Parameter name="IndexType" type="int" integerCode="57" identifier="MQIA_INDEX_TYPE"/>
+			<Parameter name="InhibitGet" type="int" integerCode="9" identifier="MQIA_INHIBIT_GET"/>
+			<Parameter name="InhibitPut" type="int" integerCode="10" identifier="MQIA_INHIBIT_PUT"/>
+			<Parameter name="InitiationQName" type="string" integerCode="2008" identifier="MQCA_INITIATION_Q_NAME"/>
+			<Parameter name="MaxMsgLength" type="int" integerCode="13" identifier="MQIA_MAX_MSG_LENGTH"/>
+			<Parameter name="MaxQDepth" type="int" integerCode="15" identifier="MQIA_MAX_Q_DEPTH"/>
+			<Parameter name="MsgDeliverySequence" type="int" integerCode="16" identifier="MQIA_MSG_DELIVERY_SEQUENCE"/>
+			<Parameter name="NonPersistentMessageClass" type="int" integerCode="78" identifier="MQIA_NPM_CLASS"/>
+			<Parameter name="ProcessName" type="string" integerCode="2012" identifier="MQCA_PROCESS_NAME"/>
+			<Parameter name="QDepthHighEvent" type="int" integerCode="43" identifier="MQIA_Q_DEPTH_HIGH_EVENT"/>
+			<Parameter name="QDepthHighLimit" type="int" integerCode="40" identifier="MQIA_Q_DEPTH_HIGH_LIMIT"/>
+			<Parameter name="QDepthLowEvent" type="int" integerCode="44" identifier="MQIA_Q_DEPTH_LOW_EVENT"/>
+			<Parameter name="QDepthLowLimit" type="int" integerCode="41" identifier="MQIA_Q_DEPTH_LOW_LIMIT"/>
+			<Parameter name="QDepthMaxEvent" type="int" integerCode="42" identifier="MQIA_Q_DEPTH_MAX_EVENT"/>
+			<Parameter name="QDesc" type="string" integerCode="2013" identifier="MQCA_Q_DESC"/>
+			<Parameter name="QServiceInterval" type="int" integerCode="54" identifier="MQIA_Q_SERVICE_INTERVAL"/>
+			<Parameter name="QServiceIntervalEvent" type="int" integerCode="46" identifier="MQIA_Q_SERVICE_INTERVAL_EVENT"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="QueueAccounting" type="int" integerCode="134" identifier="MQIA_ACCOUNTING_Q"/>
+			<Parameter name="QueueMonitoring" type="int" integerCode="123" identifier="MQIA_MONITORING_Q"/>
+			<Parameter name="QueueStatistics" type="int" integerCode="128" identifier="MQIA_STATISTICS_Q"/>
+			<Parameter name="RemoteQMgrName" type="string" integerCode="2017" identifier="MQCA_REMOTE_Q_MGR_NAME"/>
+			<Parameter name="RemoteQName" type="string" integerCode="2018" identifier="MQCA_REMOTE_Q_NAME"/>
+			<Parameter name="Replace" type="int" integerCode="1006" identifier="MQIACF_REPLACE"/>
+			<Parameter name="RetentionInterval" type="int" integerCode="21" identifier="MQIA_RETENTION_INTERVAL"/>
+			<Parameter name="Scope" type="int" integerCode="45" identifier="MQIA_SCOPE"/>
+			<Parameter name="Shareability" type="int" integerCode="23" identifier="MQIA_SHAREABILITY"/>
+			<Parameter name="StorageClass" type="string" integerCode="2022" identifier="MQCA_STORAGE_CLASS"/>
+			<Parameter name="TriggerControl" type="int" integerCode="24" identifier="MQIA_TRIGGER_CONTROL"/>
+			<Parameter name="TriggerData" type="string" integerCode="2023" identifier="MQCA_TRIGGER_DATA"/>
+			<Parameter name="TriggerDepth" type="int" integerCode="29" identifier="MQIA_TRIGGER_DEPTH"/>
+			<Parameter name="TriggerMsgPriority" type="int" integerCode="26" identifier="MQIA_TRIGGER_MSG_PRIORITY"/>
+			<Parameter name="TriggerType" type="int" integerCode="28" identifier="MQIA_TRIGGER_TYPE"/>
+			<Parameter name="Usage" type="int" integerCode="12" identifier="MQIA_USAGE"/>
+			<Parameter name="XmitQName" type="string" integerCode="2024" identifier="MQCA_XMIT_Q_NAME"/>
+		</RequestParameters>
+	</Command>
+	
+	<!-- Change Queue Manager -->
+	<Command name="CHANGE_Q_MGR" integerCode="1" identifier="MQCMD_CHANGE_Q_MGR">
+		<RequestParameters>
+			<Parameter name="AccountingConnOverride" type="int" integerCode="136" identifier="MQIA_ACCOUNTING_CONN_OVERRIDE"/>
+			<Parameter name="AccountingInterval" type="int" integerCode="135" identifier="MQIA_ACCOUNTING_INTERVAL"/>
+			<Parameter name="ActivityRecording" type="int" integerCode="138" identifier="MQIA_ACTIVITY_RECORDING"/>
+			<Parameter name="AdoptNewMCACheck" type="int" integerCode="102" identifier="MQIA_ADOPTNEWMCA_CHECK"/>
+			<Parameter name="AdoptNewMCAType" type="int" integerCode="103" identifier="MQIA_ADOPTNEWMCA_TYPE"/>
+			<Parameter name="AuthorityEvent" type="int" integerCode="47" identifier="MQIA_AUTHORITY_EVENT"/>
+			<Parameter name="BridgeEvent" type="int" integerCode="74" identifier="MQIA_BRIDGE_EVENT"/>
+			<Parameter name="ChannelAutoDef" type="int" integerCode="55" identifier="MQIA_CHANNEL_AUTO_DEF"/>
+			<Parameter name="ChannelAutoDefEvent" type="int" integerCode="56" identifier="MQIA_CHANNEL_AUTO_DEF_EVENT"/>
+			<Parameter name="ChannelAutoDefExit" type="string" integerCode="2026" identifier="MQCA_CHANNEL_AUTO_DEF_EXIT"/>
+			<Parameter name="ChannelEvent" type="int" integerCode="73" identifier="MQIA_CHANNEL_EVENT"/>
+			<Parameter name="ChannelInitiatorControl" type="int" integerCode="119" identifier="MQIA_CHINIT_CONTROL"/>
+			<Parameter name="ChannelMonitoring" type="int" integerCode="122" identifier="MQIA_MONITORING_CHANNEL"/>
+			<Parameter name="ChannelStatistics" type="int" integerCode="129" identifier="MQIA_STATISTICS_CHANNEL"/>
+			<Parameter name="ChinitAdapters" type="int" integerCode="101" identifier="MQIA_CHINIT_ADAPTERS"/>
+			<Parameter name="ChinitDispatchers" type="int" integerCode="105" identifier="MQIA_CHINIT_DISPATCHERS"/>
+			<Parameter name="ChinitServiceParm" type="string" integerCode="2076" identifier="MQCA_CHINIT_SERVICE_PARM"/>
+			<Parameter name="ChinitTraceAutoStart" type="int" integerCode="117" identifier="MQIA_CHINIT_TRACE_AUTO_START"/>
+			<Parameter name="ChinitTraceTableSize" type="int" integerCode="118" identifier="MQIA_CHINIT_TRACE_TABLE_SIZE"/>
+			<Parameter name="ClusterSenderMonitoringDefault" type="int" integerCode="124" identifier="MQIA_MONITORING_AUTO_CLUSSDR"/>
+			<Parameter name="ClusterSenderStatistics" type="int" integerCode="130" identifier="MQIA_STATISTICS_AUTO_CLUSSDR"/>
+			<Parameter name="ClusterWorkLoadData" type="string" integerCode="2034" identifier="MQCA_CLUSTER_WORKLOAD_DATA"/>
+			<Parameter name="ClusterWorkLoadExit" type="string" integerCode="2033" identifier="MQCA_CLUSTER_WORKLOAD_EXIT"/>
+			<Parameter name="ClusterWorkLoadLength" type="int" integerCode="58" identifier="MQIA_CLUSTER_WORKLOAD_LENGTH"/>
+			<Parameter name="CLWLMRUChannels" type="int" integerCode="97" identifier="MQIA_CLWL_MRU_CHANNELS"/>
+			<Parameter name="CLWLUseQ" type="int" integerCode="98" identifier="MQIA_CLWL_USEQ"/>
+			<Parameter name="CodedCharSetId" type="int" integerCode="2" identifier="MQIA_CODED_CHAR_SET_ID"/>
+			<Parameter name="CommandEvent" type="int" integerCode="99" identifier="MQIA_COMMAND_EVENT"/>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="CommandServerControl" type="int" integerCode="120" identifier="MQIA_CMD_SERVER_CONTROL"/>
+			<Parameter name="ConfigurationEvent" type="int" integerCode="51" identifier="MQIA_CONFIGURATION_EVENT"/>
+			<Parameter name="DeadLetterQName" type="string" integerCode="2006" identifier="MQCA_DEAD_LETTER_Q_NAME"/>
+			<Parameter name="DefXmitQName" type="string" integerCode="2025" identifier="MQCA_DEF_XMIT_Q_NAME"/>
+			<Parameter name="DNSGroup" type="string" integerCode="2071" identifier="MQCA_DNS_GROUP"/>
+			<Parameter name="DNSWLM" type="int" integerCode="106" identifier="MQIA_DNS_WLM"/>
+			<Parameter name="ExpiryInterval" type="int" integerCode="39" identifier="MQIA_EXPIRY_INTERVAL"/>
+			<Parameter name="Force" type="int" integerCode="1005" identifier="MQIACF_FORCE"/>
+			<Parameter name="IGQPutAuthority" type="int" integerCode="65" identifier="MQIA_IGQ_PUT_AUTHORITY"/>
+			<Parameter name="IGQUserId" type="string" integerCode="2041" identifier="MQCA_IGQ_USER_ID"/>
+			<Parameter name="InhibitEvent" type="int" integerCode="48" identifier="MQIA_INHIBIT_EVENT"/>
+			<Parameter name="IntraGroupQueuing" type="int" integerCode="64" identifier="MQIA_INTRA_GROUP_QUEUING"/>
+			<Parameter name="IPAddressVersion" type="int" integerCode="93" identifier="MQIA_IP_ADDRESS_VERSION"/>
+			<Parameter name="ListenerTimer" type="int" integerCode="107" identifier="MQIA_LISTENER_TIMER"/>
+			<Parameter name="LocalEvent" type="int" integerCode="49" identifier="MQIA_LOCAL_EVENT"/>
+			<Parameter name="LoggerEvent" type="int" integerCode="94" identifier="MQIA_LOGGER_EVENT"/>
+			<Parameter name="LUGroupName" type="string" integerCode="2072" identifier="MQCA_LU_GROUP_NAME"/>
+			<Parameter name="LUName" type="string" integerCode="2073" identifier="MQCA_LU_NAME"/>
+			<Parameter name="LU62ARMSuffix" type="string" integerCode="2074" identifier="MQCA_LU62_ARM_SUFFIX"/>
+			<Parameter name="LU62Channels" type="int" integerCode="108" identifier="MQIA_LU62_CHANNELS"/>
+			<Parameter name="MaxActiveChannels" type="int" integerCode="100" identifier="MQIA_ACTIVE_CHANNELS"/>
+			<Parameter name="MaxChannels" type="int" integerCode="109" identifier="MQIA_MAX_CHANNELS"/>
+			<Parameter name="MaxHandles" type="int" integerCode="11" identifier="MQIA_MAX_HANDLES"/>
+			<Parameter name="MaxMsgLength" type="int" integerCode="13" identifier="MQIA_MAX_MSG_LENGTH"/>
+			<Parameter name="MaxUncommittedMsgs" type="int" integerCode="33" identifier="MQIA_MAX_UNCOMMITTED_MSGS"/>
+			<Parameter name="MQIAccounting" type="int" integerCode="133" identifier="MQIA_ACCOUNTING_MQI"/>
+			<Parameter name="MQIStatistics" type="int" integerCode="127" identifier="MQIA_STATISTICS_MQI"/>
+			<Parameter name="OutboundPortMax" type="int" integerCode="140" identifier="MQIA_OUTBOUND_PORT_MAX"/>
+			<Parameter name="OutboundPortMin" type="int" integerCode="110" identifier="MQIA_OUTBOUND_PORT_MIN"/>
+			<Parameter name="PerformanceEvent" type="int" integerCode="53" identifier="MQIA_PERFORMANCE_EVENT"/>
+			<Parameter name="QMgrDesc" type="string" integerCode="2014" identifier="MQCA_Q_MGR_DESC"/>
+			<Parameter name="QueueAccounting" type="int" integerCode="134" identifier="MQIA_ACCOUNTING_Q"/>
+			<Parameter name="QueueMonitoring" type="int" integerCode="123" identifier="MQIA_MONITORING_Q"/>
+			<Parameter name="QueueStatistics" type="int" integerCode="128" identifier="MQIA_STATISTICS_Q"/>
+			<Parameter name="ReceiveTimeout" type="int" integerCode="111" identifier="MQIA_RECEIVE_TIMEOUT"/>
+			<Parameter name="ReceiveTimeoutMin" type="int" integerCode="113" identifier="MQIA_RECEIVE_TIMEOUT_MIN"/>
+			<Parameter name="ReceiveTimeoutType" type="int" integerCode="112" identifier="MQIA_RECEIVE_TIMEOUT_TYPE"/>
+			<Parameter name="RemoteEvent" type="int" integerCode="50" identifier="MQIA_REMOTE_EVENT"/>
+			<Parameter name="RepositoryName" type="string" integerCode="2035" identifier="MQCA_REPOSITORY_NAME"/>
+			<Parameter name="RepositoryNamelist" type="string" integerCode="2036" identifier="MQCA_REPOSITORY_NAMELIST"/>
+			<Parameter name="SharedQQmgrName" type="int" integerCode="77" identifier="MQIA_SHARED_Q_Q_MGR_NAME"/>
+			<Parameter name="SSLCRLNamelist" type="string" integerCode="2050" identifier="MQCA_SSL_CRL_NAMELIST"/>
+			<Parameter name="SSLCryptoHardware" type="string" integerCode="2051" identifier="MQCA_SSL_CRYPTO_HARDWARE"/>
+			<Parameter name="SSLEvent" type="int" integerCode="75" identifier="MQIA_SSL_EVENT"/>
+			<Parameter name="SSLFipsRequired" type="int" integerCode="92" identifier="MQIA_SSL_FIPS_REQUIRED"/>
+			<Parameter name="SSLKeyRepository" type="string" integerCode="2049" identifier="MQCA_SSL_KEY_REPOSITORY"/>
+			<Parameter name="SSLKeyResetCount" type="int" integerCode="76" identifier="MQIA_SSL_RESET_COUNT"/>
+			<Parameter name="SSLTasks" type="int" integerCode="69" identifier="MQIA_SSL_TASKS"/>
+			<Parameter name="StartStopEvent" type="int" integerCode="52" identifier="MQIA_START_STOP_EVENT"/>
+			<Parameter name="StatisticsInterval" type="int" integerCode="131" identifier="MQIA_STATISTICS_INTERVAL"/>
+			<Parameter name="TCPChannels" type="int" integerCode="114" identifier="MQIA_TCP_CHANNELS"/>
+			<Parameter name="TCPKeepAlive" type="int" integerCode="115" identifier="MQIA_TCP_KEEP_ALIVE"/>
+			<Parameter name="TCPName" type="string" integerCode="2075" identifier="MQCA_TCP_NAME"/>
+			<Parameter name="TCPStackType" type="int" integerCode="116" identifier="MQIA_TCP_STACK_TYPE"/>
+			<Parameter name="TraceRouteRecording" type="int" integerCode="137" identifier="MQIA_TRACE_ROUTE_RECORDING"/>
+			<Parameter name="TriggerInterval" type="int" integerCode="25" identifier="MQIA_TRIGGER_INTERVAL"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Change Security -->
+	<Command name="CHANGE_SECURITY" integerCode="100" identifier="MQCMD_CHANGE_SECURITY">
+		<RequestParameters>
+			<Parameter name="CommandScope"  integerCode="3080" identifier="MQCACF_COMMAND_SCOPE" type="string"/>
+			<Parameter name="SecurityInterval"  integerCode="1153" identifier="MQIACF_SECURITY_INTERVAL" type="int"/>
+			<Parameter name="SecurityTimeout"  integerCode="1152" identifier="MQIACF_SECURITY_TIMEOUT" type="int"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Change, Copy, and Create Service -->
+	<Command name="CHANGE_SERVICE" integerCode="149" identifier="MQCMD_CHANGE_SERVICE">
+		<RequestParameters>
+			<Parameter name="ServiceName"  integerCode="2077" identifier="MQCA_SERVICE_NAME" type="string" required="true"/>
+
+			<Parameter name="Replace"  integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="ServiceDesc"  integerCode="2078" identifier="MQCA_SERVICE_DESC" type="string"/>
+			<Parameter name="ServiceType"  integerCode="121" identifier="MQIA_SERVICE_TYPE" type="int"/>
+			<Parameter name="StartArguments"  integerCode="2080" identifier="MQCA_SERVICE_START_ARGS" type="string"/>
+			<Parameter name="StartCommand"  integerCode="2079" identifier="MQCA_SERVICE_START_COMMAND" type="string"/>
+			<Parameter name="StartMode"  integerCode="139" identifier="MQIA_SERVICE_CONTROL" type="int"/>
+			<Parameter name="StderrDestination"  integerCode="2084" identifier="MQCA_STDERR_DESTINATION" type="string"/>
+			<Parameter name="StdoutDestination"  integerCode="2083" identifier="MQCA_STDOUT_DESTINATION" type="string"/>
+			<Parameter name="StopArguments"  integerCode="2082" identifier="MQCA_SERVICE_STOP_ARGS" type="string"/>
+			<Parameter name="StopCommand"  integerCode="2081" identifier="MQCA_SERVICE_STOP_COMMAND" type="string"/>
+		</RequestParameters>
+	</Command>
+
+	<Command name="CREATE_SERVICE" integerCode="151" identifier="MQCMD_CREATE_SERVICE">
+		<RequestParameters>
+			<Parameter name="ServiceName"  integerCode="2077" identifier="MQCA_SERVICE_NAME" type="string" required="true"/>
+
+			<Parameter name="Replace"  integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="ServiceDesc"  integerCode="2078" identifier="MQCA_SERVICE_DESC" type="string"/>
+			<Parameter name="ServiceType"  integerCode="121" identifier="MQIA_SERVICE_TYPE" type="int"/>
+			<Parameter name="StartArguments"  integerCode="2080" identifier="MQCA_SERVICE_START_ARGS" type="string"/>
+			<Parameter name="StartCommand"  integerCode="2079" identifier="MQCA_SERVICE_START_COMMAND" type="string"/>
+			<Parameter name="StartMode"  integerCode="139" identifier="MQIA_SERVICE_CONTROL" type="int"/>
+			<Parameter name="StderrDestination"  integerCode="2084" identifier="MQCA_STDERR_DESTINATION" type="string"/>
+			<Parameter name="StdoutDestination"  integerCode="2083" identifier="MQCA_STDOUT_DESTINATION" type="string"/>
+			<Parameter name="StopArguments"  integerCode="2082" identifier="MQCA_SERVICE_STOP_ARGS" type="string"/>
+			<Parameter name="StopCommand"  integerCode="2081" identifier="MQCA_SERVICE_STOP_COMMAND" type="string"/>
+		</RequestParameters>
+	</Command>
+
+	<Command name="COPY_SERVICE" integerCode="150" identifier="MQCMD_COPY_SERVICE">
+		<RequestParameters>
+			<Parameter name="FromServiceName"  integerCode="3126" identifier="MQCACF_FROM_SERVICE_NAME" type="string" required="true"/>
+			<Parameter name="ToServiceName"  integerCode="3127" identifier="MQCACF_TO_SERVICE_NAME" type="string" required="true"/>
+
+			<Parameter name="Replace"  integerCode="1006" identifier="MQIACF_REPLACE" type="int"/>
+			<Parameter name="ServiceDesc"  integerCode="2078" identifier="MQCA_SERVICE_DESC" type="string"/>
+			<Parameter name="ServiceType"  integerCode="121" identifier="MQIA_SERVICE_TYPE" type="int"/>
+			<Parameter name="StartArguments"  integerCode="2080" identifier="MQCA_SERVICE_START_ARGS" type="string"/>
+			<Parameter name="StartCommand"  integerCode="2079" identifier="MQCA_SERVICE_START_COMMAND" type="string"/>
+			<Parameter name="StartMode"  integerCode="139" identifier="MQIA_SERVICE_CONTROL" type="int"/>
+			<Parameter name="StderrDestination"  integerCode="2084" identifier="MQCA_STDERR_DESTINATION" type="string"/>
+			<Parameter name="StdoutDestination"  integerCode="2083" identifier="MQCA_STDOUT_DESTINATION" type="string"/>
+			<Parameter name="StopArguments"  integerCode="2082" identifier="MQCA_SERVICE_STOP_ARGS" type="string"/>
+			<Parameter name="StopCommand"  integerCode="2081" identifier="MQCA_SERVICE_STOP_COMMAND" type="string"/>
+		</RequestParameters>
+	</Command>
+
+
+	<!-- Change, Copy, and Create Storage Class -->
+	<Command name="COPY_STG_CLASS" integerCode="111" identifier="MQCMD_COPY_STG_CLASS">
+		<RequestParameters>
+			<Parameter name="FromStorageClassName"  integerCode="3104" identifier="MQCACF_FROM_STORAGE_CLASS" type="string" required="true"/>
+			<Parameter name="ToStorageClassName"  integerCode="3105" identifier="MQCACF_TO_STORAGE_CLASS" type="string" required="true"/>
+
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="PageSetId"  type="int" integerCode="62" identifier="MQIA_PAGESET_ID"/>
+			<Parameter name="PassTicketApplication"  type="string" integerCode="2086" identifier="MQCA_PASS_TICKET_APPL"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="Replace"  type="int" integerCode="1006" identifier="MQIACF_REPLACE"/>
+			<Parameter name="StorageClassDesc"  type="string" integerCode="2042" identifier="MQCA_STORAGE_CLASS_DESC"/>
+			<Parameter name="XCFGroupName"  type="string" integerCode="2043" identifier="MQCA_XCF_GROUP_NAME"/>
+			<Parameter name="XCFMemberName"  type="string" integerCode="2044" identifier="MQCA_XCF_MEMBER_NAME"/>
+		</RequestParameters>
+	</Command>
+
+
+	<Command name="CREATE_STG_CLASS" integerCode="109" identifier="MQCMD_CREATE_STG_CLASS">
+		<RequestParameters>
+			<Parameter name="StorageClassName"  integerCode="2022" identifier="MQCA_STORAGE_CLASS" type="string" required="true"/>
+
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="PageSetId"  type="int" integerCode="62" identifier="MQIA_PAGESET_ID"/>
+			<Parameter name="PassTicketApplication"  type="string" integerCode="2086" identifier="MQCA_PASS_TICKET_APPL"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="Replace"  type="int" integerCode="1006" identifier="MQIACF_REPLACE"/>
+			<Parameter name="StorageClassDesc"  type="string" integerCode="2042" identifier="MQCA_STORAGE_CLASS_DESC"/>
+			<Parameter name="XCFGroupName"  type="string" integerCode="2043" identifier="MQCA_XCF_GROUP_NAME"/>
+			<Parameter name="XCFMemberName"  type="string" integerCode="2044" identifier="MQCA_XCF_MEMBER_NAME"/>
+		</RequestParameters>
+	</Command>
+
+
+	<Command name="CHANGE_STG_CLASS" integerCode="102" identifier="MQCMD_CHANGE_STG_CLASS">
+		<RequestParameters>
+			<Parameter name="StorageClassName"  integerCode="2022" identifier="MQCA_STORAGE_CLASS" type="string" required="true"/>
+
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="PageSetId"  type="int" integerCode="62" identifier="MQIA_PAGESET_ID"/>
+			<Parameter name="PassTicketApplication"  type="string" integerCode="2086" identifier="MQCA_PASS_TICKET_APPL"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="Replace"  type="int" integerCode="1006" identifier="MQIACF_REPLACE"/>
+			<Parameter name="StorageClassDesc"  type="string" integerCode="2042" identifier="MQCA_STORAGE_CLASS_DESC"/>
+			<Parameter name="XCFGroupName"  type="string" integerCode="2043" identifier="MQCA_XCF_GROUP_NAME"/>
+			<Parameter name="XCFMemberName"  type="string" integerCode="2044" identifier="MQCA_XCF_MEMBER_NAME"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Clear Queue -->
+	<Command name="CLEAR_Q" integerCode="9" identifier="MQCMD_CLEAR_Q">
+		<RequestParameters>
+			<Parameter name="QName"  integerCode="2016" identifier="MQCA_Q_NAME" type="string" required="true"/>
+
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Delete Authentication Information Object -->
+	<Command name="DELETE_AUTH_INFO" integerCode="82" identifier="MQCMD_DELETE_AUTH_INFO">
+		<RequestParameters>
+			<Parameter name="AuthInfoName" type="string" integerCode="2045" identifier="MQCA_AUTH_INFO_NAME" required="true"/>
+			
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+	</Command>
+
+
+	<!-- Delete Authority Record -->
+	<Command name="DELETE_AUTH_REC" integerCode="89" identifier="MQCMD_DELETE_AUTH_REC">
+		<RequestParameters>
+			<Parameter name="ObjectType" type="int" integerCode="1016" identifier="MQIACF_OBJECT_TYPE" required="true"/>
+			<Parameter name="ProfileName" type="string" integerCode="3067" identifier="MQCACF_AUTH_PROFILE_NAME" required="true"/>
+			
+			<Parameter name="GroupNames" type="string[]" integerCode="3066" identifier="MQCACF_GROUP_ENTITY_NAMES"/>
+			<Parameter name="PrincipalNames" type="string[]" integerCode="3065" identifier="MQCACF_PRINCIPAL_ENTITY_NAMES"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Delete CF Structure -->
+	<Command name="DELETE_CF_STRUC" integerCode="112" identifier="MQCMD_DELETE_CF_STRUC">
+		<RequestParameters>
+			<Parameter name="CFStrucName" type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME" required="true"/>
+			
+		</RequestParameters>
+	</Command>
+
+	<!-- Delete Channel -->
+	<Command name="DELETE_CHANNEL" integerCode="24" identifier="MQCMD_DELETE_CHANNEL">
+		<RequestParameters>
+			<Parameter name="ChannelName" type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" required="true"/>
+
+			<Parameter name="ChannelTable" type="int" integerCode="1526" identifier="MQIACH_CHANNEL_TABLE"/>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Delete Channel Listener -->
+	<Command name="DELETE_LISTENER" integerCode="96" identifier="MQCMD_DELETE_LISTENER">
+		<RequestParameters>
+			<Parameter name="ListenerName" type="string" integerCode="3554" identifier="MQCACH_LISTENER_NAME" required="true"/>
+			
+		</RequestParameters>
+	</Command>
+
+	<!-- Delete Namelist -->
+	<Command name="DELETE_NAMELIST" integerCode="35" identifier="MQCMD_DELETE_NAMELIST">
+		<RequestParameters>
+			<Parameter name="NameListName" type="string" integerCode="2010" identifier="MQCA_NAMELIST_NAME" required="true"/>
+
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+	</Command>
+
+
+	<!-- Delete Process -->
+	<Command name="DELETE_PROCESS" integerCode="6" identifier="MQCMD_DELETE_PROCESS">
+		<RequestParameters>
+			<Parameter name="ProcessName" type="string" integerCode="2012" identifier="MQCA_PROCESS_NAME" required="true"/>
+
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+	</Command>
+
+
+	<!-- Delete Queue -->
+	<Command name="DELETE_Q" integerCode="12" identifier="MQCMD_DELETE_Q">
+		<RequestParameters>
+			<Parameter name="QName" type="string" integerCode="2016" identifier="MQCA_Q_NAME" required="true"/>
+
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="Purge" type="int" integerCode="1007" identifier="MQIACF_PURGE"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="QType" type="int" integerCode="20" identifier="MQIA_Q_TYPE"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Delete Service -->
+	<Command name="DELETE_SERVICE" integerCode="152" identifier="MQCMD_DELETE_SERVICE">
+		<RequestParameters>
+			<Parameter name="ServiceName" type="string" integerCode="2077" identifier="MQCA_SERVICE_NAME" required="true"/>
+			
+		</RequestParameters>
+	</Command>
+
+
+	<!-- Delete Storage Class -->
+	<Command name="DELETE_STG_CLASS" integerCode="113" identifier="MQCMD_DELETE_STG_CLASS">
+		<RequestParameters>
+			<Parameter name="StorageClassName" type="string" integerCode="2022" identifier="MQCA_STORAGE_CLASS" required="true"/>
+
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QType" type="int" integerCode="20" identifier="MQIA_Q_TYPE"/>
+		</RequestParameters>
+	</Command>
+
+
+	<!-- Escape -->
+	<Command name="ESCAPE" integerCode="38" identifier="MQCMD_ESCAPE">
+		<RequestParameters>
+			<Parameter name="EscapeType" type="int" integerCode="1017" identifier="MQIACF_ESCAPE_TYPE" required="true"/>
+			<Parameter name="EscapeText" type="string" integerCode="3014" identifier="MQCACF_ESCAPE_TEXT" required="true"/>
+			
+		</RequestParameters>
+		
+		<ResponseParameters>
+			<Parameter name="EscapeType" type="int" integerCode="1017" identifier="MQIACF_ESCAPE_TYPE"/>
+			<Parameter name="EscapeText" type="string" integerCode="3014" identifier="MQCACF_ESCAPE_TEXT"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- Inquire Archive -->
+	<Command name="INQUIRE_ARCHIVE" integerCode="114" identifier="MQCMD_INQUIRE_ARCHIVE">
+		<RequestParameters>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+		</RequestParameters>
+		
+		<ResponseParameters>
+			<Parameter name="ParameterType" type="int" integerCode="1175" identifier="MQIACF_SYSP_TYPE" />
+			<Parameter name="AllocPrimary" type="int" integerCode="1209" identifier="MQIACF_SYSP_ALLOC_PRIMARY"/>
+			<Parameter name="AllocSecondary" type="int" integerCode="1210" identifier="MQIACF_SYSP_ALLOC_SECONDARY"/>
+			<Parameter name="AllocUnits" type="int" integerCode="1203" identifier="MQIACF_SYSP_ALLOC_UNIT"/>
+			<Parameter name="ArchivePrefix1" type="string" integerCode="3115" identifier="MQCACF_SYSP_ARCHIVE_PFX1"/>
+			<Parameter name="ArchivePrefix2" type="string" integerCode="3147" identifier="MQCACF_SYSP_ARCHIVE_PFX2"/>
+			<Parameter name="ArchiveRetention" type="int" integerCode="1204" identifier="MQIACF_SYSP_ARCHIVE_RETAIN"/>
+			<Parameter name="ArchiveUnit1" type="string" integerCode="3116" identifier="MQCACF_SYSP_ARCHIVE_UNIT1"/>
+			<Parameter name="ArchiveUnit2" type="string" integerCode="3148" identifier="MQCACF_SYSP_ARCHIVE_UNIT2"/>
+			<Parameter name="ArchiveWTOR" type="int" integerCode="1205" identifier="MQIACF_SYSP_ARCHIVE_WTOR"/>
+			<Parameter name="BlockSize" type="int" integerCode="1206" identifier="MQIACF_SYSP_BLOCK_SIZE"/>
+			<Parameter name="Catalog" type="int" integerCode="1207" identifier="MQIACF_SYSP_CATALOG"/>
+			<Parameter name="Compact" type="int" integerCode="1208" identifier="MQIACF_SYSP_COMPACT"/>
+			<Parameter name="Protect" type="int" integerCode="1211" identifier="MQIACF_SYSP_PROTECT"/>
+			<Parameter name="QuiesceInterval" type="int" integerCode="1212" identifier="MQIACF_SYSP_QUIESCE_INTERVAL"/>
+			<Parameter name="RoutingCode" type="int[]" integerCode="1196" identifier="MQIACF_SYSP_ROUTING_CODE"/>
+			<Parameter name="TimeStampFormat" type="int" integerCode="1213" identifier="MQIACF_SYSP_TIMESTAMP"/>
+			<Parameter name="DataSetName" type="string" integerCode="3059" identifier="MQCACF_DATA_SET_NAME"/>
+			<Parameter name="LogCorrelId" type="string" integerCode="3117" identifier="MQCACF_SYSP_LOG_CORREL_ID"/>
+			<Parameter name="UnitAddress" type="int" integerCode="1214" identifier="MQIACF_SYSP_UNIT_ADDRESS"/>
+			<Parameter name="UnitStatus" type="int" integerCode="1215" identifier="MQIACF_SYSP_UNIT_STATUS"/>
+			<Parameter name="UnitVolser" type="string" integerCode="3118" identifier="MQCACF_SYSP_UNIT_VOLSER"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- Inquire Authentication Information Object -->
+	<Command name="INQUIRE_AUTH_INFO" integerCode="83" identifier="MQCMD_INQUIRE_AUTH_INFO">
+		<RequestParameters>
+			<Parameter name="AuthInfoName" type="string" integerCode="2045" identifier="MQCA_AUTH_INFO_NAME" required="true"/>
+			
+			<Parameter name="AuthInfoAttrs" type="int[]" integerCode="1019" identifier="MQIACF_AUTH_INFO_ATTRS"/>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<!-- Parameter name="IntegerFilterCommand" type="MQCFIF" integerCode="1019"/ -->
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<!-- Parameter name="StringFilterCommand" type="MQCFSF" integerCode="1019"/ -->
+		</RequestParameters>
+		<ResponseParameters>
+			<Parameter name="AlterationDate" type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>
+			<Parameter name="AlterationTime" type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>
+			<Parameter name="AuthInfoConnName" type="string" integerCode="2053" identifier="MQCA_AUTH_INFO_CONN_NAME"/>
+			<Parameter name="AuthInfoDesc" type="string" integerCode="2046" identifier="MQCA_AUTH_INFO_DESC"/>
+			<Parameter name="AuthInfoName" type="string" integerCode="2045" identifier="MQCA_AUTH_INFO_NAME"/>
+			<Parameter name="AuthInfoType" type="int" integerCode="66" identifier="MQIA_AUTH_INFO_TYPE"/>
+			<Parameter name="LDAPPassword" type="string" integerCode="2048" identifier="MQCA_LDAP_PASSWORD"/>
+			<Parameter name="LDAPUserName" type="string" integerCode="2047" identifier="MQCA_LDAP_USER_NAME"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire Authentication Information Object Names -->
+	<Command name="INQUIRE_AUTH_INFO_NAMES" integerCode="84" identifier="MQCMD_INQUIRE_AUTH_INFO_NAMES">
+		<RequestParameters>
+			<Parameter name="AuthInfoName" type="string" integerCode="2045" identifier="MQCA_AUTH_INFO_NAME" required="true"/>
+			
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>		
+		</RequestParameters>
+		<ResponseParameters>
+			<Parameter name="AuthInfoNames" type="string[]" integerCode="3048" identifier="MQCACF_AUTH_INFO_NAMES"/>
+			<Parameter name="QSGDispositions" type="int[]" integerCode="1126" identifier="MQIACF_QSG_DISPS"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire Authority Records -->
+	<Command name="INQUIRE_AUTH_RECS" integerCode="87" identifier="MQCMD_INQUIRE_AUTH_RECS">
+		<RequestParameters>
+			<Parameter name="Options" type="int" integerCode="1228" identifier="MQIACF_AUTH_OPTIONS" required="true"/>
+			<Parameter name="ProfileName" type="string" integerCode="3067" identifier="MQCACF_AUTH_PROFILE_NAME" required="true"/>
+			<Parameter name="ObjectType" type="int" integerCode="1016" identifier="MQIACF_OBJECT_TYPE" required="true"/>
+			
+			<Parameter name="EntityName" type="string" integerCode="3068" identifier="MQCACF_ENTITY_NAME"/>
+			<Parameter name="EntityType" type="int" integerCode="1118" identifier="MQIACF_ENTITY_TYPE"/>		
+			<Parameter name="ProfileAttrs" type="int[]" integerCode="1114" identifier="MQIACF_AUTH_PROFILE_ATTRS"/>
+			<Parameter name="ServiceComponent" type="string" integerCode="3069" identifier="MQCACF_SERVICE_COMPONENT"/>
+		</RequestParameters>
+		<ResponseParameters>
+			<Parameter name="ObjectType" type="int" integerCode="1016" identifier="MQIACF_OBJECT_TYPE"/>
+			<Parameter name="Options" type="int" integerCode="1228" identifier="MQIACF_AUTH_OPTIONS"/>
+			<Parameter name="ProfileName" type="string" integerCode="3067" identifier="MQCACF_AUTH_PROFILE_NAME"/>
+			<Parameter name="QMgrName" type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>
+			<Parameter name="AuthorizationList" type="int[]" integerCode="1115" identifier="MQIACF_AUTHORIZATION_LIST"/>
+			<Parameter name="EntityName" type="string" integerCode="3068" identifier="MQCACF_ENTITY_NAME"/>
+			<Parameter name="EntityType" type="int" integerCode="1118" identifier="MQIACF_ENTITY_TYPE"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire Authority Service -->
+	<Command name="INQUIRE_AUTH_SERVICE" integerCode="169" identifier="MQCMD_INQUIRE_AUTH_SERVICE">
+		<RequestParameters>
+			<Parameter name="AuthServiceAttrs" type="int[]" integerCode="1264" identifier="MQIACF_AUTH_SERVICE_ATTRS" required="true"/>
+			
+			<Parameter name="ServiceComponent" type="string" integerCode="3069" identifier="MQCACF_SERVICE_COMPONENT"/>
+		</RequestParameters>
+		<ResponseParameters>
+			<Parameter name="ServiceComponent" type="string[]" integerCode="3069" identifier="MQCACF_SERVICE_COMPONENT"/>
+			<Parameter name="InterfaceVersion," type="int" integerCode="1263" identifier="MQIACF_INTERFACE_VERSION"/>
+			<Parameter name="UserIDSupport" type="int" integerCode="1262" identifier="MQIACF_USER_ID_SUPPORT"/>		
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire CF Structure -->
+	<Command name="INQUIRE_CF_STRUC" integerCode="115" identifier="MQCMD_INQUIRE_CF_STRUC">
+		<RequestParameters>
+			<Parameter name="CFStrucName" type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME" required="true"/>
+			
+			<Parameter name="CFStrucAttrs" type="int[]" integerCode="1133" identifier="MQIACF_CF_STRUC_ATTRS"/>
+			<!-- Parameter name="IntegerFilterCommand" type="MQCFIF" integerCode=""/ -->
+			<!-- Parameter name="StringFilterCommand" type="MQCFSF" integerCode=""/ -->		
+		</RequestParameters>
+		<ResponseParameters>
+			<Parameter name="CFStrucName" type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME"/>
+			<Parameter name="AlterationDate" type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>
+			<Parameter name="AlterationTime" type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>
+			<Parameter name="CFLevel" type="int" integerCode="70" identifier="MQIA_CF_LEVEL"/>
+			<Parameter name="CFStrucDesc" type="string" integerCode="2052" identifier="MQCA_CF_STRUC_DESC"/>
+			<Parameter name="Recovery" type="int" integerCode="2052" identifier="MQCA_CF_STRUC_DESC"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire CF Structure Names -->
+
+	<Command name="INQUIRE_CF_STRUC_NAMES" integerCode="147" identifier="MQCMD_INQUIRE_CF_STRUC_NAMES">
+		<RequestParameters>
+			<Parameter name="CFStrucName" type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME" required="true"/>			
+			
+		</RequestParameters>
+		<ResponseParameters>
+			<Parameter name="CFStrucNames" type="string[]" integerCode="3095" identifier="MQCACF_CF_STRUC_NAMES"/>		
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire CF Structure Status -->
+	<Command name="INQUIRE_CF_STRUC_NAMES" integerCode="147" identifier="MQCMD_INQUIRE_CF_STRUC_NAMES">
+		<RequestParameters>
+			<Parameter name="CFStrucName" type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME" required="true"/>	
+			
+			<Parameter name="CFStatusType" type="int" integerCode="1135" identifier="MQIACF_CF_STATUS_TYPE"/>	
+			<!-- Parameter name="IntegerFilterCommand" type="MQCFIF" integerCode=""/ -->	
+			<!-- Parameter name="StringFilterCommand" type="MQCFSF" integerCode=""/ -->	
+		</RequestParameters>
+		<ResponseParameters>			
+			<Parameter name="BackupDate" type="string" integerCode="3098" identifier="MQCACF_BACKUP_DATE"/>	
+			<Parameter name="BackupEndRBA" type="string" integerCode="3102" identifier="MQCACF_CF_STRUC_BACKUP_END"/>	
+			<Parameter name="BackupSize" type="int" integerCode="1144" identifier="MQIACF_CF_STRUC_BACKUP_SIZE"/>	
+			<Parameter name="BackupStartRBA" type="string" integerCode="3101" identifier="MQCACF_CF_STRUC_BACKUP_START"/>	
+			<Parameter name="BackupTime" type="string" integerCode="3099" identifier="MQCACF_BACKUP_TIME"/>	
+			<Parameter name="BackupEndRBA" type="string" integerCode="3102" identifier="MQCACF_CF_STRUC_BACKUP_END"/>
+			<Parameter name="CFStrucName" type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME"/>	
+			<Parameter name="CFStatusType" type="int" integerCode="1135" identifier="MQIACF_CF_STATUS_TYPE"/>	
+			<Parameter name="CFStrucStatus" type="int" integerCode="1130" identifier="MQIACF_CF_STRUC_STATUS"/>
+			<Parameter name="CFStrucType" type="int" integerCode="1139" identifier="MQIACF_CF_STRUC_TYPE"/>	
+			<Parameter name="EntriesMax" type="int" integerCode="1142" identifier="MQIACF_CF_STRUC_ENTRIES_MAX"/>	
+			<Parameter name="EntriesUsed" type="int" integerCode="1143" identifier="MQIACF_CF_STRUC_ENTRIES_USED"/>
+			<Parameter name="FailDate" type="string" integerCode="3096" identifier="MQCACF_FAIL_DATE"/>	
+			<Parameter name="FailTime" type="string" integerCode="3097" identifier="MQCACF_FAIL_TIME"/>	
+			<Parameter name="LogQMgrNames" type="string[]" integerCode="3103" identifier="MQCACF_CF_STRUC_LOG_Q_MGRS"/>
+			<Parameter name="QMgrName" type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>	
+			<Parameter name="SizeMax" type="int" integerCode="1140" identifier="MQIACF_CF_STRUC_SIZE_MAX"/>	
+			<Parameter name="SizeUsed" type="int" integerCode="1141" identifier="MQIACF_CF_STRUC_SIZE_USED"/>
+			<Parameter name="SysName" type="string" integerCode="3100" identifier="MQCACF_SYSTEM_NAME"/>
+		</ResponseParameters>
+	</Command>
+
+
+	<!--Inquire Channel -->
+	<Command name="INQUIRE_CHANNEL" integerCode="25" identifier="MQCMD_INQUIRE_CHANNEL">
+		<RequestParameters>
+			<Parameter name="ChannelName" type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" required="true"/>	
+			
+			<Parameter name="ChannelAttrs" type="int[]" integerCode="1015" identifier="MQIACF_CHANNEL_ATTRS"/>	
+			<Parameter name="ChannelType" type="int" integerCode="1511" identifier="MQIACH_CHANNEL_TYPE"/>	
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>	
+			<!-- Parameter name="IntegerFilterCommand" type="MQCFIF" integerCode=""/ -->	
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>	
+			<!-- Parameter name="StringFilterCommand" type="MQCFSF" integerCode=""/ -->	
+		</RequestParameters>
+		<ResponseParameters>			
+			<Parameter name="ChannelName" type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME"/>	
+			<Parameter name="ChannelType" type="int" integerCode="1511" identifier="MQIACH_CHANNEL_TYPE"/>	
+			<Parameter name="QSGDisposition" type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>	
+			<Parameter name="AlterationDate" type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>	
+			<Parameter name="AlterationTime" type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>	
+			<Parameter name="BatchHeartbeat" type="int" integerCode="1567" identifier="MQIACH_BATCH_HB"/>
+			<Parameter name="BatchInterval" type="int" integerCode="1564" identifier="MQIACH_BATCH_INTERVAL"/>	
+			<Parameter name="BatchSize" type="int" integerCode="1502" identifier="MQIACH_BATCH_SIZE"/>	
+			<Parameter name="ChannelDesc" type="string" integerCode="3502" identifier="MQCACH_DESC"/>
+			<Parameter name="ChannelMonitoring" type="int" integerCode="122" identifier="MQIA_MONITORING_CHANNEL"/>	
+			<Parameter name="ChannelStatistics" type="int" integerCode="129" identifier="MQIA_STATISTICS_CHANNEL"/>	
+			<Parameter name="ClusterName" type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME"/>
+			<Parameter name="ClusterNamelist" type="string[]" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST"/>	
+			<Parameter name="CLWLChannelPriority" type="int" integerCode="1578" identifier="MQIACH_CLWL_CHANNEL_PRIORITY"/>	
+			<Parameter name="CLWLChannelRank" type="int" integerCode="1577" identifier="MQIACH_CLWL_CHANNEL_RANK"/>
+			<Parameter name="CLWLChannelWeight" type="int" integerCode="1579" identifier="MQIACH_CLWL_CHANNEL_WEIGHT"/>	
+			<Parameter name="ConnectionName" type="string" integerCode="3506" identifier="MQCACH_CONNECTION_NAME"/>	
+			<Parameter name="DataConversion" type="int" integerCode="1515" identifier="MQIACH_DATA_CONVERSION"/>
+			<Parameter name="DiscInterval" type="int" integerCode="1503" identifier="MQIACH_DISC_INTERVAL"/>
+			<Parameter name="HeaderCompression" type="int[]" integerCode="1575" identifier="MQIACH_HDR_COMPRESSION"/>	
+			<Parameter name="HeartbeatInterval" type="int" integerCode="1563" identifier="MQIACH_HB_INTERVAL"/>	
+			<Parameter name="KeepAliveInterval" type="int" integerCode="1566" identifier="MQIACH_KEEP_ALIVE_INTERVAL"/>	
+			<Parameter name="LocalAddress" type="string" integerCode="3520" identifier="MQCACH_LOCAL_ADDRESS"/>	
+			<Parameter name="LongRetryCount" type="int" integerCode="1507" identifier="MQIACH_LONG_RETRY"/>	
+			<Parameter name="LongRetryInterval" type="int" integerCode="1506" identifier="MQIACH_LONG_TIMER"/>
+			<Parameter name="MaxMsgLength" type="int" integerCode="1510" identifier="MQIACH_MAX_MSG_LENGTH"/>	
+			<Parameter name="MCAName" type="string" integerCode="3507" identifier="MQCACH_MCA_NAME"/>	
+			<Parameter name="MCAType" type="int" integerCode="1517" identifier="MQIACH_MCA_TYPE"/>
+			<Parameter name="MCAUserIdentifier" type="string" integerCode="3527" identifier="MQCACH_MCA_USER_ID"/>	
+			<Parameter name="MessageCompression" type="int[]" integerCode="1576" identifier="MQIACH_MSG_COMPRESSION"/>	
+			<Parameter name="ModeName" type="string" integerCode="3503" identifier="MQCACH_MODE_NAME"/>
+			<Parameter name="MsgExit" type="string" integerCode="3509" identifier="MQCACH_MSG_EXIT_NAME"/>	
+			<Parameter name="MsgRetryCount" type="int" integerCode="1544" identifier="MQIACH_MR_COUNT"/>	
+			<Parameter name="MsgRetryExit" type="string" integerCode="3534" identifier="MQCACH_MR_EXIT_NAME"/>
+			<Parameter name="MsgRetryInterval" type="int" integerCode="1545" identifier="MQIACH_MR_INTERVAL"/>	
+			<Parameter name="MsgRetryUserData" type="string" integerCode="3535" identifier="MQCACH_MR_EXIT_USER_DATA"/>	
+			<Parameter name="MsgUserData" type="string" integerCode="3514" identifier="MQCACH_MSG_EXIT_USER_DATA"/>
+			<Parameter name="QMgrName" type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>
+			<Parameter name="ReceiveExit" type="string" integerCode="3511" identifier="MQCACH_RCV_EXIT_NAME"/>
+			<Parameter name="ReceiveUserData" type="string" integerCode="3516" identifier="MQCACH_RCV_EXIT_USER_DATA"/>	
+			<Parameter name="SecurityExit" type="string" integerCode="3508" identifier="MQCACH_SEC_EXIT_NAME"/>	
+			<Parameter name="SecurityUserData" type="string" integerCode="3513" identifier="MQCACH_SEC_EXIT_USER_DATA"/>	
+			<Parameter name="SendExit" type="string" integerCode="3510" identifier="MQCACH_SEND_EXIT_NAME"/>	
+			<Parameter name="SendUserData" type="string" integerCode="3515" identifier="MQCACH_SEND_EXIT_USER_DATA"/>	
+			<Parameter name="SeqNumberWrap" type="int" integerCode="1509" identifier="MQIACH_SEQUENCE_NUMBER_WRAP"/>
+			<Parameter name="ShortRetryCount" type="int" integerCode="1505" identifier="MQIACH_SHORT_RETRY"/>	
+			<Parameter name="ShortRetryInterval" type="int" integerCode="1504" identifier="MQIACH_SHORT_TIMER"/>	
+			<Parameter name="SSLCipherSpec" type="string" integerCode="3544" identifier="MQCACH_SSL_CIPHER_SPEC"/>
+			<Parameter name="SSLClientAuth" type="int" integerCode="1568" identifier="MQIACH_SSL_CLIENT_AUTH"/>	
+			<Parameter name="SSLPeerName" type="string" integerCode="3545" identifier="MQCACH_SSL_PEER_NAME"/>	
+			<Parameter name="TpName" type="string" integerCode="3504" identifier="MQCACH_TP_NAME"/>
+			<Parameter name="TransportType" type="int" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE"/>	
+			<Parameter name="UserIdentifier" type="string" integerCode="3517" identifier="MQCACH_USER_ID"/>	
+			<Parameter name="XmitQName" type="string" integerCode="3505" identifier="MQCACH_XMIT_Q_NAME"/>	
+			<Parameter name="NetworkPriority" type="int" integerCode="1565" identifier="MQIACH_NETWORK_PRIORITY"/>
+			<Parameter name="NonPersistentMsgSpeed" type="int" integerCode="1562" identifier="MQIACH_NPM_SPEED"/>
+			<Parameter name="Password" type="string" integerCode="3518" identifier="MQCACH_PASSWORD"/>
+			<Parameter name="PutAuthority" type="int" integerCode="1508" identifier="MQIACH_PUT_AUTHORITY"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire Channel Initiator -->
+	<Command name="INQUIRE_CHANNEL_INIT" integerCode="118" identifier="MQCMD_INQUIRE_CHANNEL_INIT">
+		<RequestParameters>
+			<Parameter name="CommandScope" type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>		
+		</RequestParameters>
+		<ResponseParameters>			
+			<Parameter name="ActiveChannels"  type="int" integerCode="1593" identifier="MQIACH_ACTIVE_CHL"/>
+			<Parameter name="ActiveChannelsMax"  type="int" integerCode="1594" identifier="MQIACH_ACTIVE_CHL_MAX"/>
+			<Parameter name="ActiveChannelsPaused"  type="int" integerCode="1595" identifier="MQIACH_ACTIVE_CHL_PAUSED"/>
+			<Parameter name="ActiveChannelsRetrying"  type="int" integerCode="1598" identifier="MQIACH_ACTIVE_CHL_RETRY"/>
+			<Parameter name="ActiveChannelsStarted"  type="int" integerCode="1596" identifier="MQIACH_ACTIVE_CHL_STARTED"/>
+			<Parameter name="ActiveChannelsStopped"  type="int" integerCode="1597" identifier="MQIACH_ACTIVE_CHL_STOPPED"/>
+			<Parameter name="AdaptersMax"  type="int" integerCode="1584" identifier="MQIACH_ADAPS_MAX"/>
+			<Parameter name="AdaptersStarted"  type="int" integerCode="1583" identifier="MQIACH_ADAPS_STARTED"/>
+			<Parameter name="ChannelInitiatorStatus"  type="int" integerCode="1232" identifier="MQIACF_CHINIT_STATUS"/>
+			<Parameter name="CurrentChannels"  type="int" integerCode="1589" identifier="MQIACH_CURRENT_CHL"/>
+			<Parameter name="CurrentChannelsLU62"  type="int" integerCode="1592" identifier="MQIACH_CURRENT_CHL_LU62"/>
+			<Parameter name="CurrentChannelsMax"  type="int" integerCode="1590" identifier="MQIACH_CURRENT_CHL_MAX"/>
+			<Parameter name="CurrentChannelsTCP"  type="int" integerCode="1591" identifier="MQIACH_CURRENT_CHL_TCP"/>
+			<Parameter name="DispatchersMax"  type="int" integerCode="1586" identifier="MQIACH_DISPS_MAX"/>
+			<Parameter name="DispatchersStarted"  type="int" integerCode="1585" identifier="MQIACH_DISPS_STARTED"/>
+			<Parameter name="SSLTasksMax"  type="int" integerCode="1588" identifier="MQIACH_SSLTASKS_MAX"/>
+			<Parameter name="SSLTasksStarted"  type="int" integerCode="1587" identifier="MQIACH_SSLTASKS_STARTED"/>
+			<Parameter name="TCPName"  type="string" integerCode="3553" identifier="MQCACH_TCP_NAME"/>
+			<Parameter name="InboundDisposition"  type="int" integerCode="1581" identifier="MQIACH_INBOUND_DISP"/>
+			<Parameter name="IPAddress"  type="string" integerCode="3552" identifier="MQCACH_IP_ADDRESS"/>
+			<Parameter name="ListenerStatus"  type="int" integerCode="1599" identifier="MQIACH_LISTENER_STATUS"/>
+			<Parameter name="LUName"  type="string" integerCode="3551" identifier="MQCACH_LU_NAME"/>
+			<Parameter name="Port"  type="int" integerCode="1574" identifier="MQIACH_PORT_NUMBER"/>
+			<Parameter name="TransportType"  type="int" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- Inquire Channel Listener -->
+	<Command name="INQUIRE_LISTENER" integerCode="97" identifier="MQCMD_INQUIRE_LISTENER">
+		<RequestParameters>
+			<Parameter name="ListenerName"  type="string" integerCode="3554" identifier="MQCACH_LISTENER_NAME" required="true"/>
+			
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="ListenerAttrs"  type="int[]" integerCode="1222" identifier="MQIACF_LISTENER_ATTRS"/>
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="TransportType"  type="int" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE"/>	
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="AlterationDate"  type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>
+			<Parameter name="AlterationTime"  type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>
+			<Parameter name="Adapter"  type="int" integerCode="1519" identifier="MQIACH_ADAPTER"/>
+			<Parameter name="Backlog"  type="int" integerCode="1602" identifier="MQIACH_BACKLOG"/>
+			<Parameter name="Commands"  type="int" integerCode="1520" identifier="MQIACH_COMMAND_COUNT"/>
+			<Parameter name="IPAddress"  type="string" integerCode="3552" identifier="MQCACH_IP_ADDRESS"/>
+			<Parameter name="ListenerDesc"  type="string" integerCode="3555" identifier="MQCACH_LISTENER_DESC"/>
+			<Parameter name="ListenerName"  type="string" integerCode="3554" identifier="MQCACH_LISTENER_NAME"/>
+			<Parameter name="LocalName"  type="string" integerCode="3521" identifier="MQCACH_LOCAL_NAME"/>
+			<Parameter name="NetbiosNames"  type="int" integerCode="1513" identifier="MQIACH_NAME_COUNT"/>
+			<Parameter name="Port"  type="int" integerCode="1522" identifier="MQIACH_PORT"/>
+			<Parameter name="Sessions"  type="int" integerCode="1518" identifier="MQIACH_SESSION_COUNT"/>
+			<Parameter name="Socket"  type="int" integerCode="1521" identifier="MQIACH_SOCKET"/>
+			<Parameter name="StartMode"  type="int" integerCode="1601" identifier="MQIACH_LISTENER_CONTROL"/>
+			<Parameter name="TPName"  type="string" integerCode="3504" identifier="MQCACH_TP_NAME"/>
+			<Parameter name="TransportType"  type="int" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE"/> 
+		</ResponseParameters>
+	</Command>
+
+	<!-- Inquire Channel Listener Status -->
+	<Command name="INQUIRE_LISTENER_STATUS" integerCode="98" identifier="MQCMD_INQUIRE_LISTENER_STATUS">
+		<RequestParameters>
+			<Parameter name="ListenerName"  type="string" integerCode="3554" identifier="MQCACH_LISTENER_NAME" required="true"/>
+			
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="ListenerStatusAttrs"  type="int[]" integerCode="1223" identifier="MQIACF_LISTENER_STATUS_ATTRS"/>
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="Adapter"  type="int" integerCode="1519" identifier="MQIACH_ADAPTER"/>
+			<Parameter name="Backlog"  type="int" integerCode="1602" identifier="MQIACH_BACKLOG"/>
+			<Parameter name="Commands"  type="int" integerCode="1520" identifier="MQIACH_COMMAND_COUNT"/>
+			<Parameter name="IPAddress"  type="string" integerCode="3552" identifier="MQCACH_IP_ADDRESS"/>
+			<Parameter name="ListenerDesc"  type="string" integerCode="3555" identifier="MQCACH_LISTENER_DESC"/>
+			<Parameter name="ListenerName"  type="string" integerCode="3554" identifier="MQCACH_LISTENER_NAME"/>
+			<Parameter name="LocalName"  type="string" integerCode="3521" identifier="MQCACH_LOCAL_NAME"/>
+			<Parameter name="NetbiosNames"  type="int" integerCode="1513" identifier="MQIACH_NAME_COUNT"/>
+			<Parameter name="Port"  type="int" integerCode="1522" identifier="MQIACH_PORT"/>
+			<Parameter name="ProcessId"  type="int" integerCode="1024" identifier="MQIACF_PROCESS_ID"/>
+			<Parameter name="Sessions"  type="int" integerCode="1518" identifier="MQIACH_SESSION_COUNT"/>
+			<Parameter name="Socket"  type="int" integerCode="1521" identifier="MQIACH_SOCKET"/>
+			<Parameter name="StartDate"  type="string" integerCode="3556" identifier="MQCACH_LISTENER_START_DATE"/>
+			<Parameter name="StartMode"  type="int" integerCode="1601" identifier="MQIACH_LISTENER_CONTROL"/>
+			<Parameter name="StartTime"  type="string" integerCode="3557" identifier="MQCACH_LISTENER_START_TIME"/>
+			<Parameter name="Status"  type="int" integerCode="1599" identifier="MQIACH_LISTENER_STATUS"/>
+			<Parameter name="TPName"  type="string" integerCode="3504" identifier="MQCACH_TP_NAME"/>
+			<Parameter name="TransportType"  type="int" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- Inquire Channel Names-->
+	<Command name="INQUIRE_CHANNEL_NAMES" integerCode="20" identifier="MQCMD_INQUIRE_CHANNEL_NAMES">
+		<RequestParameters>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" required="true"/>
+			
+			<Parameter name="ChannelType"  type="int" integerCode="1511" identifier="MQIACH_CHANNEL_TYPE"/>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="ChannelNames"  type="string[]" integerCode="3512" identifier="MQCACH_CHANNEL_NAMES"/>
+			<Parameter name="ChannelTypes"  type="int[]" integerCode="1582" identifier="MQIACH_CHANNEL_TYPES"/>
+			<Parameter name="QSGDispositions"  type="int[]" integerCode="1126" identifier="MQIACF_QSG_DISPS"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- Inquire Channel Status-->
+	<Command name="INQUIRE_CHANNEL_STATUS" integerCode="42" identifier="MQCMD_INQUIRE_CHANNEL_STATUS">
+		<RequestParameters>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" required="true"/>
+			
+			<Parameter name="ChannelDisposition"  type="int" integerCode="1580" identifier="MQIACH_CHANNEL_DISP"/>
+			<Parameter name="ChannelInstanceAttrs"  type="int[]" integerCode="1524" identifier="MQIACH_CHANNEL_INSTANCE_ATTRS"/>
+			<Parameter name="ChannelInstanceType"  type="int" integerCode="1523" identifier="MQIACH_CHANNEL_INSTANCE_TYPE"/>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="ConnectionName"  type="string" integerCode="3506" identifier="MQCACH_CONNECTION_NAME"/>
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="XmitQName"  type="string" integerCode="3505" identifier="MQCACH_XMIT_Q_NAME"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="Batches"  type="int" integerCode="1537" identifier="MQIACH_BATCHES"/>
+			<Parameter name="BatchSize"  type="int" integerCode="1502" identifier="MQIACH_BATCH_SIZE"/>
+			<Parameter name="BatchSizeIndicator"  type="int[]" integerCode="1607" identifier="MQIACH_BATCH_SIZE_INDICATOR"/>
+			<Parameter name="BuffersReceived"  type="int" integerCode="1539" identifier="MQIACH_BUFFERS_RCVD"/>
+			<Parameter name="BuffersSent"  type="int" integerCode="1538" identifier="MQIACH_BUFFERS_SENT"/>
+			<Parameter name="BytesReceived"  type="int" integerCode="1536" identifier="MQIACH_BYTES_RCVD"/>
+			<Parameter name="BytesSent"  type="int" integerCode="1535" identifier="MQIACH_BYTES_SENT"/>
+			<Parameter name="ChannelDisposition"  type="int" integerCode="1580" identifier="MQIACH_CHANNEL_DISP"/>
+			<Parameter name="ChannelInstanceType"  type="int" integerCode="1523" identifier="MQIACH_CHANNEL_INSTANCE_TYPE"/>
+			<Parameter name="ChannelMonitoring"  type="int" integerCode="122" identifier="MQIA_MONITORING_CHANNEL"/>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME"/>
+			<Parameter name="ChannelStartDate"  type="string" integerCode="3529" identifier="MQCACH_CHANNEL_START_DATE"/>
+			<Parameter name="ChannelStartTime"  type="string" integerCode="3528" identifier="MQCACH_CHANNEL_START_TIME"/>
+			<Parameter name="ChannelStatus"  type="int" integerCode="1527" identifier="MQIACH_CHANNEL_STATUS"/>
+			<Parameter name="ChannelType"  type="int" integerCode="1511" identifier="MQIACH_CHANNEL_TYPE"/>
+			<Parameter name="CompressionRate"  type="int[]" integerCode="1611" identifier="MQIACH_COMPRESSION_RATE"/>
+			<Parameter name="CompressionTime"  type="int[]" integerCode="1612" identifier="MQIACH_COMPRESSION_TIME"/>
+			<Parameter name="ConnectionName"  type="string" integerCode="3506" identifier="MQCACH_CONNECTION_NAME"/>
+			<Parameter name="CurrentLUWID"  type="string" integerCode="3532" identifier="MQCACH_CURRENT_LUWID"/>
+			<Parameter name="CurrentMsgs"  type="int" integerCode="1531" identifier="MQIACH_CURRENT_MSGS"/>
+			<Parameter name="CurrentSequenceNumber"  type="int" integerCode="1532" identifier="MQIACH_CURRENT_SEQ_NUMBER"/>
+			<Parameter name="ExitTime"  type="int[]" integerCode="1606" identifier="MQIACH_EXIT_TIME_INDICATOR"/>
+			<Parameter name="HeaderCompression"  type="int[]" integerCode="1575" identifier="MQIACH_HDR_COMPRESSION"/>
+			<Parameter name="HeartbeatInterval"  type="int" integerCode="1563" identifier="MQIACH_HB_INTERVAL"/>
+			<Parameter name="InDoubtStatus"  type="int" integerCode="1528" identifier="MQIACH_INDOUBT_STATUS"/>
+			<Parameter name="KeepAliveInterval"  type="int" integerCode="1566" identifier="MQIACH_KEEP_ALIVE_INTERVAL"/>
+			<Parameter name="LastLUWID"  type="string" integerCode="3531" identifier="MQCACH_LAST_LUWID"/>
+			<Parameter name="LastMsgDate"  type="string" integerCode="3525" identifier="MQCACH_LAST_MSG_DATE"/>
+			<Parameter name="LastMsgTime"  type="string" integerCode="3524" identifier="MQCACH_LAST_MSG_TIME"/>
+			<Parameter name="LastSequenceNumber"  type="int" integerCode="1529" identifier="MQIACH_LAST_SEQ_NUMBER"/>
+			<Parameter name="LocalAddress"  type="string" integerCode="3520" identifier="MQCACH_LOCAL_ADDRESS"/>
+			<Parameter name="LongRetriesLeft"  type="int" integerCode="1540" identifier="MQIACH_LONG_RETRIES_LEFT"/>
+			<Parameter name="MaxMsgLength"  type="int" integerCode="1510" identifier="MQIACH_MAX_MSG_LENGTH"/>
+			<Parameter name="MCAJobName"  type="string" integerCode="3530" identifier="MQCACH_MCA_JOB_NAME"/>
+			<Parameter name="MCAStatus"  type="int" integerCode="1542" identifier="MQIACH_MCA_STATUS"/>
+			<Parameter name="MCAUserIdentifier"  type="string" integerCode="3527" identifier="MQCACH_MCA_USER_ID"/>
+			<Parameter name="MessageCompression"  type="int[]" integerCode="1576" identifier="MQIACH_MSG_COMPRESSION"/>
+			<Parameter name="Msgs"  type="int" integerCode="1534" identifier="MQIACH_MSGS"/>
+			<Parameter name="MsgsAvailable"  type="int" integerCode="1608" identifier="MQIACH_XMITQ_MSGS_AVAILABLE"/>
+			<Parameter name="NetTime"  type="int[]" integerCode="1605" identifier="MQIACH_NETWORK_TIME_INDICATOR"/>
+			<Parameter name="NonPersistentMsgSpeed"  type="int" integerCode="1562" identifier="MQIACH_NPM_SPEED"/>
+			<Parameter name="QMgrName"  type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>
+			<Parameter name="RemoteApplTag"  type="string" integerCode="3548" identifier="MQCACH_REMOTE_APPL_TAG"/>
+			<Parameter name="RemoteQMgrName"  type="string" integerCode="2017" identifier="MQCA_REMOTE_Q_MGR_NAME"/>
+			<Parameter name="ShortRetriesLeft"  type="int" integerCode="1541" identifier="MQIACH_SHORT_RETRIES_LEFT"/>
+			<Parameter name="SSLCertRemoteIssuerName"  type="string" integerCode="3550" identifier="MQCACH_SSL_CERT_ISSUER_NAME"/>
+			<Parameter name="SSLCertUserId"  type="string" integerCode="3549" identifier="MQCACH_SSL_CERT_USER_ID"/>
+			<Parameter name="SSLKeyResetDate"  type="string" integerCode="3558" identifier="MQCACH_SSL_KEY_RESET_DATE"/>
+			<Parameter name="SSLKeyResets"  type="int" integerCode="1610" identifier="MQIACH_SSL_KEY_RESETS"/>
+			<Parameter name="SSLKeyResetTime"  type="string" integerCode="3559" identifier="MQCACH_SSL_KEY_RESET_TIME"/>
+			<Parameter name="SSLShortPeerName"  type="string" integerCode="3547" identifier="MQCACH_SSL_SHORT_PEER_NAME"/>
+			<Parameter name="StopRequested"  type="int" integerCode="1543" identifier="MQIACH_STOP_REQUESTED"/>
+			<Parameter name="SubState"  type="int" integerCode="1609" identifier="MQIACH_CHANNEL_SUBSTATE"/>
+			<Parameter name="XmitQName"  type="string" integerCode="3505" identifier="MQCACH_XMIT_Q_NAME"/>
+			<Parameter name="XQTime"  type="int[]" integerCode="1604" identifier="MQIACH_XMITQ_TIME_INDICATOR"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- Inquire Cluster Queue Manager-->
+	<Command name="INQUIRE_CLUSTER_Q_MGR" integerCode="70" identifier="MQCMD_INQUIRE_CLUSTER_Q_MGR">
+		<RequestParameters>		
+			<Parameter name="ClusterQMgrName"  type="string" integerCode="2031" identifier="MQCA_CLUSTER_Q_MGR_NAME" required="true"/>
+			
+			<Parameter name="Channel"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME"/>
+			<Parameter name="ClusterName"  type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME"/>
+			<Parameter name="ClusterQMgrAttrs"  type="int[]" integerCode="1093" identifier="MQIACF_CLUSTER_Q_MGR_ATTRS"/>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="AlterationDate"  type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>
+			<Parameter name="AlterationTime"  type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>
+			<Parameter name="BatchHeartbeat"  type="int" integerCode="1567" identifier="MQIACH_BATCH_HB"/>
+			<Parameter name="BatchInterval"  type="int" integerCode="1564" identifier="MQIACH_BATCH_INTERVAL"/>
+			<Parameter name="BatchSize"  type="int" integerCode="1502" identifier="MQIACH_BATCH_SIZE"/>
+			<Parameter name="ChannelDesc"  type="string" integerCode="3502" identifier="MQCACH_DESC"/>
+			<Parameter name="ChannelMonitoring"  type="int" integerCode="122" identifier="MQIA_MONITORING_CHANNEL"/>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME"/>
+			<Parameter name="ChannelStatus"  type="int" integerCode="1527" identifier="MQIACH_CHANNEL_STATUS"/>
+			<Parameter name="ClusterDate"  type="string" integerCode="2037" identifier="MQCA_CLUSTER_DATE"/>
+			<Parameter name="ClusterInfo"  type="int" integerCode="1083" identifier="MQIACF_CLUSTER_INFO"/>
+			<Parameter name="ClusterName"  type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME"/>
+			<Parameter name="ClusterTime"  type="string" integerCode="2038" identifier="MQCA_CLUSTER_TIME"/>
+			<Parameter name="CLWLChannelPriority"  type="int" integerCode="1578" identifier="MQIACH_CLWL_CHANNEL_PRIORITY"/>
+			<Parameter name="CLWLChannelRank"  type="int" integerCode="1577" identifier="MQIACH_CLWL_CHANNEL_RANK"/>
+			<Parameter name="CLWLChannelWeight"  type="int" integerCode="1579" identifier="MQIACH_CLWL_CHANNEL_WEIGHT"/>
+			<Parameter name="ConnectionName"  type="string" integerCode="3506" identifier="MQCACH_CONNECTION_NAME"/>
+			<Parameter name="DataConversion"  type="int" integerCode="1515" identifier="MQIACH_DATA_CONVERSION"/>
+			<Parameter name="DiscInterval"  type="int" integerCode="1503" identifier="MQIACH_DISC_INTERVAL"/>
+			<Parameter name="HeaderCompression"  type="int[]" integerCode="1575" identifier="MQIACH_HDR_COMPRESSION"/>
+			<Parameter name="HeartbeatInterval"  type="int" integerCode="1563" identifier="MQIACH_HB_INTERVAL"/>
+			<Parameter name="KeepAliveInterval"  type="int" integerCode="1566" identifier="MQIACH_KEEP_ALIVE_INTERVAL"/>
+			<Parameter name="LocalAddress"  type="string" integerCode="3520" identifier="MQCACH_LOCAL_ADDRESS"/>
+			<Parameter name="LongRetryCount"  type="int" integerCode="1507" identifier="MQIACH_LONG_RETRY"/>
+			<Parameter name="LongRetryInterval"  type="int" integerCode="1506" identifier="MQIACH_LONG_TIMER"/>
+			<Parameter name="MaxMsgLength"  type="int" integerCode="1510" identifier="MQIACH_MAX_MSG_LENGTH"/>
+			<Parameter name="MCAName"  type="string" integerCode="3507" identifier="MQCACH_MCA_NAME"/>
+			<Parameter name="MCAType"  type="int" integerCode="1517" identifier="MQIACH_MCA_TYPE"/>
+			<Parameter name="MCAUserIdentifier"  type="string" integerCode="3527" identifier="MQCACH_MCA_USER_ID"/>
+			<Parameter name="MessageCompression"  type="int[]" integerCode="1576" identifier="MQIACH_MSG_COMPRESSION"/>
+			<Parameter name="ModeName"  type="string" integerCode="3503" identifier="MQCACH_MODE_NAME"/>
+			<Parameter name="MsgExit"  type="string" integerCode="3509" identifier="MQCACH_MSG_EXIT_NAME"/>
+			<Parameter name="MsgRetryCount"  type="int" integerCode="1544" identifier="MQIACH_MR_COUNT"/>
+			<Parameter name="MsgRetryExit"  type="string" integerCode="3534" identifier="MQCACH_MR_EXIT_NAME"/>
+			<Parameter name="MsgRetryInterval"  type="int" integerCode="1545" identifier="MQIACH_MR_INTERVAL"/>
+			<Parameter name="MsgRetryUserData"  type="string" integerCode="3535" identifier="MQCACH_MR_EXIT_USER_DATA"/>
+			<Parameter name="MsgUserData"  type="string" integerCode="3514" identifier="MQCACH_MSG_EXIT_USER_DATA"/>
+			<Parameter name="NetworkPriority"  type="int" integerCode="1565" identifier="MQIACH_NETWORK_PRIORITY"/>
+			<Parameter name="NonPersistentMsgSpeed"  type="int" integerCode="1562" identifier="MQIACH_NPM_SPEED"/>
+			<Parameter name="Password"  type="string" integerCode="3518" identifier="MQCACH_PASSWORD"/>
+			<Parameter name="PutAuthority"  type="int" integerCode="1508" identifier="MQIACH_PUT_AUTHORITY"/>
+			<Parameter name="QMgrDefinitionType"  type="int" integerCode="1084" identifier="MQIACF_Q_MGR_DEFINITION_TYPE"/>
+			<Parameter name="QMgrIdentifier"  type="string" integerCode="2032" identifier="MQCA_Q_MGR_IDENTIFIER"/>
+			<Parameter name="QMgrName"  type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>
+			<Parameter name="QMgrType"  type="int" integerCode="1085" identifier="MQIACF_Q_MGR_TYPE"/>
+			<Parameter name="ReceiveExit"  type="string" integerCode="3511" identifier="MQCACH_RCV_EXIT_NAME"/>
+			<Parameter name="ReceiveUserData"  type="string" integerCode="3516" identifier="MQCACH_RCV_EXIT_USER_DATA"/>
+			<Parameter name="SecurityExit"  type="string" integerCode="3508" identifier="MQCACH_SEC_EXIT_NAME"/>
+			<Parameter name="SecurityUserData"  type="string" integerCode="3513" identifier="MQCACH_SEC_EXIT_USER_DATA"/>
+			<Parameter name="SendExit"  type="string" integerCode="3510" identifier="MQCACH_SEND_EXIT_NAME"/>
+			<Parameter name="SendUserData"  type="string" integerCode="3515" identifier="MQCACH_SEND_EXIT_USER_DATA"/>
+			<Parameter name="SeqNumberWrap"  type="int" integerCode="1509" identifier="MQIACH_SEQUENCE_NUMBER_WRAP"/>
+			<Parameter name="ShortRetryCount"  type="int" integerCode="1505" identifier="MQIACH_SHORT_RETRY"/>
+			<Parameter name="ShortRetryInterval"  type="int" integerCode="1504" identifier="MQIACH_SHORT_TIMER"/>
+			<Parameter name="SSLCipherSpec"  type="string" integerCode="3544" identifier="MQCACH_SSL_CIPHER_SPEC"/>
+			<Parameter name="SSLClientAuth"  type="int" integerCode="1568" identifier="MQIACH_SSL_CLIENT_AUTH"/>
+			<Parameter name="SSLPeerName"  type="string" integerCode="3545" identifier="MQCACH_SSL_PEER_NAME"/>
+			<Parameter name="Suspend"  type="int" integerCode="1087" identifier="MQIACF_SUSPEND"/>
+			<Parameter name="TpName"  type="string" integerCode="3504" identifier="MQCACH_TP_NAME"/>
+			<Parameter name="TransportType"  type="int" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE"/>
+			<Parameter name="UserIdentifier"  type="string" integerCode="3517" identifier="MQCACH_USER_ID"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- Inquire Connection-->
+	<Command name="INQUIRE_CONNECTION" integerCode="85" identifier="MQCMD_INQUIRE_CONNECTION">
+		<RequestParameters>
+			<Parameter name="ConnectionId"  type="string" integerCode="7006" identifier="MQBACF_CONNECTION_ID" required="true"/>
+			<Parameter name="GenericConnectionId"  type="string" integerCode="7007" identifier="MQBACF_GENERIC_CONNECTION_ID" required="true"/>
+			
+			<!-- Parameter name="ByteStringFilterCommand"  type="MQCFBF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="ConnectionAttrs"  type="int[]" integerCode="1107" identifier="MQIACF_CONNECTION_ATTRS"/>
+			<Parameter name="ConnInfoType"  type="int" integerCode="1110" identifier="MQIACF_CONN_INFO_TYPE"/>
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="ApplTag"  type="string" integerCode="3058" identifier="MQCACF_APPL_TAG"/>
+			<Parameter name="ApplType"  type="int" integerCode="1" identifier="MQIA_APPL_TYPE"/>
+			<Parameter name="ASID"  type="string" integerCode="3081" identifier="MQCACF_ASID"/>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME"/>
+			<Parameter name="ConnectionId"  type="string" integerCode="7006" identifier="MQBACF_CONNECTION_ID"/>
+			<Parameter name="ConnectionName"  type="string" integerCode="3506" identifier="MQCACH_CONNECTION_NAME"/>
+			<Parameter name="ConnectionOptions"  type="int[]" integerCode="1108" identifier="MQIACF_CONNECT_OPTIONS"/>
+			<Parameter name="ConnInfoType"  type="int" integerCode="1110" identifier="MQIACF_CONN_INFO_TYPE"/>
+			<Parameter name="HandleState"  type="int" integerCode="1028" identifier="MQIACF_HANDLE_STATE"/>
+			<Parameter name="ObjectName"  type="string" integerCode="3046" identifier="MQCACF_OBJECT_NAME"/>
+			<Parameter name="ObjectType"  type="int" integerCode="1016" identifier="MQIACF_OBJECT_TYPE"/>
+			<Parameter name="OpenOptions"  type="int" integerCode="1022" identifier="MQIACF_OPEN_OPTIONS"/>
+			<Parameter name="OriginName"  type="string" integerCode="3088" identifier="MQCACF_ORIGIN_NAME"/>
+			<Parameter name="OriginUOWId"  type="string" integerCode="7008" identifier="MQBACF_ORIGIN_UOW_ID"/>
+			<Parameter name="ProcessId"  type="int" integerCode="1024" identifier="MQIACF_PROCESS_ID"/>
+			<Parameter name="PSBName"  type="string" integerCode="3082" identifier="MQCACF_PSB_NAME"/>
+			<Parameter name="PSTId"  type="string" integerCode="3083" identifier="MQCACF_PST_ID"/>
+			<Parameter name="QMgrUOWId"  type="string" integerCode="7009" identifier="MQBACF_Q_MGR_UOW_ID"/>
+			<Parameter name="QSGDispositon"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="StartUOWLogExtent"  type="string" integerCode="3064" identifier="MQCACF_UOW_LOG_EXTENT_NAME"/>
+			<Parameter name="TaskNumber"  type="string" integerCode="3084" identifier="MQCACF_TASK_NUMBER"/>
+			<Parameter name="ThreadId"  type="int" integerCode="1025" identifier="MQIACF_THREAD_ID"/>
+			<Parameter name="TransactionId"  type="string" integerCode="3085" identifier="MQCACF_TRANSACTION_ID"/>
+			<Parameter name="UOWIdentifier"  type="string" integerCode="7005" identifier="MQBACF_EXTERNAL_UOW_ID"/>
+			<Parameter name="UOWLogStartDate"  type="string" integerCode="3062" identifier="MQCACF_UOW_LOG_START_DATE"/>
+			<Parameter name="UOWLogStartTime"  type="string" integerCode="3063" identifier="MQCACF_UOW_LOG_START_TIME"/>
+			<Parameter name="UOWStartDate"  type="string" integerCode="3060" identifier="MQCACF_UOW_START_DATE"/>
+			<Parameter name="UOWStartTime"  type="string" integerCode="3061" identifier="MQCACF_UOW_START_TIME"/>
+			<Parameter name="UOWState"  type="int" integerCode="1128" identifier="MQIACF_UOW_STATE"/>
+			<Parameter name="UOWType"  type="int" integerCode="1132" identifier="MQIACF_UOW_TYPE"/>
+			<Parameter name="UserId"  type="string" integerCode="3025" identifier="MQCACF_USER_IDENTIFIER"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- Inquire Entity Authority-->
+
+	<Command name="INQUIRE_ENTITY_AUTH" integerCode="88" identifier="MQCMD_INQUIRE_ENTITY_AUTH">
+		<RequestParameters>
+			<Parameter name="EntityName"  type="string" integerCode="3068" identifier="MQCACF_ENTITY_NAME" required="true"/>
+			<Parameter name="EntityType"  type="int" integerCode="1118" identifier="MQIACF_ENTITY_TYPE" required="true"/>
+			<Parameter name="ObjectName"  type="string" integerCode="3046" identifier="MQCACF_OBJECT_NAME" required="true"/>
+			<Parameter name="ObjectType"  type="int" integerCode="1016" identifier="MQIACF_OBJECT_TYPE" required="true"/>
+			<Parameter name="Options"  type="int" integerCode="1228" identifier="MQIACF_AUTH_OPTIONS" required="true"/>
+			
+			<Parameter name="ProfileAttrs"  type="int[]" integerCode="1114" identifier="MQIACF_AUTH_PROFILE_ATTRS"/>
+			<Parameter name="ServiceComponent"  type="string" integerCode="3069" identifier="MQCACF_SERVICE_COMPONENT"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="AuthorizationList"  type="int[]" integerCode="1115" identifier="MQIACF_AUTHORIZATION_LIST"/>
+			<Parameter name="EntityName"  type="string" integerCode="3068" identifier="MQCACF_ENTITY_NAME"/>
+			<Parameter name="EntityType"  type="int" integerCode="1118" identifier="MQIACF_ENTITY_TYPE"/>
+			<Parameter name="ObjectName"  type="string" integerCode="3046" identifier="MQCACF_OBJECT_NAME"/>
+			<Parameter name="ObjectType"  type="int" integerCode="1016" identifier="MQIACF_OBJECT_TYPE"/>
+			<Parameter name="QMgrName"  type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- The Inquire Group-->
+	<Command name="INQUIRE_QSG" integerCode="119" identifier="MQCMD_INQUIRE_QSG">
+		<ResponseParameters>		
+			<Parameter name="CommandLevel"  type="int" integerCode="31" identifier="MQIA_COMMAND_LEVEL"/>
+			<Parameter name="DB2ConnectStatus"  type="int" integerCode="1150" identifier="MQIACF_DB2_CONN_STATUS"/>
+			<Parameter name="DB2Name"  type="string" integerCode="3109" identifier="MQCACF_DB2_NAME"/>
+			<Parameter name="QMgrCPF"  type="string" integerCode="3076" identifier="MQCACF_Q_MGR_CPF"/>
+			<Parameter name="QMgrName"  type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>
+			<Parameter name="QmgrNumber"  type="int" integerCode="1148" identifier="MQIACF_Q_MGR_NUMBER"/>
+			<Parameter name="QMgrStatus"  type="int" integerCode="1149" identifier="MQIACF_Q_MGR_STATUS"/>
+			<Parameter name="QSGName"  type="string" integerCode="2040" identifier="MQCA_QSG_NAME"/>
+			<Parameter name="CFMsgIdentifier"  type="string" integerCode="7014" identifier="MQBACF_CF_LEID"/>
+			<Parameter name="CommandInformation"  type="int" integerCode="1120" identifier="MQIACF_COMMAND_INFO"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- The Inquire Log-->
+	<Command name="INQUIRE_LOG" integerCode="120" identifier="MQCMD_INQUIRE_LOG">
+		<RequestParameters>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>		
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="DeallocateInterval"  type="int" integerCode="1176" identifier="MQIACF_SYSP_DEALLOC_INTERVAL"/>
+			<Parameter name="DualActive"  type="int" integerCode="1183" identifier="MQIACF_SYSP_DUAL_ACTIVE"/>
+			<Parameter name="DualArchive"  type="int" integerCode="1184" identifier="MQIACF_SYSP_DUAL_ARCHIVE"/>
+			<Parameter name="DualBSDS"  type="int" integerCode="1185" identifier="MQIACF_SYSP_DUAL_BSDS"/>
+			<Parameter name="InputBufferSize"  type="int" integerCode="1179" identifier="MQIACF_SYSP_IN_BUFFER_SIZE"/>
+			<Parameter name="LogArchive"  type="int" integerCode="1182" identifier="MQIACF_SYSP_ARCHIVE"/>
+			<Parameter name="MaxArchiveLog"  type="int" integerCode="1177" identifier="MQIACF_SYSP_MAX_ARCHIVE"/>
+			<Parameter name="MaxReadTapeUnits"  type="int" integerCode="1178" identifier="MQIACF_SYSP_MAX_READ_TAPES"/>
+			<Parameter name="OutputBufferCount"  type="int" integerCode="1181" identifier="MQIACF_SYSP_OUT_BUFFER_COUNT"/>
+			<Parameter name="OutputBufferSize"  type="int" integerCode="1180" identifier="MQIACF_SYSP_OUT_BUFFER_SIZE"/>
+			<Parameter name="DataSetName"  type="string" integerCode="3059" identifier="MQCACF_DATA_SET_NAME"/>
+			<Parameter name="FullLogs"  type="int" integerCode="1221" identifier="MQIACF_SYSP_FULL_LOGS"/>
+			<Parameter name="LogCopyNumber"  type="int" integerCode="1216" identifier="MQIACF_SYSP_LOG_COPY"/>
+			<Parameter name="LogRBA"  type="string" integerCode="3122" identifier="MQCACF_SYSP_LOG_RBA"/>
+			<Parameter name="LogSuspend"  type="int" integerCode="1218" identifier="MQIACF_SYSP_LOG_SUSPEND"/>
+			<Parameter name="LogUsed"  type="int" integerCode="1217" identifier="MQIACF_SYSP_LOG_USED"/>
+			<Parameter name="OffloadStatus"  type="int" integerCode="1219" identifier="MQIACF_SYSP_OFFLOAD_STATUS"/>
+			<Parameter name="QMgrStartDate"  type="string" integerCode="3120" identifier="MQCACF_SYSP_Q_MGR_DATE"/>
+			<Parameter name="QMgrStartRBA"  type="string" integerCode="3121" identifier="MQCACF_SYSP_Q_MGR_RBA"/>
+			<Parameter name="QMgrStartTime"  type="string" integerCode="3119" identifier="MQCACF_SYSP_Q_MGR_TIME"/>
+			<Parameter name="TotalLogs"  type="int" integerCode="1220" identifier="MQIACF_SYSP_TOTAL_LOGS"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- The Inquire Namelist-->
+	<Command name="INQUIRE_NAMELIST" integerCode="36" identifier="MQCMD_INQUIRE_NAMELIST">
+		<RequestParameters>
+			<Parameter name="NamelistName"  type="string" integerCode="2010" identifier="MQCA_NAMELIST_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="NamelistAttrs"  type="int[]" integerCode="1004" identifier="MQIACF_NAMELIST_ATTRS"/>
+			<Parameter name="NamelistType"  type="int" integerCode="72" identifier="MQIA_NAMELIST_TYPE"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->	
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="AlterationDate"  type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>
+			<Parameter name="AlterationTime"  type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>
+			<Parameter name="NameCount"  type="int" integerCode="19" identifier="MQIA_NAME_COUNT"/>
+			<Parameter name="NamelistDesc"  type="string" integerCode="2009" identifier="MQCA_NAMELIST_DESC"/>
+			<Parameter name="NamelistName"  type="string" integerCode="2010" identifier="MQCA_NAMELIST_NAME"/>
+			<Parameter name="NamelistType"  type="int" integerCode="72" identifier="MQIA_NAMELIST_TYPE"/>
+			<Parameter name="Names"  type="string[]" integerCode="2020" identifier="MQCA_NAMES"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- The Inquire Namelist Names-->
+	<Command name="INQUIRE_NAMELIST_NAMES" integerCode="37" identifier="MQCMD_INQUIRE_NAMELIST_NAMES">
+		<RequestParameters>
+			<Parameter name="NamelistName"  type="string" integerCode="2010" identifier="MQCA_NAMELIST_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="NamelistNames"  type="string[]" integerCode="3013" identifier="MQCACF_NAMELIST_NAMES"/>
+			<Parameter name="QSGDispositions"  type="int[]" integerCode="1126" identifier="MQIACF_QSG_DISPS"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--The Inquire Process -->
+	<Command name="INQUIRE_PROCESS" integerCode="7" identifier="MQCMD_INQUIRE_PROCESS">
+		<RequestParameters>
+			<Parameter name="ProcessName"  type="string" integerCode="2012" identifier="MQCA_PROCESS_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="ProcessAttrs"  type="int[]" integerCode="1003" identifier="MQIACF_PROCESS_ATTRS"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="AlterationDate"  type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>
+			<Parameter name="AlterationTime"  type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>
+			<Parameter name="ApplId"  type="string" integerCode="2001" identifier="MQCA_APPL_ID"/>
+			<Parameter name="ApplType"  type="int" integerCode="1" identifier="MQIA_APPL_TYPE"/>
+			<Parameter name="EnvData"  type="string" integerCode="2007" identifier="MQCA_ENV_DATA"/>
+			<Parameter name="ProcessDesc"  type="string" integerCode="2011" identifier="MQCA_PROCESS_DESC"/>
+			<Parameter name="ProcessName"  type="string" integerCode="2012" identifier="MQCA_PROCESS_NAME"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="UserData"  type="string" integerCode="2021" identifier="MQCA_USER_DATA"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--The Inquire Process Names -->
+	<Command name="INQUIRE_PROCESS_NAMES" integerCode="19" identifier="MQCMD_INQUIRE_PROCESS_NAMES">
+		<RequestParameters>
+			<Parameter name="ProcessName"  type="string" integerCode="2012" identifier="MQCA_PROCESS_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>		
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="ProcessNames"  type="string[]" integerCode="3012" identifier="MQCACF_PROCESS_NAMES"/>
+			<Parameter name="QSGDispositions"  type="int[]" integerCode="1126" identifier="MQIACF_QSG_DISPS"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--The Inquire Queue -->
+	<Command name="INQUIRE_Q" integerCode="13" identifier="MQCMD_INQUIRE_Q">
+		<RequestParameters>
+			<Parameter name="QName"  type="string" integerCode="2016" identifier="MQCA_Q_NAME" required="true"/>
+			
+			<Parameter name="CFStructure"  type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME"/>
+			<Parameter name="ClusterInfo"  type="int" integerCode="1083" identifier="MQIACF_CLUSTER_INFO"/>
+			<Parameter name="ClusterName"  type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME"/>
+			<Parameter name="ClusterNamelist"  type="string" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST"/>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="PageSetID"  type="int" integerCode="62" identifier="MQIA_PAGESET_ID"/>
+			<Parameter name="QAttrs"  type="int[]" integerCode="1002" identifier="MQIACF_Q_ATTRS"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="QType"  type="int" integerCode="20" identifier="MQIA_Q_TYPE"/>
+			<Parameter name="StorageClass"  type="string" integerCode="2022" identifier="MQCA_STORAGE_CLASS"/>
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->		
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="AlterationDate"  type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>
+			<Parameter name="AlterationTime"  type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>
+			<Parameter name="BackoutRequeueName"  type="string" integerCode="2019" identifier="MQCA_BACKOUT_REQ_Q_NAME"/>
+			<Parameter name="BackoutThreshold"  type="int" integerCode="22" identifier="MQIA_BACKOUT_THRESHOLD"/>
+			<Parameter name="BaseQName"  type="string" integerCode="2002" identifier="MQCA_BASE_Q_NAME"/>
+			<Parameter name="CFStructure"  type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME"/>
+			<Parameter name="ClusterDate"  type="string" integerCode="2037" identifier="MQCA_CLUSTER_DATE"/>
+			<Parameter name="ClusterName"  type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME"/>
+			<Parameter name="ClusterNamelist"  type="string" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST"/>
+			<Parameter name="ClusterQType"  type="int" integerCode="59" identifier="MQIA_CLUSTER_Q_TYPE"/>
+			<Parameter name="ClusterTime"  type="string" integerCode="2038" identifier="MQCA_CLUSTER_TIME"/>
+			<Parameter name="CLWLQueuePriority"  type="int" integerCode="96" identifier="MQIA_CLWL_Q_PRIORITY"/>
+			<Parameter name="CLWLQueueRank"  type="int" integerCode="95" identifier="MQIA_CLWL_Q_RANK"/>
+			<Parameter name="CLWLUseQ"  type="int" integerCode="98" identifier="MQIA_CLWL_USEQ"/>
+			<Parameter name="CreationDate"  type="string" integerCode="2004" identifier="MQCA_CREATION_DATE"/>
+			<Parameter name="CreationTime"  type="string" integerCode="2005" identifier="MQCA_CREATION_TIME"/>
+			<Parameter name="CurrentQDepth"  type="int" integerCode="3" identifier="MQIA_CURRENT_Q_DEPTH"/>
+			<Parameter name="DefBind"  type="int" integerCode="61" identifier="MQIA_DEF_BIND"/>
+			<Parameter name="DefinitionType"  type="int" integerCode="7" identifier="MQIA_DEFINITION_TYPE"/>
+			<Parameter name="DefInputOpenOption"  type="int" integerCode="4" identifier="MQIA_DEF_INPUT_OPEN_OPTION"/>
+			<Parameter name="DefPersistence"  type="int" integerCode="5" identifier="MQIA_DEF_PERSISTENCE"/>
+			<Parameter name="DefPriority"  type="int" integerCode="6" identifier="MQIA_DEF_PRIORITY"/>
+			<Parameter name="DistLists"  type="int" integerCode="34" identifier="MQIA_DIST_LISTS"/>
+			<Parameter name="HardenGetBackout"  type="int" integerCode="8" identifier="MQIA_HARDEN_GET_BACKOUT"/>
+			<Parameter name="IndexType"  type="int" integerCode="57" identifier="MQIA_INDEX_TYPE"/>
+			<Parameter name="InhibitGet"  type="int" integerCode="9" identifier="MQIA_INHIBIT_GET"/>
+			<Parameter name="InhibitPut"  type="int" integerCode="10" identifier="MQIA_INHIBIT_PUT"/>
+			<Parameter name="InitiationQName"  type="string" integerCode="2008" identifier="MQCA_INITIATION_Q_NAME"/>
+			<Parameter name="MaxMsgLength"  type="int" integerCode="13" identifier="MQIA_MAX_MSG_LENGTH"/>
+			<Parameter name="MaxQDepth"  type="int" integerCode="15" identifier="MQIA_MAX_Q_DEPTH"/>
+			<Parameter name="MsgDeliverySequence"  type="int" integerCode="16" identifier="MQIA_MSG_DELIVERY_SEQUENCE"/>
+			<Parameter name="NonPersistentMessageClass"  type="int" integerCode="78" identifier="MQIA_NPM_CLASS"/>
+			<Parameter name="OpenInputCount"  type="int" integerCode="17" identifier="MQIA_OPEN_INPUT_COUNT"/>
+			<Parameter name="OpenOutputCount"  type="int" integerCode="18" identifier="MQIA_OPEN_OUTPUT_COUNT"/>
+			<Parameter name="PageSetID"  type="int" integerCode="62" identifier="MQIA_PAGESET_ID"/>
+			<Parameter name="ProcessName"  type="string" integerCode="2012" identifier="MQCA_PROCESS_NAME"/>
+			<Parameter name="QDepthHighEvent"  type="int" integerCode="43" identifier="MQIA_Q_DEPTH_HIGH_EVENT"/>
+			<Parameter name="QDepthHighLimit"  type="int" integerCode="40" identifier="MQIA_Q_DEPTH_HIGH_LIMIT"/>
+			<Parameter name="QDepthLowEvent"  type="int" integerCode="44" identifier="MQIA_Q_DEPTH_LOW_EVENT"/>
+			<Parameter name="QDepthLowLimit"  type="int" integerCode="41" identifier="MQIA_Q_DEPTH_LOW_LIMIT"/>
+			<Parameter name="QDepthMaxEvent"  type="int" integerCode="42" identifier="MQIA_Q_DEPTH_MAX_EVENT"/>
+			<Parameter name="QDesc"  type="string" integerCode="2013" identifier="MQCA_Q_DESC"/>
+			<Parameter name="QMgrIdentifier"  type="string" integerCode="2032" identifier="MQCA_Q_MGR_IDENTIFIER"/>
+			<Parameter name="QMgrName"  type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>
+			<Parameter name="QName"  type="string" integerCode="2016" identifier="MQCA_Q_NAME"/>
+			<Parameter name="QServiceInterval"  type="int" integerCode="54" identifier="MQIA_Q_SERVICE_INTERVAL"/>
+			<Parameter name="QServiceIntervalEvent"  type="int" integerCode="46" identifier="MQIA_Q_SERVICE_INTERVAL_EVENT"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="QType"  type="int" integerCode="20" identifier="MQIA_Q_TYPE"/>
+			<Parameter name="QueueAccounting"  type="int" integerCode="134" identifier="MQIA_ACCOUNTING_Q"/>
+			<Parameter name="QueueMonitoring"  type="int" integerCode="123" identifier="MQIA_MONITORING_Q"/>
+			<Parameter name="QueueStatistics"  type="int" integerCode="128" identifier="MQIA_STATISTICS_Q"/>
+			<Parameter name="RemoteQMgrName"  type="string" integerCode="2017" identifier="MQCA_REMOTE_Q_MGR_NAME"/>
+			<Parameter name="RemoteQName"  type="string" integerCode="2018" identifier="MQCA_REMOTE_Q_NAME"/>
+			<Parameter name="RetentionInterval"  type="int" integerCode="21" identifier="MQIA_RETENTION_INTERVAL"/>
+			<Parameter name="Scope"  type="int" integerCode="45" identifier="MQIA_SCOPE"/>
+			<Parameter name="Shareability"  type="int" integerCode="23" identifier="MQIA_SHAREABILITY"/>
+			<Parameter name="StorageClass"  type="string" integerCode="2022" identifier="MQCA_STORAGE_CLASS"/>
+			<Parameter name="TpipeNames"  type="string[]" integerCode="2085" identifier="MQCA_TPIPE_NAME"/>
+			<Parameter name="TriggerControl"  type="int" integerCode="24" identifier="MQIA_TRIGGER_CONTROL"/>
+			<Parameter name="TriggerData"  type="string" integerCode="2023" identifier="MQCA_TRIGGER_DATA"/>
+			<Parameter name="TriggerDepth"  type="int" integerCode="29" identifier="MQIA_TRIGGER_DEPTH"/>
+			<Parameter name="TriggerMsgPriority"  type="int" integerCode="26" identifier="MQIA_TRIGGER_MSG_PRIORITY"/>
+			<Parameter name="TriggerType"  type="int" integerCode="28" identifier="MQIA_TRIGGER_TYPE"/>
+			<Parameter name="Usage"  type="int" integerCode="12" identifier="MQIA_USAGE"/>
+			<Parameter name="XmitQName"  type="string" integerCode="2024" identifier="MQCA_XMIT_Q_NAME"/>
+		</ResponseParameters>
+	</Command>
+	
+	<!--The Inquire Queue Names -->
+	<Command name="INQUIRE_Q_NAMES" integerCode="18" identifier="MQCMD_INQUIRE_Q_NAMES">
+		<RequestParameters>
+			<Parameter name="QName"  type="string" integerCode="2016" identifier="MQCA_Q_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="QType"  type="int" integerCode="20" identifier="MQIA_Q_TYPE"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="QNames"  type="string[]" integerCode="3011" identifier="MQCACF_Q_NAMES"/>
+			<Parameter name="QTypes"  type="int[]" integerCode="1261" identifier="MQIACF_Q_TYPES"/>
+			<Parameter name="QSGDispositions"  type="int[]" integerCode="1126" identifier="MQIACF_QSG_DISPS"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--The Inquire Queue Manager -->
+	<Command name="INQUIRE_Q_MGR" integerCode="2" identifier="MQCMD_INQUIRE_Q_MGR">
+		<RequestParameters>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QMgrAttrs"  type="int[]" integerCode="1001" identifier="MQIACF_Q_MGR_ATTRS"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="AccountingConnOverride"  type="int" integerCode="136" identifier="MQIA_ACCOUNTING_CONN_OVERRIDE"/>
+			<Parameter name="AccountingInterval"  type="int" integerCode="135" identifier="MQIA_ACCOUNTING_INTERVAL"/>
+			<Parameter name="ActivityRecording"  type="int" integerCode="138" identifier="MQIA_ACTIVITY_RECORDING"/>
+			<Parameter name="AdoptNewMCACheck"  type="int" integerCode="102" identifier="MQIA_ADOPTNEWMCA_CHECK"/>
+			<Parameter name="AdoptNewMCAType"  type="int[]" integerCode="103" identifier="MQIA_ADOPTNEWMCA_TYPE"/>
+			<Parameter name="AlterationDate"  type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>
+			<Parameter name="AlterationTime"  type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>
+			<Parameter name="AuthorityEvent"  type="int" integerCode="47" identifier="MQIA_AUTHORITY_EVENT"/>
+			<Parameter name="BridgeEvent"  type="int" integerCode="74" identifier="MQIA_BRIDGE_EVENT"/>
+			<Parameter name="ChannelAutoDef"  type="int" integerCode="55" identifier="MQIA_CHANNEL_AUTO_DEF"/>
+			<Parameter name="ChannelAutoDefEvent"  type="int" integerCode="56" identifier="MQIA_CHANNEL_AUTO_DEF_EVENT"/>
+			<Parameter name="ChannelAutoDefExit"  type="string" integerCode="2026" identifier="MQCA_CHANNEL_AUTO_DEF_EXIT"/>
+			<Parameter name="ChannelEvent"  type="int" integerCode="73" identifier="MQIA_CHANNEL_EVENT"/>
+			<Parameter name="ChannelInitiatorControl"  type="int" integerCode="119" identifier="MQIA_CHINIT_CONTROL"/>
+			<Parameter name="ChannelMonitoring"  type="int" integerCode="122" identifier="MQIA_MONITORING_CHANNEL"/>
+			<Parameter name="ChannelStatistics"  type="int" integerCode="129" identifier="MQIA_STATISTICS_CHANNEL"/>
+			<Parameter name="ChinitAdapters"  type="int" integerCode="101" identifier="MQIA_CHINIT_ADAPTERS"/>
+			<Parameter name="ChinitDispatchers"  type="int" integerCode="105" identifier="MQIA_CHINIT_DISPATCHERS"/>
+			<Parameter name="ChinitServiceParm"  type="string" integerCode="2076" identifier="MQCA_CHINIT_SERVICE_PARM"/>
+			<Parameter name="ChinitTraceAutoStart"  type="int" integerCode="117" identifier="MQIA_CHINIT_TRACE_AUTO_START"/>
+			<Parameter name="ChinitTraceTableSize"  type="int" integerCode="118" identifier="MQIA_CHINIT_TRACE_TABLE_SIZE"/>
+			<Parameter name="ClusterSenderMonitoringDefault"  type="int" integerCode="124" identifier="MQIA_MONITORING_AUTO_CLUSSDR"/>
+			<Parameter name="ClusterSenderStatistics"  type="int" integerCode="130" identifier="MQIA_STATISTICS_AUTO_CLUSSDR"/>
+			<Parameter name="ClusterWorkLoadData"  type="string" integerCode="2034" identifier="MQCA_CLUSTER_WORKLOAD_DATA"/>
+			<Parameter name="ClusterWorkLoadExit"  type="string" integerCode="2033" identifier="MQCA_CLUSTER_WORKLOAD_EXIT"/>
+			<Parameter name="ClusterWorkLoadLength"  type="int" integerCode="58" identifier="MQIA_CLUSTER_WORKLOAD_LENGTH"/>
+			<Parameter name="CLWLMRUChannels"  type="int" integerCode="97" identifier="MQIA_CLWL_MRU_CHANNELS"/>
+			<Parameter name="CLWLUseQ"  type="int" integerCode="98" identifier="MQIA_CLWL_USEQ"/>
+			<Parameter name="CodedCharSetId"  type="int" integerCode="2" identifier="MQIA_CODED_CHAR_SET_ID"/>
+			<Parameter name="CommandEvent"  type="int" integerCode="99" identifier="MQIA_COMMAND_EVENT"/>
+			<Parameter name="CommandInputQName"  type="string" integerCode="2003" identifier="MQCA_COMMAND_INPUT_Q_NAME"/>
+			<Parameter name="CommandLevel"  type="int" integerCode="31" identifier="MQIA_COMMAND_LEVEL"/>
+			<Parameter name="CommandServerControl"  type="int" integerCode="120" identifier="MQIA_CMD_SERVER_CONTROL"/>
+			<Parameter name="ConfigurationEvent"  type="int" integerCode="51" identifier="MQIA_CONFIGURATION_EVENT"/>
+			<Parameter name="DeadLetterQName"  type="string" integerCode="2006" identifier="MQCA_DEAD_LETTER_Q_NAME"/>
+			<Parameter name="DefXmitQName"  type="string" integerCode="2025" identifier="MQCA_DEF_XMIT_Q_NAME"/>
+			<Parameter name="DistLists"  type="int" integerCode="34" identifier="MQIA_DIST_LISTS"/>
+			<Parameter name="DNSGroup"  type="string" integerCode="2071" identifier="MQCA_DNS_GROUP"/>
+			<Parameter name="DNSWLM"  type="int" integerCode="106" identifier="MQIA_DNS_WLM"/>
+			<Parameter name="ExpiryInterval"  type="int" integerCode="39" identifier="MQIA_EXPIRY_INTERVAL"/>
+			<Parameter name="IGQPutAuthority"  type="int" integerCode="65" identifier="MQIA_IGQ_PUT_AUTHORITY"/>
+			<Parameter name="IGQUserId"  type="string" integerCode="2041" identifier="MQCA_IGQ_USER_ID"/>
+			<Parameter name="InhibitEvent"  type="int" integerCode="48" identifier="MQIA_INHIBIT_EVENT"/>
+			<Parameter name="IntraGroupQueuing"  type="int" integerCode="64" identifier="MQIA_INTRA_GROUP_QUEUING"/>
+			<Parameter name="IPAddressVersion"  type="int" integerCode="93" identifier="MQIA_IP_ADDRESS_VERSION"/>
+			<Parameter name="ListenerTimer"  type="int" integerCode="107" identifier="MQIA_LISTENER_TIMER"/>
+			<Parameter name="LocalEvent"  type="int" integerCode="49" identifier="MQIA_LOCAL_EVENT"/>
+			<Parameter name="LoggerEvent"  type="int" integerCode="94" identifier="MQIA_LOGGER_EVENT"/>
+			<Parameter name="LUGroupName"  type="string" integerCode="2072" identifier="MQCA_LU_GROUP_NAME"/>
+			<Parameter name="LUName"  type="string" integerCode="2073" identifier="MQCA_LU_NAME"/>
+			<Parameter name="LU62ARMSuffix"  type="string" integerCode="2074" identifier="MQCA_LU62_ARM_SUFFIX"/>
+			<Parameter name="LU62Channels"  type="int" integerCode="108" identifier="MQIA_LU62_CHANNELS"/>
+			<Parameter name="MaxActiveChannels"  type="int" integerCode="100" identifier="MQIA_ACTIVE_CHANNELS"/>
+			<Parameter name="MaxChannels"  type="int" integerCode="109" identifier="MQIA_MAX_CHANNELS"/>
+			<Parameter name="MaxHandles"  type="int" integerCode="11" identifier="MQIA_MAX_HANDLES"/>
+			<Parameter name="MaxMsgLength"  type="int" integerCode="13" identifier="MQIA_MAX_MSG_LENGTH"/>
+			<Parameter name="MaxPriority"  type="int" integerCode="14" identifier="MQIA_MAX_PRIORITY"/>
+			<Parameter name="MaxUncommittedMsgs"  type="int" integerCode="33" identifier="MQIA_MAX_UNCOMMITTED_MSGS"/>
+			<Parameter name="MQIAccounting"  type="int" integerCode="133" identifier="MQIA_ACCOUNTING_MQI"/>
+			<Parameter name="MQIStatistics"  type="int" integerCode="127" identifier="MQIA_STATISTICS_MQI"/>
+			<Parameter name="OutboundPortMax"  type="int" integerCode="140" identifier="MQIA_OUTBOUND_PORT_MAX"/>
+			<Parameter name="OutboundPortMin"  type="int" integerCode="110" identifier="MQIA_OUTBOUND_PORT_MIN"/>
+			<Parameter name="PerformanceEvent"  type="int" integerCode="53" identifier="MQIA_PERFORMANCE_EVENT"/>
+			<Parameter name="Platform"  type="int" integerCode="32" identifier="MQIA_PLATFORM"/>
+			<Parameter name="QmgrDesc"  type="string" integerCode="2014" identifier="MQCA_Q_MGR_DESC"/>
+			<Parameter name="QMgrIdentifier"  type="string" integerCode="2032" identifier="MQCA_Q_MGR_IDENTIFIER"/>
+			<Parameter name="QMgrName"  type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>
+			<Parameter name="QSGName"  type="string" integerCode="2040" identifier="MQCA_QSG_NAME"/>
+			<Parameter name="QueueAccounting"  type="int" integerCode="134" identifier="MQIA_ACCOUNTING_Q"/>
+			<Parameter name="QueueMonitoring"  type="int" integerCode="123" identifier="MQIA_MONITORING_Q"/>
+			<Parameter name="QueueStatistics"  type="int" integerCode="128" identifier="MQIA_STATISTICS_Q"/>
+			<Parameter name="ReceiveTimeout"  type="int" integerCode="111" identifier="MQIA_RECEIVE_TIMEOUT"/>
+			<Parameter name="ReceiveTimeoutMin"  type="int" integerCode="113" identifier="MQIA_RECEIVE_TIMEOUT_MIN"/>
+			<Parameter name="ReceiveTimeoutType"  type="int" integerCode="112" identifier="MQIA_RECEIVE_TIMEOUT_TYPE"/>
+			<Parameter name="RemoteEvent"  type="int" integerCode="50" identifier="MQIA_REMOTE_EVENT"/>
+			<Parameter name="RepositoryName"  type="string" integerCode="2035" identifier="MQCA_REPOSITORY_NAME"/>
+			<Parameter name="RepositoryNamelist"  type="string" integerCode="2036" identifier="MQCA_REPOSITORY_NAMELIST"/>
+			<Parameter name="SharedQQmgrName"  type="int" integerCode="77" identifier="MQIA_SHARED_Q_Q_MGR_NAME"/>
+			<Parameter name="SSLCRLNamelist"  type="string" integerCode="2050" identifier="MQCA_SSL_CRL_NAMELIST"/>
+			<Parameter name="SSLCryptoHardware"  type="string" integerCode="2051" identifier="MQCA_SSL_CRYPTO_HARDWARE"/>
+			<Parameter name="SSLEvent"  type="int" integerCode="75" identifier="MQIA_SSL_EVENT"/>
+			<Parameter name="SSLFipsRequired"  type="int" integerCode="92" identifier="MQIA_SSL_FIPS_REQUIRED"/>
+			<Parameter name="SSLKeyRepository"  type="string" integerCode="2049" identifier="MQCA_SSL_KEY_REPOSITORY"/>
+			<Parameter name="SSLKeyResetCount"  type="int" integerCode="76" identifier="MQIA_SSL_RESET_COUNT"/>
+			<Parameter name="SSLTasks"  type="int" integerCode="69" identifier="MQIA_SSL_TASKS"/>
+			<Parameter name="StartStopEvent"  type="int" integerCode="52" identifier="MQIA_START_STOP_EVENT"/>
+			<Parameter name="StatisticsInterval"  type="int" integerCode="131" identifier="MQIA_STATISTICS_INTERVAL"/>
+			<Parameter name="SyncPoint"  type="int" integerCode="30" identifier="MQIA_SYNCPOINT"/>
+			<Parameter name="TCPChannels"  type="int" integerCode="114" identifier="MQIA_TCP_CHANNELS"/>
+			<Parameter name="TCPKeepAlive"  type="int" integerCode="115" identifier="MQIA_TCP_KEEP_ALIVE"/>
+			<Parameter name="TCPName"  type="string" integerCode="2075" identifier="MQCA_TCP_NAME"/>
+			<Parameter name="TCPStackType"  type="int" integerCode="116" identifier="MQIA_TCP_STACK_TYPE"/>
+			<Parameter name="TraceRouteRecording"  type="int" integerCode="137" identifier="MQIA_TRACE_ROUTE_RECORDING"/>
+			<Parameter name="TriggerInterval"  type="int" integerCode="25" identifier="MQIA_TRIGGER_INTERVAL"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--The Inquire Queue Manager Status -->
+	<Command name="INQUIRE_Q_MGR_STATUS" integerCode="161" identifier="MQCMD_INQUIRE_Q_MGR_STATUS">
+		<RequestParameters>
+			<Parameter name="QMStatusAttrs"  type="int[]" integerCode="1229" identifier="MQIACF_Q_MGR_STATUS_ATTRS"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="ChannelInitiatorStatus"  type="int" integerCode="1232" identifier="MQIACF_CHINIT_STATUS"/>
+			<Parameter name="CommandServerStatus"  type="int" integerCode="1233" identifier="MQIACF_CMD_SERVER_STATUS"/>
+			<Parameter name="ConnectionCount"  type="int" integerCode="1230" identifier="MQIACF_CONNECTION_COUNT"/>
+			<Parameter name="CurrentLog"  type="string" integerCode="3071" identifier="MQCACF_CURRENT_LOG_EXTENT_NAME"/>
+			<Parameter name="LogPath"  type="string" integerCode="3074" identifier="MQCACF_LOG_PATH"/>
+			<Parameter name="MediaRecoveryLog"  type="string" integerCode="3073" identifier="MQCACF_MEDIA_LOG_EXTENT_NAME"/>
+			<Parameter name="QMgrName"  type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>
+			<Parameter name="QMgrStatus"  type="int" integerCode="1149" identifier="MQIACF_Q_MGR_STATUS"/>
+			<Parameter name="RestartRecoveryLog"  type="string" integerCode="3072" identifier="MQCACF_RESTART_LOG_EXTENT_NAME"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--The Inquire Queue Status -->
+	<Command name="INQUIRE_Q_STATUS" integerCode="41" identifier="MQCMD_INQUIRE_Q_STATUS">
+		<RequestParameters>
+			<Parameter name="QName"  type="string" integerCode="2016" identifier="MQCA_Q_NAME" required="true"/>
+			
+			<!-- Parameter name="ByteStringFilterCommand"  type="MQCFBF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="OpenType"  type="int" integerCode="1023" identifier="MQIACF_OPEN_TYPE"/>
+			<Parameter name="QSGDispositon"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="QStatusAttrs"  type="int[]" integerCode="1026" identifier="MQIACF_Q_STATUS_ATTRS"/>
+			<Parameter name="StatusType"  type="int" integerCode="1103" identifier="MQIACF_Q_STATUS_TYPE"/>
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="CurrentQDepth"  type="int" integerCode="3" identifier="MQIA_CURRENT_Q_DEPTH"/>
+			<Parameter name="LastGetDate"  type="string" integerCode="3130" identifier="MQCACF_LAST_GET_DATE"/>
+			<Parameter name="LastGetTime"  type="string" integerCode="3131" identifier="MQCACF_LAST_GET_TIME"/>
+			<Parameter name="LastPutDate"  type="string" integerCode="3128" identifier="MQCACF_LAST_PUT_DATE"/>
+			<Parameter name="LastPutTime"  type="string" integerCode="3129" identifier="MQCACF_LAST_PUT_TIME"/>
+			<Parameter name="MediaRecoveryLogExtent"  type="string" integerCode="3073" identifier="MQCACF_MEDIA_LOG_EXTENT_NAME"/>
+			<Parameter name="OldestMsgAge"  type="int" integerCode="1227" identifier="MQIACF_OLDEST_MSG_AGE"/>
+			<Parameter name="OnQTime"  type="int[]" integerCode="1226" identifier="MQIACF_Q_TIME_INDICATOR"/>
+			<Parameter name="OpenInputCount"  type="int" integerCode="17" identifier="MQIA_OPEN_INPUT_COUNT"/>
+			<Parameter name="OpenOutputCount"  type="int" integerCode="18" identifier="MQIA_OPEN_OUTPUT_COUNT"/>
+			<Parameter name="QName"  type="string" integerCode="2016" identifier="MQCA_Q_NAME"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="QueueMonitoring"  type="int" integerCode="123" identifier="MQIA_MONITORING_Q"/>
+			<Parameter name="StatusType"  type="string" integerCode="1103" identifier="MQIACF_Q_STATUS_TYPE"/>
+			<Parameter name="UncommittedMsgs"  type="int" integerCode="1027" identifier="MQIACF_UNCOMMITTED_MSGS"/>
+			<Parameter name="ApplTag"  type="string" integerCode="3058" identifier="MQCACF_APPL_TAG"/>
+			<Parameter name="ApplType"  type="int" integerCode="1" identifier="MQIA_APPL_TYPE"/>
+			<Parameter name="ASId"  type="string" integerCode="3081" identifier="MQCACF_ASID"/>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME"/>
+			<Parameter name="Conname"  type="string" integerCode="3506" identifier="MQCACH_CONNECTION_NAME"/>
+			<Parameter name="ExternalUOWId"  type="string" integerCode="7005" identifier="MQBACF_EXTERNAL_UOW_ID"/>
+			<Parameter name="HandleState"  type="int" integerCode="1028" identifier="MQIACF_HANDLE_STATE"/>
+			<Parameter name="OpenBrowse"  type="int" integerCode="1102" identifier="MQIACF_OPEN_BROWSE"/>
+			<Parameter name="OpenInputType"  type="int" integerCode="1098" identifier="MQIACF_OPEN_INPUT_TYPE"/>
+			<Parameter name="OpenInquire"  type="int" integerCode="1101" identifier="MQIACF_OPEN_INQUIRE"/>
+			<Parameter name="OpenOptions"  type="int" integerCode="1022" identifier="MQIACF_OPEN_OPTIONS"/>
+			<Parameter name="OpenOutput"  type="int" integerCode="1099" identifier="MQIACF_OPEN_OUTPUT"/>
+			<Parameter name="OpenSet"  type="int" integerCode="1100" identifier="MQIACF_OPEN_SET"/>
+			<Parameter name="ProcessId"  type="int" integerCode="1024" identifier="MQIACF_PROCESS_ID"/>
+			<Parameter name="PSBName"  type="string" integerCode="3082" identifier="MQCACF_PSB_NAME"/>
+			<Parameter name="PSTId"  type="string" integerCode="3083" identifier="MQCACF_PST_ID"/>
+			<Parameter name="QMgrUOWId"  type="string" integerCode="7009" identifier="MQBACF_Q_MGR_UOW_ID"/>
+			<Parameter name="QName"  type="string" integerCode="2016" identifier="MQCA_Q_NAME"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="StatusType"  type="string" integerCode="1103" identifier="MQIACF_Q_STATUS_TYPE"/>
+			<Parameter name="TaskNumber"  type="string" integerCode="3084" identifier="MQCACF_TASK_NUMBER"/>
+			<Parameter name="ThreadId"  type="int" integerCode="1025" identifier="MQIACF_THREAD_ID"/>
+			<Parameter name="TransactionId"  type="string" integerCode="3085" identifier="MQCACF_TRANSACTION_ID"/>
+			<Parameter name="UOWIdentifier"  type="string" integerCode="7005" identifier="MQBACF_EXTERNAL_UOW_ID"/>
+			<Parameter name="UOWType"  type="int" integerCode="1132" identifier="MQIACF_UOW_TYPE"/>
+			<Parameter name="UserIdentifier"  type="string" integerCode="3025" identifier="MQCACF_USER_IDENTIFIER"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire Security -->
+	<Command name="INQUIRE_SECURITY" integerCode="121" identifier="MQCMD_INQUIRE_SECURITY">
+		<RequestParameters>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="SecurityAttrs"  type="int[]" integerCode="1151" identifier="MQIACF_SECURITY_ATTRS"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="SecurityInterval"  type="int" integerCode="1153" identifier="MQIACF_SECURITY_INTERVAL"/>
+			<Parameter name="SecuritySwitch"  type="int" integerCode="70" identifier="MQIA_CF_LEVEL"/>
+			<Parameter name="SecuritySwitchProfile"  type="string" integerCode="3090" identifier="MQCACF_SECURITY_PROFILE"/>
+			<Parameter name="SecuritySwitchSetting"  type="int" integerCode="1155" identifier="MQIACF_SECURITY_SETTING"/>
+			<Parameter name="SecurityTimeout"  type="int" integerCode="1152" identifier="MQIACF_SECURITY_TIMEOUT"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire Service -->
+	<Command name="INQUIRE_SERVICE" integerCode="153" identifier="MQCMD_INQUIRE_SERVICE">
+		<RequestParameters>
+			<Parameter name="ServiceName"  type="string" integerCode="2077" identifier="MQCA_SERVICE_NAME" required="true"/>
+			
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="ServiceAttrs"  type="int[]" integerCode="1224" identifier="MQIACF_SERVICE_ATTRS"/>
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="AlterationDate"  type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>
+			<Parameter name="AlterationTime"  type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>
+			<Parameter name="ServiceDesc"  type="string" integerCode="2078" identifier="MQCA_SERVICE_DESC"/>
+			<Parameter name="ServiceName"  type="string" integerCode="2077" identifier="MQCA_SERVICE_NAME"/>
+			<Parameter name="ServiceType"  type="int" integerCode="121" identifier="MQIA_SERVICE_TYPE"/>
+			<Parameter name="StartArguments"  type="string" integerCode="2080" identifier="MQCA_SERVICE_START_ARGS"/>
+			<Parameter name="StartCommand"  type="string" integerCode="2079" identifier="MQCA_SERVICE_START_COMMAND"/>
+			<Parameter name="StartMode"  type="int" integerCode="139" identifier="MQIA_SERVICE_CONTROL"/>
+			<Parameter name="StderrDestination"  type="string" integerCode="2084" identifier="MQCA_STDERR_DESTINATION"/>
+			<Parameter name="StdoutDestination"  type="string" integerCode="2083" identifier="MQCA_STDOUT_DESTINATION"/>
+			<Parameter name="StopArguments"  type="string" integerCode="2082" identifier="MQCA_SERVICE_STOP_ARGS"/>
+			<Parameter name="StopCommand"  type="string" integerCode="2081" identifier="MQCA_SERVICE_STOP_COMMAND"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire Service Status -->
+	<Command name="INQUIRE_SERVICE_STATUS" integerCode="154" identifier="MQCMD_INQUIRE_SERVICE_STATUS">
+		<RequestParameters>
+			<Parameter name="ServiceName"  type="string" integerCode="2077" identifier="MQCA_SERVICE_NAME" required="true"/>
+			
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="ServiceStatusAttrs"  type="int[]" integerCode="1225" identifier="MQIACF_SERVICE_STATUS_ATTRS"/>
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="ProcessId"  type="int" integerCode="1024" identifier="MQIACF_PROCESS_ID"/>
+			<Parameter name="ServiceDesc"  type="string" integerCode="2078" identifier="MQCA_SERVICE_DESC"/>
+			<Parameter name="ServiceName"  type="string" integerCode="2077" identifier="MQCA_SERVICE_NAME"/>
+			<Parameter name="StartArguments"  type="string" integerCode="2080" identifier="MQCA_SERVICE_START_ARGS"/>
+			<Parameter name="StartCommand"  type="string" integerCode="2079" identifier="MQCA_SERVICE_START_COMMAND"/>
+			<Parameter name="StartDate"  type="string" integerCode="3144" identifier="MQCACF_SERVICE_START_DATE"/>
+			<Parameter name="StartMode"  type="int" integerCode="139" identifier="MQIA_SERVICE_CONTROL"/>
+			<Parameter name="StartTime"  type="string" integerCode="3145" identifier="MQCACF_SERVICE_START_TIME"/>
+			<Parameter name="Status"  type="int" integerCode="1260" identifier="MQIACF_SERVICE_STATUS"/>
+			<Parameter name="StderrDestination"  type="string" integerCode="2084" identifier="MQCA_STDERR_DESTINATION"/>
+			<Parameter name="StdoutDestination"  type="string" integerCode="2083" identifier="MQCA_STDOUT_DESTINATION"/>
+			<Parameter name="StopArguments"  type="string" integerCode="2082" identifier="MQCA_SERVICE_STOP_ARGS"/>
+			<Parameter name="StopCommand"  type="string" integerCode="2081" identifier="MQCA_SERVICE_STOP_COMMAND"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--Inquire Storage Class -->
+	<Command name="INQUIRE_STG_CLASS" integerCode="122" identifier="MQCMD_INQUIRE_STG_CLASS">
+		<RequestParameters>
+			<Parameter name="StorageClassName"  type="string" integerCode="2022" identifier="MQCA_STORAGE_CLASS" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<!-- Parameter name="IntegerFilterCommand"  type="MQCFIF" integerCode="******TODOCHECKTHIS******"/ -->
+			<Parameter name="PageSetId"  type="int" integerCode="62" identifier="MQIA_PAGESET_ID"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="StgClassAttrs"  type="int[]" integerCode="1156" identifier="MQIACF_STORAGE_CLASS_ATTRS"/>
+			<!-- Parameter name="StringFilterCommand"  type="MQCFSF" integerCode="******TODOCHECKTHIS******"/ -->
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="AlterationDate"  type="string" integerCode="2027" identifier="MQCA_ALTERATION_DATE"/>
+			<Parameter name="AlterationTime"  type="string" integerCode="2028" identifier="MQCA_ALTERATION_TIME"/>
+			<Parameter name="PageSetId"  type="int" integerCode="62" identifier="MQIA_PAGESET_ID"/>
+			<Parameter name="PassTicketApplication"  type="string" integerCode="2086" identifier="MQCA_PASS_TICKET_APPL"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="StorageClassDesc"  type="string" integerCode="2042" identifier="MQCA_STORAGE_CLASS_DESC"/>
+			<Parameter name="StgClassName"  type="string" integerCode="2022" identifier="MQCA_STORAGE_CLASS"/>
+			<Parameter name="XCFGroupName"  type="string" integerCode="2043" identifier="MQCA_XCF_GROUP_NAME"/>
+			<Parameter name="XCFMemberName"  type="string" integerCode="2044" identifier="MQCA_XCF_MEMBER_NAME"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--The Inquire Storage Class Names -->
+	<Command name="INQUIRE_STG_CLASS_NAMES" integerCode="148" identifier="MQCMD_INQUIRE_STG_CLASS_NAMES">
+		<RequestParameters>
+			<Parameter name="StorageClassName"  type="string" integerCode="2022" identifier="MQCA_STORAGE_CLASS" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="StorageClassNames"  type="string[]" integerCode="3106" identifier="MQCACF_STORAGE_CLASS_NAMES"/>
+			<Parameter name="QSGDispositions"  type="int[]" integerCode="1126" identifier="MQIACF_QSG_DISPS"/>
+		</ResponseParameters>
+	</Command>
+
+	<!--The Inquire System -->
+	<Command name="INQUIRE_SYSTEM" integerCode="123" identifier="MQCMD_INQUIRE_SYSTEM">
+		<RequestParameters>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="CheckpointCount"  type="int" integerCode="1191" identifier="MQIACF_SYSP_CHKPOINT_COUNT"/>
+			<Parameter name="ClusterCacheType"  type="int" integerCode="1266" identifier="MQIACF_SYSP_CLUSTER_CACHE"/>
+			<Parameter name="CodedCharSetId"  type="int" integerCode="2" identifier="MQIA_CODED_CHAR_SET_ID"/>
+			<Parameter name="CommandUserId"  type="string" integerCode="3110" identifier="MQCACF_SYSP_CMD_USER_ID"/>
+			<Parameter name="DB2BlobTasks"  type="int" integerCode="1267" identifier="MQIACF_SYSP_DB2_BLOB_TASKS"/>
+			<Parameter name="DB2Name"  type="string" integerCode="3109" identifier="MQCACF_DB2_NAME"/>
+			<Parameter name="DB2Tasks"  type="int" integerCode="1194" identifier="MQIACF_SYSP_DB2_TASKS"/>
+			<Parameter name="DSGName"  type="string" integerCode="3108" identifier="MQCACF_DSG_NAME"/>
+			<Parameter name="ExitInterval"  type="int" integerCode="1189" identifier="MQIACF_SYSP_EXIT_INTERVAL"/>
+			<Parameter name="ExitTasks"  type="int" integerCode="1190" identifier="MQIACF_SYSP_EXIT_TASKS"/>
+			<Parameter name="MaxConnects"  type="int" integerCode="1186" identifier="MQIACF_SYSP_MAX_CONNS"/>
+			<Parameter name="MaxConnectsBackground"  type="int" integerCode="1188" identifier="MQIACF_SYSP_MAX_CONNS_BACK"/>
+			<Parameter name="MaxConnectsForeground"  type="int" integerCode="1187" identifier="MQIACF_SYSP_MAX_CONNS_FORE"/>
+			<Parameter name="OTMADruExit"  type="string" integerCode="3113" identifier="MQCACF_SYSP_OTMA_DRU_EXIT"/>
+			<Parameter name="OTMAGroup"  type="string" integerCode="3111" identifier="MQCACF_SYSP_OTMA_GROUP"/>
+			<Parameter name="OTMAInterval"  type="int" integerCode="1192" identifier="MQIACF_SYSP_OTMA_INTERVAL"/>
+			<Parameter name="OTMAMember"  type="string" integerCode="3112" identifier="MQCACF_SYSP_OTMA_MEMBER"/>
+			<Parameter name="OTMSTpipePrefix"  type="string" integerCode="3113" identifier="MQCACF_SYSP_OTMA_DRU_EXIT"/>
+			<Parameter name="QIndexDefer"  type="int" integerCode="1193" identifier="MQIACF_SYSP_Q_INDEX_DEFER"/>
+			<Parameter name="QSGName"  type="string" integerCode="2040" identifier="MQCA_QSG_NAME"/>
+			<Parameter name="RESLEVELAudit"  type="int" integerCode="1195" identifier="MQIACF_SYSP_RESLEVEL_AUDIT"/>
+			<Parameter name="RoutingCode"  type="int[]" integerCode="1196" identifier="MQIACF_SYSP_ROUTING_CODE"/>
+			<Parameter name="Service"  type="string" integerCode="3123" identifier="MQCACF_SYSP_SERVICE"/>
+			<Parameter name="SMFAccounting"  type="int" integerCode="1197" identifier="MQIACF_SYSP_SMF_ACCOUNTING"/>
+			<Parameter name="SMFStatistics"  type="int" integerCode="1198" identifier="MQIACF_SYSP_SMF_STATS"/>
+			<Parameter name="SMFInterval"  type="int" integerCode="1199" identifier="MQIACF_SYSP_SMF_INTERVAL"/>
+			<Parameter name="TraceClass"  type="int[]" integerCode="1200" identifier="MQIACF_SYSP_TRACE_CLASS"/>
+			<Parameter name="TraceSize"  type="int" integerCode="1201" identifier="MQIACF_SYSP_TRACE_SIZE"/>
+			<Parameter name="WLMInterval"  type="int" integerCode="1202" identifier="MQIACF_SYSP_WLM_INTERVAL"/>
+			<Parameter name="WLMIntervalUnits"  type="int" integerCode="1268" identifier="MQIACF_SYSP_WLM_INT_UNITS"/>		
+		</ResponseParameters>
+	</Command>
+
+	<!--The Inquire Usage -->
+	<Command name="INQUIRE_USAGE" integerCode="126" identifier="MQCMD_INQUIRE_USAGE">
+		<RequestParameters>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="PageSetId"  type="int" integerCode="62" identifier="MQIA_PAGESET_ID"/>
+			<Parameter name="UsageType"  type="int" integerCode="1157" identifier="MQIACF_USAGE_TYPE"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="BufferPoolId"  type="int" integerCode="1158" identifier="MQIACF_BUFFER_POOL_ID"/>
+			<Parameter name="ExpandCount"  type="int" integerCode="1164" identifier="MQIACF_USAGE_EXPAND_COUNT"/>
+			<Parameter name="ExpandType"  type="int" integerCode="1265" identifier="MQIACF_USAGE_EXPAND_TYPE"/>
+			<Parameter name="NonPersistentDataPages"  type="int" integerCode="1162" identifier="MQIACF_USAGE_NONPERSIST_PAGES"/>
+			<Parameter name="PageSetId"  type="int" integerCode="62" identifier="MQIA_PAGESET_ID"/>
+			<Parameter name="PageSetStatus"  type="int" integerCode="1165" identifier="MQIACF_PAGESET_STATUS"/>
+			<Parameter name="PersistentDataPages"  type="int" integerCode="1161" identifier="MQIACF_USAGE_PERSIST_PAGES"/>
+			<Parameter name="TotalPages"  type="int" integerCode="1159" identifier="MQIACF_USAGE_TOTAL_PAGES"/>
+			<Parameter name="UnusedPages"  type="int" integerCode="1160" identifier="MQIACF_USAGE_UNUSED_PAGES"/>
+			<Parameter name="BufferPoolId"  type="int" integerCode="1158" identifier="MQIACF_BUFFER_POOL_ID"/>
+			<Parameter name="TotalBuffers"  type="int" integerCode="1166" identifier="MQIACF_USAGE_TOTAL_BUFFERS"/>
+			<Parameter name="DataSetName"  type="string" integerCode="3059" identifier="MQCACF_DATA_SET_NAME"/>
+			<Parameter name="DataSetType"  type="int" integerCode="1167" identifier="MQIACF_USAGE_DATA_SET_TYPE"/>
+			<Parameter name="LogRBA"  type="string" integerCode="3078" identifier="MQCACF_USAGE_LOG_RBA"/>
+			<Parameter name="LogLRSN"  type="string" integerCode="3079" identifier="MQCACF_USAGE_LOG_LRSN"/>	
+		</ResponseParameters>
+	</Command>
+
+	<!-- The Move Queue --> 
+	<Command name="MOVE_Q"  integerCode="127" identifier="MQCMD_MOVE_Q">
+		<RequestParameters>
+			<Parameter name="FromQName"  type="string" integerCode="3001" identifier="MQCACF_FROM_Q_NAME" required="true" />
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="MoveType"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="ToQName"  type="string" integerCode="3002" identifier="MQCACF_TO_Q_NAME"/>
+		</RequestParameters>
+	</Command>		
+
+	<!-- The Ping Channel --> 
+	<Command name="PING_CHANNEL"  integerCode="26" identifier="MQCMD_PING_CHANNEL">
+		<RequestParameters>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" required="true"/>
+			
+			<Parameter name="DataCount"  type="int" integerCode="1512" identifier="MQIACH_DATA_COUNT"/>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="ChannelDisposition"  type="int" integerCode="1580" identifier="MQIACH_CHANNEL_DISP"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Ping Queue Manager --> 
+	<Command name="PING_Q_MGR"  integerCode="40" identifier="MQCMD_PING_Q_MGR">
+	</Command>
+
+	<!-- The Recover CF Structure --> 
+	<Command name="RECOVER_CF_STRUC"  integerCode="129" identifier="MQCMD_RECOVER_CF_STRUC">
+		<RequestParameters>
+			<Parameter name="CFStrucName"  type="string" integerCode="2039" identifier="MQCA_CF_STRUC_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="Purge"  type="int" integerCode="1007" identifier="MQIACF_PURGE"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Refresh Cluster --> 
+	<Command name="REFRESH_CLUSTER"  integerCode="73" identifier="MQCMD_REFRESH_CLUSTER">
+		<RequestParameters>
+			<Parameter name="ClusterName"  type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="RefreshRepository"  type="int" integerCode="1095" identifier="MQIACF_REFRESH_REPOSITORY"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Refresh Queue Manager --> 
+	<Command name="REFRESH_Q_MGR"  integerCode="16" identifier="MQCMD_REFRESH_Q_MGR">
+		<RequestParameters>
+			<Parameter name="RefreshType"  type="int" integerCode="1078" identifier="MQIACF_REFRESH_TYPE" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="ObjectName"  type="string" integerCode="3046" identifier="MQCACF_OBJECT_NAME"/>
+			<Parameter name="ObjectType"  type="int" integerCode="1016" identifier="MQIACF_OBJECT_TYPE"/>
+			<Parameter name="RefreshInterval"  type="int" integerCode="1094" identifier="MQIACF_REFRESH_INTERVAL"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Refresh Security --> 
+	<Command name="REFRESH_SECURITY"  integerCode="78" identifier="MQCMD_REFRESH_SECURITY">
+		<RequestParameters>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="SecurityItem"  type="int" integerCode="1129" identifier="MQIACF_SECURITY_ITEM"/>
+			<Parameter name="SecurityType"  type="int" integerCode="1106" identifier="MQIACF_SECURITY_TYPE"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Reset Channel --> 
+	<Command name="RESET_CHANNEL"  integerCode="27" identifier="MQCMD_RESET_CHANNEL">
+		<RequestParameters>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="ChannelDisposition"  type="int" integerCode="1580" identifier="MQIACH_CHANNEL_DISP"/>
+			<Parameter name="MsgSeqNumber"  type="int" integerCode="1514" identifier="MQIACH_MSG_SEQUENCE_NUMBER"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Reset Cluster --> 
+	<Command name="RESET_CLUSTER"  integerCode="74" identifier="MQCMD_RESET_CLUSTER">
+		<RequestParameters>
+			<Parameter name="ClusterName"  type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME" required="true"/>
+			<Parameter name="QMgrIdentifier"  type="string" integerCode="2032" identifier="MQCA_Q_MGR_IDENTIFIER" required="true"/>
+			<Parameter name="QMgrName"  type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME" required="true"/>
+			<Parameter name="Action"  type="int" integerCode="1086" identifier="MQIACF_ACTION" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="RemoveQueues"  type="int" integerCode="1096" identifier="MQIACF_REMOVE_QUEUES"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Use the Reset Queue Manager --> 
+	<Command name="RESET_Q_MGR"  integerCode="92" identifier="MQCMD_RESET_Q_MGR">
+		<RequestParameters>
+			<Parameter name="Action"  type="int" integerCode="1086" identifier="MQIACF_ACTION" required="true"/>
+			
+		</RequestParameters>
+	</Command>
+
+	<!-- The Reset Queue Statistics --> 
+	<Command name="RESET_Q_STATS"  integerCode="17" identifier="MQCMD_RESET_Q_STATS">
+		<RequestParameters>
+			<Parameter name="QName"  type="string" integerCode="2016" identifier="MQCA_Q_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+		</RequestParameters>
+		<ResponseParameters>		
+			<Parameter name="HighQDepth"  type="int" integerCode="36" identifier="MQIA_HIGH_Q_DEPTH"/>
+			<Parameter name="MsgDeqCount"  type="int" integerCode="38" identifier="MQIA_MSG_DEQ_COUNT"/>
+			<Parameter name="MsgEnqCount"  type="int" integerCode="37" identifier="MQIA_MSG_ENQ_COUNT"/>
+			<Parameter name="QName"  type="string" integerCode="2016" identifier="MQCA_Q_NAME" />
+			<Parameter name="QSGDisposition"  type="int" integerCode="63" identifier="MQIA_QSG_DISP"/>
+			<Parameter name="TimeSinceReset"  type="int" integerCode="35" identifier="MQIA_TIME_SINCE_RESET"/>
+		</ResponseParameters>
+	</Command>
+
+	<!-- The Resolve Channel --> 
+	<Command name="RESOLVE_CHANNEL"  integerCode="39" identifier="MQCMD_RESOLVE_CHANNEL">
+		<RequestParameters>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" required="true"/>
+			<Parameter name="InDoubt"  type="int" integerCode="1516" identifier="MQIACH_IN_DOUBT" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="ChannelDisposition"  type="int" integerCode="1580" identifier="MQIACH_CHANNEL_DISP"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Resume Queue Manager --> 
+	<Command name="RESUME_Q_MGR"  integerCode="132" identifier="MQCMD_RESUME_Q_MGR">
+		<RequestParameters>
+			<Parameter name="Facility"  type="int" integerCode="1231" identifier="MQIACF_Q_MGR_FACILITY" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Resume Queue Manager Cluster --> 
+	<Command name="RESUME_Q_MGR_CLUSTER"  integerCode="71" identifier="MQCMD_RESUME_Q_MGR_CLUSTER">
+		<RequestParameters>
+			<Parameter name="ClusterName"  type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME" required="true"/>
+			<Parameter name="ClusterNamelist"  type="string" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Reverify Security --> 
+	<Command name="REVERIFY_SECURITY"  integerCode="133" identifier="MQCMD_REVERIFY_SECURITY">
+		<RequestParameters>
+			<Parameter name="UserId"  type="string" integerCode="3025" identifier="MQCACF_USER_IDENTIFIER" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Use the Set Archive --> 
+	<Command name="SET_ARCHIVE"  integerCode="134" identifier="MQCMD_SET_ARCHIVE">
+		<RequestParameters>
+			<Parameter name="ParameterType"  type="int" integerCode="1175" identifier="MQIACF_SYSP_TYPE" required="true"/>
+			
+			<Parameter name="AllocPrimary"  type="int" integerCode="1209" identifier="MQIACF_SYSP_ALLOC_PRIMARY"/>
+			<Parameter name="AllocSecondary"  type="int" integerCode="1210" identifier="MQIACF_SYSP_ALLOC_SECONDARY"/>
+			<Parameter name="AllocUnits"  type="int" integerCode="1203" identifier="MQIACF_SYSP_ALLOC_UNIT"/>
+			<Parameter name="ArchivePrefix1"  type="string" integerCode="3115" identifier="MQCACF_SYSP_ARCHIVE_PFX1"/>
+			<Parameter name="ArchivePrefix2"  type="string" integerCode="3147" identifier="MQCACF_SYSP_ARCHIVE_PFX2"/>
+			<Parameter name="ArchiveRetention"  type="int" integerCode="1204" identifier="MQIACF_SYSP_ARCHIVE_RETAIN"/>
+			<Parameter name="ArchiveUnit1"  type="string" integerCode="3116" identifier="MQCACF_SYSP_ARCHIVE_UNIT1"/>
+			<Parameter name="ArchiveUnit2"  type="string" integerCode="3148" identifier="MQCACF_SYSP_ARCHIVE_UNIT2"/>
+			<Parameter name="ArchiveWTOR"  type="int" integerCode="1205" identifier="MQIACF_SYSP_ARCHIVE_WTOR"/>
+			<Parameter name="BlockSize"  type="int" integerCode="1206" identifier="MQIACF_SYSP_BLOCK_SIZE"/>
+			<Parameter name="Catalog"  type="int" integerCode="1207" identifier="MQIACF_SYSP_CATALOG"/>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="Compact"  type="int" integerCode="1208" identifier="MQIACF_SYSP_COMPACT"/>
+			<Parameter name="Protect"  type="int" integerCode="1211" identifier="MQIACF_SYSP_PROTECT"/>
+			<Parameter name="QuiesceInterval"  type="int" integerCode="1212" identifier="MQIACF_SYSP_QUIESCE_INTERVAL"/>
+			<Parameter name="RoutingCode"  type="int[]" integerCode="1196" identifier="MQIACF_SYSP_ROUTING_CODE"/>
+			<Parameter name="TimeStampFormat"  type="int" integerCode="1213" identifier="MQIACF_SYSP_TIMESTAMP"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Set Authority Record --> 
+
+	<Command name="SET_AUTH_REC"  integerCode="90" identifier="MQCMD_SET_AUTH_REC">
+		<RequestParameters>
+			<Parameter name="ProfileName"  type="string" integerCode="3067" identifier="MQCACF_AUTH_PROFILE_NAME" required="true"/>
+			<Parameter name="ObjectType"  type="int" integerCode="1016" identifier="MQIACF_OBJECT_TYPE" required="true"/>
+			
+			
+			<Parameter name="AuthorityAdd"  type="int[]" integerCode="1116" identifier="MQIACF_AUTH_ADD_AUTHS"/>
+			<Parameter name="AuthorityRemove"  type="int[]" integerCode="1117" identifier="MQIACF_AUTH_REMOVE_AUTHS"/>
+			<Parameter name="GroupNames"  type="string[]" integerCode="3066" identifier="MQCACF_GROUP_ENTITY_NAMES"/>
+			<Parameter name="PrincipalNames"  type="string[]" integerCode="3065" identifier="MQCACF_PRINCIPAL_ENTITY_NAMES"/>
+			<Parameter name="ServiceComponent"  type="string" integerCode="3069" identifier="MQCACF_SERVICE_COMPONENT"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- Use the Set Log --> 
+	<Command name="SET_LOG"  integerCode="136" identifier="MQCMD_SET_LOG">
+		<RequestParameters>
+			<Parameter name="ParameterType"  type="int" integerCode="1175" identifier="MQIACF_SYSP_TYPE" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="DeallocateInterval"  type="int" integerCode="1176" identifier="MQIACF_SYSP_DEALLOC_INTERVAL"/>
+			<Parameter name="MaxArchiveLog"  type="int" integerCode="1177" identifier="MQIACF_SYSP_MAX_ARCHIVE"/>
+			<Parameter name="MaxReadTapeUnits"  type="int" integerCode="1178" identifier="MQIACF_SYSP_MAX_READ_TAPES"/>
+			<Parameter name="OutputBufferCount"  type="int" integerCode="1181" identifier="MQIACF_SYSP_OUT_BUFFER_COUNT"/>
+		</RequestParameters>
+	</Command>
+
+
+	<!-- Use the Set System --> 
+	<Command name="SET_SYSTEM"  integerCode="137" identifier="MQCMD_SET_SYSTEM">
+		<RequestParameters>
+			<Parameter name="ParameterType"  type="int" integerCode="1175" identifier="MQIACF_SYSP_TYPE" required="true"/>
+			
+			<Parameter name="CheckpointCount"  type="int" integerCode="1191" identifier="MQIACF_SYSP_CHKPOINT_COUNT"/>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="MaxConnects"  type="int" integerCode="1186" identifier="MQIACF_SYSP_MAX_CONNS"/>
+			<Parameter name="MaxConnectsBackground"  type="int" integerCode="1188" identifier="MQIACF_SYSP_MAX_CONNS_BACK"/>
+			<Parameter name="MaxConnectsForeground"  type="int" integerCode="1187" identifier="MQIACF_SYSP_MAX_CONNS_FORE"/>
+			<Parameter name="Service"  type="string" integerCode="3123" identifier="MQCACF_SYSP_SERVICE"/>
+			<Parameter name="SMFInterval"  type="int" integerCode="1199" identifier="MQIACF_SYSP_SMF_INTERVAL"/>
+			<Parameter name="TraceSize"  type="int" integerCode="1201" identifier="MQIACF_SYSP_TRACE_SIZE"/>
+		</RequestParameters>
+	</Command>
+
+
+	<!-- The Start Channel --> 
+	<Command name="START_CHANNEL"  integerCode="28" identifier="MQCMD_START_CHANNEL">
+		<RequestParameters>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="ChannelDisposition"  type="int" integerCode="1580" identifier="MQIACH_CHANNEL_DISP"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Start Channel Initiator --> 
+	<Command name="START_CHANNEL_INIT"  integerCode="30" identifier="MQCMD_START_CHANNEL_INIT">
+		<RequestParameters>
+			<Parameter name="InitiationQName"  type="string" integerCode="2008" identifier="MQCA_INITIATION_Q_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="EnvironmentInfo"  type="string" integerCode="3089" identifier="MQCACF_ENV_INFO"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Start Channel Listener --> 
+	<Command name="START_CHANNEL_LISTENER"  integerCode="31" identifier="MQCMD_START_CHANNEL_LISTENER">
+		<RequestParameters>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="InboundDisposition"  type="int" integerCode="1581" identifier="MQIACH_INBOUND_DISP"/>
+			<Parameter name="IPAddress"  type="string" integerCode="3552" identifier="MQCACH_IP_ADDRESS"/>
+			<Parameter name="ListenerName"  type="string" integerCode="3554" identifier="MQCACH_LISTENER_NAME"/>
+			<Parameter name="LUName"  type="string" integerCode="3551" identifier="MQCACH_LU_NAME"/>
+			<Parameter name="Port"  type="int" integerCode="1574" identifier="MQIACH_PORT_NUMBER"/>
+			<Parameter name="TransportType"  type="int" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Start Service --> 
+	<Command name="START_SERVICE"  integerCode="155" identifier="MQCMD_START_SERVICE">
+		<RequestParameters>
+			<Parameter name="ServiceName"  type="string" integerCode="2077" identifier="MQCA_SERVICE_NAME" required="true"/>
+			
+		</RequestParameters>
+	</Command>
+
+	<!-- The Stop Channel --> 
+	<Command name="STOP_CHANNEL"  integerCode="29" identifier="MQCMD_STOP_CHANNEL">
+		<RequestParameters>
+			<Parameter name="ChannelName"  type="string" integerCode="3501" identifier="MQCACH_CHANNEL_NAME" required="true"/>
+			
+			<Parameter name="ChannelDisposition"  type="int" integerCode="1580" identifier="MQIACH_CHANNEL_DISP"/>
+			<Parameter name="ChannelStatus"  type="int" integerCode="1527" identifier="MQIACH_CHANNEL_STATUS"/>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="ConnectionName"  type="string" integerCode="3506" identifier="MQCACH_CONNECTION_NAME"/>
+			<Parameter name="Mode"  type="int" integerCode="1008" identifier="MQIACF_MODE"/>
+			<Parameter name="QMgrName"  type="string" integerCode="2015" identifier="MQCA_Q_MGR_NAME"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Stop Channel Initiator --> 
+	<Command name="STOP_CHANNEL_INIT"  integerCode="141" identifier="MQCMD_STOP_CHANNEL_INIT">
+		<RequestParameters>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="SharedChannelRestart"  type="int" integerCode="1600" identifier="MQIACH_SHARED_CHL_RESTART"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Stop Channel Listener --> 
+	<Command name="STOP_CHANNEL_LISTENER"  integerCode="142" identifier="MQCMD_STOP_CHANNEL_LISTENER">
+		<RequestParameters>
+			<Parameter name="ListenerName"  type="string" integerCode="3554" identifier="MQCACH_LISTENER_NAME" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="InboundDisposition"  type="int" integerCode="1581" identifier="MQIACH_INBOUND_DISP"/>
+			<Parameter name="IPAddress"  type="string" integerCode="3552" identifier="MQCACH_IP_ADDRESS"/>
+			<Parameter name="Port"  type="int" integerCode="1574" identifier="MQIACH_PORT_NUMBER"/>
+			<Parameter name="TransportType"  type="int" integerCode="1501" identifier="MQIACH_XMIT_PROTOCOL_TYPE"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Stop Connection --> 
+	<Command name="STOP_CONNECTION"  integerCode="86" identifier="MQCMD_STOP_CONNECTION">
+		<RequestParameters>
+			<Parameter name="ConnectionId"  type="string" integerCode="7006" identifier="MQBACF_CONNECTION_ID" required="true"/>
+			
+		</RequestParameters>
+	</Command>
+
+	<!-- The Stop Service --> 
+	<Command name="STOP_SERVICE"  integerCode="156" identifier="MQCMD_STOP_SERVICE">
+		<RequestParameters>
+			<Parameter name="ServiceName"  type="string" integerCode="2077" identifier="MQCA_SERVICE_NAME" required="true"/>
+			
+		</RequestParameters>
+	</Command>
+
+	<!-- The Suspend Queue Manager --> 
+	<Command name="SUSPEND_Q_MGR"  integerCode="146" identifier="MQCMD_SUSPEND_Q_MGR">
+		<RequestParameters>
+			<Parameter name="Facility"  type="int" integerCode="1231" identifier="MQIACF_Q_MGR_FACILITY" required="true"/>
+			
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+		</RequestParameters>
+	</Command>
+
+	<!-- The Suspend Queue Manager Cluster --> 
+	<Command name="SUSPEND_Q_MGR_CLUSTER"  integerCode="72" identifier="MQCMD_SUSPEND_Q_MGR_CLUSTER">
+		<RequestParameters>
+			<Parameter name="ClusterName"  type="string" integerCode="2029" identifier="MQCA_CLUSTER_NAME" required="true"/>
+			<Parameter name="ClusterNamelist"  type="string" integerCode="2030" identifier="MQCA_CLUSTER_NAMELIST" required="true"/>
+			<Parameter name="CommandScope"  type="string" integerCode="3080" identifier="MQCACF_COMMAND_SCOPE"/>
+			<Parameter name="Mode"  type="int" integerCode="1008" identifier="MQIACF_MODE"/>
+		</RequestParameters>
+	</Command>
+</PCFCommands>

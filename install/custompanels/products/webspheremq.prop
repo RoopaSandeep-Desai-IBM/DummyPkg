@@ -1,0 +1,162 @@
+
+# This is a product property file.  This file describes all properties of
+# a product to the distribution manager.  The Dataserver and Distribution
+# manager use this information to process and display custom product panels,
+# localized panel messages, and the relationship between a product and its
+# buildmodules. 
+
+# Which group this product belongs to (tools, broker, dbAdapter etc.).  This
+# can be used to allow or restrict users the ability to be able to download
+# groups of products (all tools, all dbAdapters, etc.).  Otherwise it serves
+# no purpose
+
+group=Adapters
+
+# Message catalog bundle path for product messages [required]
+resourceBundle=com.wm.adapterinstall.mq60.MQ60Messages
+
+# Message jar(s), 1 for each locale recommended.  List the resource jars
+# for the display messages and the custom panels [required]
+resourceJars=MQ60Install
+
+# Message catalog identifier for looking up the name of the product string
+# [required]
+displayName=MQ60.displayName
+
+# Message catalog identifier for looking up the name of the product description
+# string [required]
+displayDescript=MQ60.displayDescript
+
+# Message catalog identifier for displaying the group (webMethods tools,
+# webMethods dbAdapters, etc.). Right now this is not used, but it could
+# be later if we redesign the product listing display in the installer.
+# [required]
+displayGroup=MQ60.displayGroup
+
+
+ # Depends on other products installed [optional]
+#requiresRegexp=e2ei/11/.*/API/CommonBrokerJavaApi
+requiresRegexp=e2ei/11/.*/integrationServer/integrationServerSP
+
+ # MultiRoot Installation directory [optional]
+ #installDir=Adapter
+
+
+# Further restrictions, any above matches must be of the following 
+# versions.  Use a regular expression. [optional]
+requiresVersionRegexp=gte6.0.1.2
+
+# If the requirements are not met, show the following error message.  Put
+# a mesage catalog identifier here. [optional]
+requiresInstallErrorMessage=MQ60.dependencyInstallError
+requiresUninstallErrorMessage=MQ60.dependencyInstallError
+
+# Display GSS, Readme, ReleaseNotes
+#COMMENT_LINE#showGSS=WBAT.GSS
+showReadMe=MQ60.Readme
+#COMMENT_LINE# showReleaseNotes=WBAT.Release_Notes
+
+ReadMeEncoding=MQ60.ReadMeEncoding
+#COMMENT_LINE# ReleaseNotesEncoding=WBAT.ReleaseNotesEncoding
+#COMMENT_LINE# GSSEncoding=WBAT.GSSEncoding
+
+
+# Special install flags [optional]
+#COMMENT_LINE# flags=WBATType,true,Enabled,false
+
+# Component properties
+
+define $mq BM_WmMQAdapter600Core-Any
+
+## WNT ##
+comps/MQ-WNT-Domestic/jars=MQ60Install
+comps/MQ-WNT-Export/jars=MQ60Install
+
+comps/MQ-WNT-Domestic/buildmodules=$mq
+comps/MQ-WNT-Export/buildmodules=$mq
+
+## SOL ##
+comps/MQ-SOL-Domestic/jars=MQ60Install
+comps/MQ-SOL-Export/jars=MQ60Install
+
+comps/MQ-SOL-Domestic/buildmodules=$mq
+comps/MQ-SOL-Export/buildmodules=$mq
+
+## HP-UX ##
+
+comps/MQ-HP11-Domestic/jars=MQ60Install
+comps/MQ-HP11-Export/jars=MQ60Install
+
+comps/MQ-HP11-Domestic/buildmodules=$mq
+comps/MQ-HP11-Export/buildmodules=$mq
+
+
+## HP-UX Itanium##
+
+comps/MQ-HP11IT-Domestic/jars=MQ60Install
+comps/MQ-HP11IT-Export/jars=MQ60Install
+
+comps/MQ-HP11IT-Domestic/buildmodules=$mq
+comps/MQ-HP11IT-Export/buildmodules=$mq
+
+# AIX ##
+comps/MQ-AIX-Domestic/jars=MQ60Install
+comps/MQ-AIX-Export/jars=MQ60Install
+
+comps/MQ-AIX-Domestic/buildmodules=$mq
+comps/MQ-AIX-Export/buildmodules=$mq
+
+# LINUX ##
+comps/MQ-LNX-Domestic/jars=MQ60Install
+comps/MQ-LNX-Export/jars=MQ60Install
+
+comps/MQ-LNX-Domestic/buildmodules=$mq
+comps/MQ-LNX-Export/buildmodules=$mq
+
+# AS/400 ##
+comps/MQ-AS400-Domestic/jars=MQ60Install
+comps/MQ-AS400-Export/jars=MQ60Install
+
+comps/MQ-AS400-Domestic/buildmodules=$mq
+comps/MQ-AS400-Export/buildmodules=$mq
+
+# type is one of:
+# InstallerWizardPanel - User GUI panel
+# InstallerActionPanel - no User GUI, just do some type of (config) action
+# InstallerProgressPanel - InstallerActionPanel with a progressbar
+# InstallerProgressGroupPanel - InstallerProgressPanel with auto progressbar
+#                               update, most custom panels should be this one
+# InstallerConditionPanel - No GUI, use to check a condition of some type
+#                           returning false will go back to last wizard panel
+
+# stage is one of:
+# Bootstrap - Only for system panels, do not use
+# PreProdSelect - Before any jars are loaded, do not use
+# ProdSelect - Product selection, must set after 
+#              to com.wm.distman.custominstall.DLJarsProgressPanel otherwise
+#              the panel will not be loaded when it comes time to display it!
+#              Product condition panels (check condition, don't let user
+#              install product) should go here
+# PostProdSelect - After the product selection stage
+# PreFileCopy - Right before files are copied
+# FileCopy - File copy stage, probably shouldn't use this
+# PostFileCopy - Almost everything goes here.  This is the "config" stage
+# InstallEnd - After the config steps are all done
+
+ panels/PreFileCopyPanel1/type=InstallerActionPanel
+ panels/PreFileCopyPanel1/class=com.wm.adapterinstall.mq60.ProgramFilesActionPanel
+ panels/PreFileCopyPanel1/resourceBundle=com.wm.adapterinstall.mq60.MQ60Messages
+ panels/PreFileCopyPanel1/stage=PreFileCopy
+ panels/PreFileCopyPanel1/before=
+ panels/PreFileCopyPanel1/after=
+ panels/PreFileCopyPanel1/rankBias=0
+ panels/PreFileCopyPanel1/flags=
+ 
+ panels/PostFileCopyPanel1/type=InstallerWizardPanel
+ panels/PostFileCopyPanel1/class=com.wm.adapterinstall.mq60.ProgramFilesWizardPanel
+ panels/PostFileCopyPanel1/resourceBundle=com.wm.adapterinstall.mq60.MQ60Messages
+ panels/PostFileCopyPanel1/stage=PostFileCopy
+ panels/PostFileCopyPanel1/before=
+ panels/PostFileCopyPanel1/after=
+ panels/PostFileCopyPanel1/rankBias=0
+ panels/PostFileCopyPanel1/flags=
